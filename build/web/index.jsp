@@ -68,14 +68,14 @@
         <div class="modal fade" id="modal-signup" tabindex="-1" role="dialog" aria-labelledby="modal-signup" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Sign Up</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="row">
+                    <form id="form-signup">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Sign Up</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
                             <div class="col">
                                 <table class="table">
                                     <tbody>
@@ -153,11 +153,11 @@
                                 </table>
                             </div>
                         </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Confirm</button>
-                    </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Confirm</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -165,27 +165,25 @@
         <div class="modal fade" id="modal-login" tabindex="-1" role="dialog" aria-labelledby="modal-login" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Login</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="col">
-                                <form class="form-signin">
-                                    <label for="Email" class="sr-only">Email</label>
-                                    <input type="email" id="email-login" class="form-control" placeholder="Email address" required autofocus="">
-                                    <label for="Password" class="sr-only">Password</label>
-                                    <input type="password" id="password-login" class="form-control" placeholder="Password" required autofocus="">
-                                </form>
-                            </div>
+                    <form class="form-signin">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Login</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
                         </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-                    </div>
+                        <div class="modal-body">
+                            <div class="col-sm-12">
+                                <label for="Email" class="sr-only">Email</label>
+                                <input type="email" id="email-login" class="form-control" placeholder="Email address" required autofocus="">
+                                <label for="Password" class="sr-only">Password</label>
+                                <input type="password" id="password-login" class="form-control" placeholder="Password" required autofocus="">
+                            </div>                        
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
