@@ -1,0 +1,42 @@
+body {
+    color: #292b2c;
+    background-color: #eee;
+}
+.pagecontent {
+    padding: 3rem 1.5rem;
+    margin: 2.5rem;
+    text-align: center;
+}
+.divide {
+    margin-right: 200px;
+    margin-left: 200px;
+}
+.logo {
+    margin-right: 8px;
+    margin-left: 8px;
+}
+.pageheader {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+    margin-bottom: 3rem;
+    text-align: left;
+    color: #cacfd3;
+    background-color: #4f626e;
+}
+.pageheader h1 {
+    font-size: 4rem;
+    color: #fff;
+}
+.pageheader p {
+    font-size: 1.5rem;
+}
+.navbar {
+    padding: .5rem 1rem;
+}
+.sidebar {
+    padding-left: 1rem;
+}
+.search {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
