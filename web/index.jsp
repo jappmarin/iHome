@@ -38,7 +38,7 @@
                             </div>
                             <div class="row justify-content-center">
                                 <div class="col-sm-2">
-                                    <a type="button" class="btn btn-primary btn-lg" href="search.jsp">Search</a>
+                                    <a class="btn btn-primary btn-lg" href="#" role="button">Search</a>
                                 </div>
                             </div>
                         </div>
@@ -76,7 +76,7 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <div class="col">
+                            <div class="col-sm-12">
                                 <table class="table">
                                     <tbody>
                                         <tr>
