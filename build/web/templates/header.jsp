@@ -5,7 +5,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title>Vacation Rentals, Homes, Experiences & Places - iHome</title>
-        <link rel="stylesheet" href="asset/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
         <link rel="stylesheet" href="asset/css/style.css">
     </head>
     <body>
@@ -19,18 +19,17 @@
             <div class="collapse navbar-collapse" id="navbars">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Become a Host</a>
+                        <a class="nav-link" data-toggle="modal" href="#signup-host">Become a Host</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Help</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-toggle="modal" href="#modal-signup">Sign up</a>
+                        <a class="nav-link" data-toggle="modal" href="#signup">Sign up</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-toggle="modal" href="#modal-login">Login</a>
+                        <a class="nav-link" data-toggle="modal" href="#login">Login</a>
                     </li>
                 </ul>
             </div>
         </nav>
-        <div class="container mt-5" style="#fff">
