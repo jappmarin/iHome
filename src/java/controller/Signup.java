@@ -21,7 +21,7 @@ import model.Profile;
  * @author tkitb
  */
 @WebServlet(name = "signup", urlPatterns = {"/signup"})
-public class signup extends HttpServlet {
+public class Signup extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
