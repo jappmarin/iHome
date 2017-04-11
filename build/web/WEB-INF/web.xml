@@ -4,6 +4,10 @@
         <description>ServletContextListener</description>
         <listener-class>listener.iHomeListender</listener-class>
     </listener>
+    <listener>
+        <description>ServletContextListener</description>
+        <listener-class>listener.init</listener-class>
+    </listener>
     <session-config>
         <session-timeout>
             30
@@ -12,6 +16,13 @@
     <resource-ref>
         <description>jdbc:mysql://localhost:3306/ihome?zeroDateTimeBehavior=convertToNull</description>
         <res-ref-name>ihome</res-ref-name>
+        <res-type>javax.sql.DataSource</res-type>
+        <res-auth>Container</res-auth>
+        <res-sharing-scope>Shareable</res-sharing-scope>
+    </resource-ref>
+    <resource-ref>
+        <description>jdbc:derby://localhost:1527/iHome</description>
+        <res-ref-name>database</res-ref-name>
         <res-type>javax.sql.DataSource</res-type>
         <res-auth>Container</res-auth>
         <res-sharing-scope>Shareable</res-sharing-scope>

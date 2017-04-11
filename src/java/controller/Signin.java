@@ -32,9 +32,15 @@ public class Signin extends HttpServlet {
             throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         
-        ServletContext context = getServletContext();
-        Connection connection = (Connection) context.getAttribute("connection");
-        PreparedStatement select_customer = connection.prepareStatement("select "
+//        ServletContext context = getServletContext();
+//        Connection connection = (Connection) context.getAttribute("connection");
+//        ของน้องธี 
+        
+        ServletContext dbcontext = getServletContext();
+        Connection DBconn = (Connection) dbcontext.getAttribute("conn");
+        
+        
+        PreparedStatement select_customer = DBconn.prepareStatement("select "
                 + "username, email from customer where username = ? and password = ?");
         select_customer.setString(1, request.getParameter("username"));
         select_customer.setString(2, request.getParameter("password"));
@@ -47,7 +53,7 @@ public class Signin extends HttpServlet {
             response.sendRedirect("/iHome");
         }
         else {
-            Profile profile = new Profile(connection, request.getParameter("username"));
+            Profile profile = new Profile(DBconn, request.getParameter("username"));
             session.setAttribute("profile", profile);
             response.sendRedirect("index.jsp");
         }

@@ -1,4 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<title>edit Profile</title>
+
 <jsp:include page="templates/header.jsp" />
         <div class="container mt-5">
             <div class="row justify-content-center">
