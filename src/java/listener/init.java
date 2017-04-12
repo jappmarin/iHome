@@ -27,7 +27,7 @@ public class init implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent sce) {
         try {
-            conn = getDatabase().getConnection();
+            conn = getIHomeDB().getConnection();
             sce.getServletContext().setAttribute("conn", conn);
         } catch (Exception e) {
 // ต้องทำอัลไลว้ะ อิอิ เว้นไว้ก่อน
@@ -39,9 +39,9 @@ public class init implements ServletContextListener {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    private DataSource getDatabase() throws NamingException {
+    private DataSource getIHomeDB() throws NamingException {
         Context c = new InitialContext();
-        return (DataSource) c.lookup("java:comp/env/database");
+        return (DataSource) c.lookup("java:comp/env/iHomeDB");
     }
 
 }

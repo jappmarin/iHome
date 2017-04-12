@@ -7,7 +7,9 @@ package controller;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -33,25 +35,50 @@ public class Signup extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
+//        String username = request.getParameter("username");
+//        String first_name = request.getParameter("first_name");
+//        String last_name = request.getParameter("last_name");
+//        String password = request.getParameter("password");
+//        String email = request.getParameter("email");
+//        
+//        ServletContext context = getServletContext();
+//        Connection connection = (Connection) context.getAttribute("connection");
+//        
+//        try {
+//            Profile profile = new Profile();
+//            profile.setUsername(username);
+//            profile.setFirst_name(first_name);
+//            profile.setLast_name(last_name);
+//            profile.addNewProfile(connection);
+//        } catch (SQLException ex) {
+//            ex.printStackTrace();
+//        }
+//        ของธี
+
         String username = request.getParameter("username");
-        String first_name = request.getParameter("first_name");
-        String last_name = request.getParameter("last_name");
         String password = request.getParameter("password");
+        String f_name = request.getParameter("f_name");
+        String l_name = request.getParameter("l_name");
         String email = request.getParameter("email");
+        String phone = request.getParameter("phone");
         
-        ServletContext context = getServletContext();
-        Connection connection = (Connection) context.getAttribute("connection");
+        ServletContext contextdb = getServletContext();
+        Connection conn = (Connection) contextdb.getAttribute("conn");
+        String sql_select = "select * from ihomedb.customer where username ='" + username +"'";
+        String sql_insert = "insert into ihomedb.customer ("
+                + "username, password, f_name, l_name, email, phone) value ("
+                + "'" +username +"','" + password+ "','" +f_name+"','" +l_name+"','" +email+ "','" +phone+"')";
+                
         
-        try {
-            Profile profile = new Profile();
-            profile.setUsername(username);
-            profile.setFirst_name(first_name);
-            profile.setLast_name(last_name);
-            profile.addNewProfile(connection);
-        } catch (SQLException ex) {
-            ex.printStackTrace();
+        Statement stmt  = conn.createStatement();
+        ResultSet rt_select = stmt.executeQuery(sql_select);
+        
+        if(rt_select.next()){
+            if((rt_select.getString("username")).equals(username)){
+                if((rt_select.getString("password")).equals(username))
+            }
         }
     }
 
