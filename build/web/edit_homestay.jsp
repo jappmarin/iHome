@@ -1,12 +1,10 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<title>edit Home stay</title>
-
 <jsp:include page="templates/header.jsp" />
         <div class="container mt-5">
             <div class="row justify-content-center">
                 <div class="col-sm-8">
                     <div class="card">
-                        <h3 class="card-header">Edit Profile</h3>
+                        <h3 class="card-header">Edit Homestay</h3>
                         <div class="card-block">
                             <div class="row">
                                 <div class="col-sm-5">
@@ -22,48 +20,36 @@
                                     <table class="table">
                                         <tbody>
                                             <tr>
-                                                <td class="align-middle">First name:</td>
+                                                <td class="align-middle">Name:</td>
                                                 <td>
-                                                    <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput" placeholder="First name" value="Teerawut">
+                                                    <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput" placeholder="" value="Example 1">
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td class="align-middle">Last name:</td>
+                                                <td class="align-middle">Province:</td>
                                                 <td>
-                                                    <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput" placeholder="Last name" value="Kitbunjerdjarud">
+                                                    <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput" placeholder="" value="Bangkok">
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td class="align-middle">Identify Number:</td>
+                                                <td class="align-middle">Amount of Guest</td>
                                                 <td>
-                                                    <div class="col-sm-12">
-                                                        <p class="form-control-static">1122121212121</p>
-                                                    </div>
+                                                    <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput" placeholder="" value="10">
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td class="align-middle">Date of Birth</td>
+                                                <td class="align-middle">Latitude</td>
                                                 <td>
-                                                    <input type="date" class="form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput" placeholder="" value="11/08/1996">
+                                                    <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput" placeholder="" value="10.22132145">
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td class="align-middle">Gender</td>
-                                                <td>
-                                                    <select class="custom-select mb-2 mr-sm-2 mb-sm-0" id="inlineFormCustomSelect">
-                                                        <option value="1" selected="">Male</option>
-                                                        <option value="2">Female</option>
-                                                    </select>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="align-middle">Home Address</td>
-                                                <td><textarea class="form-control" id="exampleTextarea" rows="3">Test อิอิ</textarea></td>
+                                                <td class="align-middle">Longtitude</td>
+                                                <td><input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput" placeholder="" value="102.1754"></td>
                                             </tr>
                                             <tr>
                                                 <td class="align-middle">Email</td>
-                                                <td>
-                                                    <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput" placeholder="Email address" value="example@example.com">
+                                                <td><input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput" placeholder="Email address" value="example@example.com"></td>
                                             </tr>
                                             <tr>
                                                 <td class="align-middle">Phone Number</td>
@@ -75,7 +61,7 @@
                                     </table>
                                     <div class="row">
                                         <div class="col">
-                                            <a href="#" class="btn btn-primary">Update Profile</a>
+                                            <a href="#" class="btn btn-primary">Update Homestay</a>
                                             <a href="#" class="btn btn-secondary">Cancel</a>
                                         </div>
                                     </div>
