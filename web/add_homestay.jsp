@@ -19,8 +19,8 @@
                                     <label for="guest">Guest</label>
                                     <input type="text" class="form-control" name="guest" id="guestIn" placeholder="" required>
                                 </div>
-                                <div class="form-group has-feedback" id="latitudeInDiv">
-                                    <label for="latitude">Homestay Address</label>
+                                <div class="form-group has-feedback" id="addressInDiv">
+                                    <label for="address">Homestay Address</label>
                                     <textarea class="form-control" name="address" id="addressIn" rows="3"></textarea>
                                 </div>
                                 <div class="form-group has-feedback" id="latitudeInDiv">
@@ -33,6 +33,7 @@
                                 </div>
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-primary btn-block" id="addHomestayButton">Add Homestay</button>
+                                    <button class="btn btn-secondary btn-block" id="addHomestayButton">Cancel</button>
                                 </div>
                             </form>
                         </div>

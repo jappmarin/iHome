@@ -9,10 +9,10 @@
                             <form action="/Signup" method="POST">
                                 <div class="form-group has-feedback" id="firstNameInDiv">
                                     <label for="firstname">First Name</label>
-                                    <input type="text" class="form-control" name="firstname" id="firstNameIn" placeholder="John" required>
+                                    <input type="text" class="form-control" name="firstname" id="firstNameIn" placeholder="John" required="">
                                 </div>
                                 <div class="form-group has-feedback" id="lastNameInDiv">
-                                    <label for="firstname">Last Name</label>
+                                    <label for="lastname">Last Name</label>
                                     <input type="text" class="form-control" name="lastname" id="lastNameIn" placeholder="English" required>
                                 </div>
                                 <div class="form-group has-feedback" id="usernameInDiv">
@@ -20,16 +20,16 @@
                                     <input type="text" class="form-control" name="username" id="usernameIn" placeholder="johnenglish" required>
                                 </div>
                                 <div class="form-group has-feedback" id="emailInDiv">
-                                    <label for="username">Email</label>
+                                    <label for="email">Email</label>
                                     <input type="email" class="form-control" name="email" id="emailIn" placeholder="john@english.com" required>
                                 </div>
                                 <div class="form-group has-feedback" id="passInDiv">
-                                    <label for="username">Password</label>
+                                    <label for="password">Password</label>
                                     <input type="password" class="form-control" name="password" id="passIn" required>
                                 </div>
                                 <div class="form-group has-feedback" id="confirmPassInDiv">
-                                    <label for="username">Confirm Password</label>
-                                    <input type="password" class="form-control" name="password" id="confirmPassIn" required>
+                                    <label for="confirmPass">Confirm Password</label>
+                                    <input type="password" class="form-control" name="confirmPass" id="confirmPassIn" required>
                                 </div>
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-primary btn-block" id="signUpButton">Sign Up</button>
