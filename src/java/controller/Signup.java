@@ -6,70 +6,53 @@
 package controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Profile;
+import javax.servlet.http.HttpSession;
 
 @WebServlet(name = "Signup", urlPatterns = {"/Signup"})
 public class Signup extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
-        
-        String firstname = request.getParameter("firstname");
-        String lastname = request.getParameter("lastname");
-        String username = request.getParameter("username");
-        String email = request.getParameter("email");
-        String phone = request.getParameter("phone");
-        String password = request.getParameter("password");
 
         ServletContext context = getServletContext();
         Connection connection = (Connection) context.getAttribute("connection");
+        HttpSession session = request.getSession();
 
-        try {
-            Profile profile = new Profile();
-            profile.setUsername(firstname);
-            profile.setFirstname(lastname);
-            profile.setLastname(username);
-            profile.setLastname(email);
-            profile.setLastname(phone);
-            profile.setLastname(password);
-            profile.addNewProfile(connection);
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-        //        String username = request.getParameter("username");
-//        String password = request.getParameter("password");
-//        String f_name = request.getParameter("f_name");
-//        String l_name = request.getParameter("l_name");
-//        String email = request.getParameter("email");
-//        String phone = request.getParameter("phone");
-//        
-//        ServletContext contextdb = getServletContext();
-//        Connection conn = (Connection) contextdb.getAttribute("conn");
-//        String sql_select = "select * from ihomedb.customer where username ='" + username +"'";
-//        String sql_insert = "insert into ihomedb.customer ("
-//                + "username, password, f_name, l_name, email, phone) value ("
-//                + "'" +username +"','" + password+ "','" +f_name+"','" +l_name+"','" +email+ "','" +phone+"')";
-//                
-//        
-//        Statement stmt  = conn.createStatement();
-//        ResultSet rt_select = stmt.executeQuery(sql_select);
-//        
-//        if(rt_select.next()){
-//            if((rt_select.getString("username")).equals(username)){
-//                if((rt_select.getString("password")).equals(username))
-//            }
-//        }
-//    }
+        PreparedStatement insert_customer = connection.prepareStatement("insert into customer (username, password, first_name, last_name, email, birthdate, phone) values (?, ?, ?, ?, ?, ?, ?)");
+        insert_customer.setString(1, request.getParameter("username"));
+        insert_customer.setString(2, request.getParameter("password"));
+        insert_customer.setString(3, request.getParameter("firstname"));
+        insert_customer.setString(4, request.getParameter("lastname"));
+        insert_customer.setString(5, request.getParameter("email"));
+        insert_customer.setString(6, request.getParameter("birthdate"));
+        insert_customer.setString(7, request.getParameter("phone"));
+        insert_customer.executeUpdate();
+        
+        PreparedStatement select_customer = connection.prepareStatement("select * from customer where username = ? and password = ?");
+        select_customer.setString(1, request.getParameter("username"));
+        select_customer.setString(2, request.getParameter("password"));
+        ResultSet display_customer = select_customer.executeQuery();
+        display_customer.next();
+
+        session.setAttribute("username", display_customer.getString("username"));
+        session.setAttribute("firstname", display_customer.getString("first_name"));
+        session.setAttribute("lastname", display_customer.getString("last_name"));
+        session.setAttribute("email", display_customer.getString("email"));
+        session.setAttribute("phone", display_customer.getString("phone"));
+        response.sendRedirect("profile.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -84,7 +67,11 @@ public class Signup extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(Signup.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -98,7 +85,11 @@ public class Signup extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(Signup.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

@@ -23,6 +23,10 @@
                                     <label for="email">Email</label>
                                     <input type="email" class="form-control" name="email" id="emailIn" placeholder="john@english.com" required>
                                 </div>
+                                <div class="form-group has-feedback" id="birthdateInDiv">
+                                    <label for="birthdate">Birthdate</label>
+                                    <input type="date" class="form-control" name="birthdate" id="birthdateIn" placeholder="" required>
+                                </div>
                                 <div class="form-group has-feedback" id="phoneInDiv">
                                     <label for="phone">Phone Number</label>
                                     <input type="text" class="form-control" name="phone" id="phoneIn" placeholder="" required>
