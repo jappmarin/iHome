@@ -1,5 +1,4 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<title>Booking</title>
 <jsp:include page="templates/header.jsp" />
         <div class="container mt-5">
             <div class="row justify-content-center mt-3 mb-3">
@@ -21,18 +20,6 @@
                                                 <td class="align-middle">Last Name:</td>
                                                 <td>
                                                     <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput" placeholder="Last name">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="align-middle">Identity Number or Passport Number:</td>
-                                                <td>
-                                                    <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput" placeholder="Identity Number or Passport Number">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="align-middle">Date of Birth</td>
-                                                <td>
-                                                    <input type="date" class="form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput" placeholder="">
                                                 </td>
                                             </tr>
                                             <tr>
@@ -71,19 +58,19 @@
                                             <tr>
                                                 <td class="align-middle">Check-in</td>
                                                 <td>
-                                                    <input type="date" class="form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput" placeholder="Last name">
+                                                    <input type="date" class="form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput">
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td class="align-middle">Check-out</td>
                                                 <td>
-                                                    <input type="date" class="form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput" placeholder="Identity Number or Passport Number">
+                                                    <input type="date" class="form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput">
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td class="align-middle">จำนวนผู้เข้าพัก</td>
                                                 <td>
-                                                    <input type="date" class="form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput" placeholder="Last name">
+                                                    <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput">
                                                 </td>
                                             </tr>
                                             <tr>

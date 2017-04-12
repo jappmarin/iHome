@@ -21,7 +21,7 @@
                             </form>
                             <hr>
                             <div class="text-center">
-                                <p>Need an account? <button type="submit" class="btn btn-default btn-sm" id="signInButton">Sign Up</button></p>
+                                <p>Need an account? <a href="signup.jsp" class="btn btn-secondary btn-sm">Sign Up</a></p>
                             </div>
                         </div>
                     </div>

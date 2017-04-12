@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <jsp:include page="templates/header.jsp" />
         <div class="container">
             <div class="row justify-content-center mt-5">
@@ -32,7 +32,7 @@
                                     <input type="text" class="form-control" name="longtitude" id="longtitudeIn" placeholder="" required>
                                 </div>
                                 <div class="text-center">
-                                    <button type="submit" class="btn btn-primary btn-block" id="addHomestayButton">Save changes</button>
+                                    <button type="submit" class="btn btn-primary btn-block" id="addHomestayButton">Add Homestay</button>
                                 </div>
                             </form>
                         </div>

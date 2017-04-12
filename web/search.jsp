@@ -1,6 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<title>Search</title>
-<jsp:include page="templates/header.jsp" />
+<jsp:include page="templates/headerauth.jsp" />
         <div class="container mt-5">   
             <div class="row">
                 <div class="col-sm-3">
@@ -78,6 +77,7 @@
                                     <span class="custom-control-description">Gym/Fitness</span>
                                 </label>
                             </p>
+                            <button type="submit" class="btn btn-primary btn-block">Search</button>
                         </div>
                     </div>
                 </div>
@@ -90,7 +90,7 @@
                                 <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
                             </div>
                             <div class="card-footer">
-                                <a class="btn btn-primary" href="#" role="button">See detail</a>
+                                <a class="btn btn-primary" href="detail.jsp" role="button">See detail</a>
                             </div>
                         </div>
                         <div class="card">
@@ -100,7 +100,7 @@
                                 <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
                             </div>
                             <div class="card-footer">
-                                <a class="btn btn-primary" href="#" role="button">See detail</a>
+                                <a class="btn btn-primary" href="detail.jsp" role="button">See detail</a>
                             </div>
                         </div>
                         <div class="card">
@@ -110,7 +110,7 @@
                                 <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
                             </div>
                             <div class="card-footer">
-                                <a class="btn btn-primary" href="#" role="button">See detail</a>
+                                <a class="btn btn-primary" href="detail.jsp" role="button">See detail</a>
                             </div>
                         </div>
                     </div>
@@ -122,7 +122,7 @@
                                 <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
                             </div>
                             <div class="card-footer">
-                                <a class="btn btn-primary" href="#" role="button">See detail</a>
+                                <a class="btn btn-primary" href="detail.jsp" role="button">See detail</a>
                             </div>
                         </div>
                         <div class="card">
@@ -132,7 +132,7 @@
                                 <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
                             </div>
                             <div class="card-footer">
-                                <a class="btn btn-primary" href="#" role="button">See detail</a>
+                                <a class="btn btn-primary" href="detail.jsp" role="button">See detail</a>
                             </div>
                         </div>
                         <div class="card">
@@ -142,7 +142,7 @@
                                 <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
                             </div>
                             <div class="card-footer">
-                                <a class="btn btn-primary" href="#" role="button">See detail</a>
+                                <a class="btn btn-primary" href="detail.jsp" role="button">See detail</a>
                             </div>
                         </div>
                     </div>
@@ -154,7 +154,7 @@
                                 <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
                             </div>
                             <div class="card-footer">
-                                <a class="btn btn-primary" href="#" role="button">See detail</a>
+                                <a class="btn btn-primary" href="detail.jsp" role="button">See detail</a>
                             </div>
                         </div>
                         <div class="card">
@@ -164,7 +164,7 @@
                                 <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
                             </div>
                             <div class="card-footer">
-                                <a class="btn btn-primary" href="#" role="button">See detail</a>
+                                <a class="btn btn-primary" href="detail.jsp" role="button">See detail</a>
                             </div>
                         </div>
                         <div class="card">
@@ -174,7 +174,7 @@
                                 <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
                             </div>
                             <div class="card-footer">
-                                <a class="btn btn-primary" href="#" role="button">See detail</a>
+                                <a class="btn btn-primary" href="detail.jsp" role="button">See detail</a>
                             </div>
                         </div>
                     </div>

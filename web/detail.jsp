@@ -1,6 +1,4 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<title>Detail</title>
-
 <jsp:include page="templates/header.jsp" />
         <div class="container mt-5">
             <div class="card">
@@ -11,13 +9,13 @@
                             <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                                 <div class="carousel-inner" role="listbox">
                                     <div class="carousel-item active">
-                                        <img class="d-block w-100 h-100 rounded" src="https://www.ownerdirect.com/images/blind-bay-home-rental-kw-1112293-full.jpg" alt="First slide">
+                                        <img class="d-block" src="https://www.ownerdirect.com/images/blind-bay-home-rental-kw-1112293-full.jpg" alt="First slide">
                                     </div>
                                     <div class="carousel-item">
-                                        <img class="d-block w-100 h-100 rounded" src="https://www.ownerdirect.com/images/blind-bay-home-rental-kw-983992-full.jpg" alt="Second slide">
+                                        <img class="d-block" src="https://www.ownerdirect.com/images/blind-bay-home-rental-kw-983992-full.jpg" alt="Second slide">
                                     </div>
                                     <div class="carousel-item">
-                                        <img class="d-block w-100 h-100 rounded" src="https://www.ownerdirect.com/images/blind-bay-home-rental-kw-983990-full.jpg" alt="Third slide">
+                                        <img class="d-block" src="https://www.ownerdirect.com/images/blind-bay-home-rental-kw-983990-full.jpg" alt="Third slide">
                                     </div>
                                 </div>
                                 <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
@@ -35,7 +33,7 @@
                                 <div class="card-block">
                                     <h4 class="card-title">Homestay Detail</h4>
                                     <p class="card-text">There are 7 beds (3 queen beds, 1 double lower bunk, 1 double upper bunk, 1 single foamie (child size) and 1 double bed). The base rate (before extra person rates are added) is for 8 occupants.</p>
-                                    <a class="btn btn-primary btn-lg" href="#">Booking</a>
+                                    <a href="booking.jsp" class="btn btn-primary btn-lg">Booking</a>
                                 </div>
                             </div>
                         </div>
@@ -185,5 +183,4 @@
                 </div>
             </div>
         </div>
-
 <jsp:include page="templates/footer.jsp" />

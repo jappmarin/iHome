@@ -2,7 +2,7 @@
 <jsp:include page="templates/header.jsp" />
         <div class="container">
             <div class="row justify-content-center mt-5">
-                <div class="col-sm-4" id="profile">
+                <div class="col-sm-12 col-md-6" id="profile">
                     <div class="card">
                         <h3 class="card-header">My Profile</h3>
                         <div class="card-block">
@@ -32,7 +32,7 @@
                                     <input type="password" class="form-control" name="password" id="passwordIn" placeholder="" value="" required>
                                 </div>
                                 <button type="submit" class="btn btn-primary btn-block">Save changes</button>
-                                <button class="btn btn-secondary btn-block">Cancel</button>
+                                <a href="profile.jsp" class="btn btn-secondary btn-block">Cancel</a>
                             </form>
                         </div>
                     </div>

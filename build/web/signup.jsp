@@ -37,7 +37,7 @@
                             </form>
                             <hr>
                             <div class="text-center">
-                                <p>Already a member? <button type="submit" class="btn btn-default btn-sm" id="signInButton">Sign In</button></p>
+                                <p>Already a member? <a href="signin.jsp" class="btn btn-secondary btn-sm">Sign In</a></p>
 
                             </div>
                         </div>
