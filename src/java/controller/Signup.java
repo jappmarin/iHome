@@ -17,39 +17,31 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Profile;
 
-/**
- *
- * @author tkitb
- */
 @WebServlet(name = "Signup", urlPatterns = {"/Signup"})
 public class Signup extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        
+        String firstname = request.getParameter("firstname");
+        String lastname = request.getParameter("lastname");
         String username = request.getParameter("username");
-        String first_name = request.getParameter("first_name");
-        String last_name = request.getParameter("last_name");
-        String password = request.getParameter("password");
         String email = request.getParameter("email");
+        String phone = request.getParameter("phone");
+        String password = request.getParameter("password");
 
         ServletContext context = getServletContext();
         Connection connection = (Connection) context.getAttribute("connection");
 
         try {
             Profile profile = new Profile();
-            profile.setUsername(username);
-            profile.setFirst_name(first_name);
-            profile.setLast_name(last_name);
+            profile.setUsername(firstname);
+            profile.setFirstname(lastname);
+            profile.setLastname(username);
+            profile.setLastname(email);
+            profile.setLastname(phone);
+            profile.setLastname(password);
             profile.addNewProfile(connection);
         } catch (SQLException ex) {
             ex.printStackTrace();

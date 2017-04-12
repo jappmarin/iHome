@@ -2,7 +2,7 @@
 <jsp:include page="templates/header.jsp" />
         <div class="container">
             <div class="row justify-content-center mt-5">
-                <div class="col-sm-4" id="signup">
+                <div class="col-sm-12 col-md-8" id="signup">
                     <div class="card">
                         <h3 class="card-header">Sign Up</h3>
                         <div class="card-block">
@@ -22,6 +22,10 @@
                                 <div class="form-group has-feedback" id="emailInDiv">
                                     <label for="email">Email</label>
                                     <input type="email" class="form-control" name="email" id="emailIn" placeholder="john@english.com" required>
+                                </div>
+                                <div class="form-group has-feedback" id="phoneInDiv">
+                                    <label for="phone">Phone Number</label>
+                                    <input type="text" class="form-control" name="phone" id="phoneIn" placeholder="" required>
                                 </div>
                                 <div class="form-group has-feedback" id="passInDiv">
                                     <label for="password">Password</label>

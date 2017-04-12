@@ -2,7 +2,7 @@
 <jsp:include page="templates/header.jsp" />
         <div class="container">
             <div class="row justify-content-center mt-5">
-                <div class="col-sm-4 col-md-8" id="homestay">
+                <div class="col-sm-12 col-md-8" id="homestay">
                     <div class="card">
                         <h3 class="card-header">My Homestay</h3>
                         <div class="card-block">
