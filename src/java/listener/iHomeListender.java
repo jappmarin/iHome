@@ -6,6 +6,7 @@
 package listener;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -34,7 +35,12 @@ public class iHomeListender implements ServletContextListener {
 
     @Override
     public void contextDestroyed(ServletContextEvent sce) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            connection.close();
+        }
+        catch (SQLException ex) {
+            ex.printStackTrace();
+        }
     }
 
     private DataSource getIhome() throws NamingException {

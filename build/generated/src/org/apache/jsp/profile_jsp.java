@@ -44,6 +44,7 @@ public final class profile_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write('\r');
       out.write('\n');
       org.apache.jasper.runtime.JspRuntimeLibrary.include(request, response, "templates/header.jsp", out, false);
+<<<<<<< Updated upstream
       out.write("\r\n");
       out.write("        <div class=\"container mt-5\">\r\n");
       out.write("            <div class=\"row justify-content-center\">\r\n");
@@ -117,6 +118,48 @@ public final class profile_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                </div>\r\n");
       out.write("            </div>\r\n");
       out.write("        </div>\r\n");
+=======
+      out.write("\n");
+      out.write("        <div class=\"container\">\n");
+      out.write("            <div class=\"row justify-content-center mt-5\">\n");
+      out.write("                <div class=\"col-sm-4\" id=\"profile\">\n");
+      out.write("                    <div class=\"card\">\n");
+      out.write("                        <h3 class=\"card-header\">My Profile</h3>\n");
+      out.write("                        <div class=\"card-block\">\n");
+      out.write("                            <form action=\"/EditProfile\" method=\"POST\">\n");
+      out.write("                                <div class=\"form-group has-feedback\" id=\"usernameInDiv\">\n");
+      out.write("                                    <label for=\"username\">Username</label>\n");
+      out.write("                                    <input type=\"text\" class=\"form-control\" name=\"username\" id=\"usernameIn\" placeholder=\"\" value=\"iamteerawut\" required disabled>\n");
+      out.write("                                </div>\n");
+      out.write("                                <div class=\"form-group has-feedback\" id=\"firstNameInDiv\">\n");
+      out.write("                                    <label for=\"firstname\">First Name</label>\n");
+      out.write("                                    <input type=\"text\" class=\"form-control\" name=\"firstname\" id=\"firstNameIn\" placeholder=\"\" value=\"Teerawut\" required>\n");
+      out.write("                                </div>\n");
+      out.write("                                <div class=\"form-group has-feedback\" id=\"lastNameInDiv\">\n");
+      out.write("                                    <label for=\"lastname\">Last Name</label>\n");
+      out.write("                                    <input type=\"text\" class=\"form-control\" name=\"lastname\" id=\"lastNameIn\" placeholder=\"\" value=\"Kitbunjerdjarud\" required>\n");
+      out.write("                                </div>\n");
+      out.write("                                <div class=\"form-group has-feedback\" id=\"emailInDiv\">\n");
+      out.write("                                    <label for=\"email\">Email</label>\n");
+      out.write("                                    <input type=\"email\" class=\"form-control\" name=\"email\" id=\"emailIn\" placeholder=\"\" value=\"t.kitbunjerdjarud@gmail.com\" required>\n");
+      out.write("                                </div>\n");
+      out.write("                                <div class=\"form-group has-feedback\" id=\"phoneInDiv\">\n");
+      out.write("                                    <label for=\"phone\">Phone Number</label>\n");
+      out.write("                                    <input type=\"text\" class=\"form-control\" name=\"phone\" id=\"phoneIn\" placeholder=\"\" value=\"094-546-4678\" required>\n");
+      out.write("                                </div>\n");
+      out.write("                                <div class=\"form-group has-feedback\" id=\"passwordInDiv\">\n");
+      out.write("                                    <label for=\"password\">Re-enter your Password</label>\n");
+      out.write("                                    <input type=\"password\" class=\"form-control\" name=\"password\" id=\"passwordIn\" placeholder=\"\" value=\"\" required>\n");
+      out.write("                                </div>\n");
+      out.write("                                <button type=\"submit\" class=\"btn btn-primary btn-block\">Save changes</button>\n");
+      out.write("                                <button class=\"btn btn-secondary btn-block\">Cancel</button>\n");
+      out.write("                            </form>\n");
+      out.write("                        </div>\n");
+      out.write("                    </div>\n");
+      out.write("                </div>\n");
+      out.write("            </div>\n");
+      out.write("        </div>\n");
+>>>>>>> Stashed changes
       org.apache.jasper.runtime.JspRuntimeLibrary.include(request, response, "templates/footer.jsp", out, false);
     } catch (Throwable t) {
       if (!(t instanceof SkipPageException)){

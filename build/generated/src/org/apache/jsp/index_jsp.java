@@ -75,7 +75,7 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("</div>\r\n");
 =======
       out.write("\n");
-      out.write("<div class=\"container-fluid\">\n");
+      out.write("<div class=\"container\">\n");
       out.write("    <div class=\"row justify-content-center mt-5\">\n");
       out.write("        <div class=\"col-sm-6\">\n");
       out.write("            <div class=\"card\">\n");
