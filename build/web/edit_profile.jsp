@@ -32,14 +32,6 @@
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td class="align-middle">Identify Number:</td>
-                                                <td>
-                                                    <div class="col-sm-12">
-                                                        <p class="form-control-static">1122121212121</p>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
                                                 <td class="align-middle">Date of Birth</td>
                                                 <td>
                                                     <input type="date" class="form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput" placeholder="" value="11/08/1996">

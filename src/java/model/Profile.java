@@ -22,14 +22,13 @@ public class Profile {
     private String email;
     private String phone;
     private String gender;
-    private String id_number;
     private Connection connection;
     
     public Profile(Connection connection, String username) throws SQLException {
         this.username = username;
         this.connection = connection;
         
-        PreparedStatement select_profile = connection.prepareStatement("select first_name, last_name, email, id_number, gender, phone from customer where username = '" + username + "'");
+        PreparedStatement select_profile = connection.prepareStatement("select first_name, last_name, email, gender, phone from customer where username = '" + username + "'");
         ResultSet display_profile = select_profile.executeQuery();
         
         if (display_profile.next()) {
@@ -38,20 +37,18 @@ public class Profile {
             this.birthdate = display_profile.getString("birthdate");
             this.email = display_profile.getString("email");
             this.gender = display_profile.getString("gender");
-            this.id_number = display_profile.getString("id_number");
             this.phone = display_profile.getString("phone");
         }
     }
     
     public void addNewProfile(Connection connection) throws SQLException {
-        PreparedStatement update_customer = connection.prepareStatement("insert into customer(username, first_name, last_name, email, id_number, gender, phone) values (?,?,?,?,?,?,?");
+        PreparedStatement update_customer = connection.prepareStatement("insert into customer(username, first_name, last_name, email, gender, phone) values (?,?,?,?,?,?");
         update_customer.setString(1, this.getUsername());
         update_customer.setString(2, this.getFirst_name());
         update_customer.setString(3, this.getLast_name());
         update_customer.setString(4, this.getEmail());
-        update_customer.setString(5, this.getId_number());
-        update_customer.setString(6, this.getGender());
-        update_customer.setString(7, this.getPhone());
+        update_customer.setString(5, this.getGender());
+        update_customer.setString(6, this.getPhone());
         update_customer.executeUpdate();
     }
     
@@ -164,20 +161,6 @@ public class Profile {
      */
     public void setGender(String gender) {
         this.gender = gender;
-    }
-
-    /**
-     * @return the id_number
-     */
-    public String getId_number() {
-        return id_number;
-    }
-
-    /**
-     * @param id_number the id_number to set
-     */
-    public void setId_number(String id_number) {
-        this.id_number = id_number;
     }
 
     /**
