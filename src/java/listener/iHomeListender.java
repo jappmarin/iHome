@@ -14,11 +14,6 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.sql.DataSource;
 
-/**
- * Web application lifecycle listener.
- *
- * @author tkitb
- */
 public class iHomeListender implements ServletContextListener {
 
     private Connection connection;
@@ -35,12 +30,6 @@ public class iHomeListender implements ServletContextListener {
 
     @Override
     public void contextDestroyed(ServletContextEvent sce) {
-        try {
-            connection.close();
-        }
-        catch (SQLException ex) {
-            ex.printStackTrace();
-        }
     }
 
     private DataSource getIhome() throws NamingException {

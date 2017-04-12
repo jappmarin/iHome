@@ -8,7 +8,7 @@
                         <div class="card-block">
                             <div class="row">
                                 <div class="col-sm-12">
-                                    <form action="/Booking" method="POST">
+                                    <form action="Booking" method="POST">
                                         <div class="form-group has-feedback" id="firstNameInDiv">
                                             <label for="firstname">First Name</label>
                                             <input type="text" class="form-control" name="firstname" id="firstNameIn" placeholder="John" required>

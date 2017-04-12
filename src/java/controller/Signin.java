@@ -18,13 +18,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import model.Profile;
 
-/**
- *
- * @author tkitb
- */
 @WebServlet(name = "Signin", urlPatterns = {"/Signin"})
 public class Signin extends HttpServlet {
 
@@ -32,31 +26,17 @@ public class Signin extends HttpServlet {
             throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         
-//        ServletContext context = getServletContext();
-//        Connection connection = (Connection) context.getAttribute("connection");
-//        ของน้องธี 
+        ServletContext context = getServletContext();
+        Connection connection = (Connection) context.getAttribute("connection");
         
-        ServletContext dbcontext = getServletContext();
-        Connection DBconn = (Connection) dbcontext.getAttribute("conn");
-        
-        
-        PreparedStatement select_customer = DBconn.prepareStatement("select "
-                + "username, email from customer where username = ? and password = ?");
+        PreparedStatement select_customer = connection.prepareStatement("select * from customer where username = ? and password = ?");
         select_customer.setString(1, request.getParameter("username"));
         select_customer.setString(2, request.getParameter("password"));
         
         ResultSet display_customer = select_customer.executeQuery();
-        
-        HttpSession session = request.getSession();
-        
-        if (!display_customer.next()) {
-            response.sendRedirect("/iHome");
-        }
-        else {
-            Profile profile = new Profile(DBconn, request.getParameter("username"));
-            session.setAttribute("profile", profile);
-            response.sendRedirect("index.jsp");
-        }
+        display_customer.next();
+        System.out.println("Username is " + display_customer.getString("username"));
+        System.out.println("Password is " + display_customer.getString("password"));
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

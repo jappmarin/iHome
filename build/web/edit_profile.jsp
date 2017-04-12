@@ -6,7 +6,7 @@
                     <div class="card">
                         <h3 class="card-header">My Profile</h3>
                         <div class="card-block">
-                            <form action="/EditProfile" method="POST">
+                            <form action="Profile" method="POST">
                                 <div class="form-group has-feedback" id="usernameInDiv">
                                     <label for="username">Username</label>
                                     <input type="text" class="form-control" name="username" id="usernameIn" placeholder="" value="iamteerawut" required disabled>

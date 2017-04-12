@@ -6,7 +6,7 @@
                     <div class="card">
                         <h3 class="card-header">Sign In</h3>
                         <div class="card-block">
-                            <form action="/Signin" method="POST">
+                            <form action="Signin" method="POST">
                                 <div class="form-group">
                                     <label for="username">Username</label>
                                     <input type="text" class="form-control" name="username" required>

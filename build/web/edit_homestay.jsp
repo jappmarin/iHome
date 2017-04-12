@@ -6,7 +6,7 @@
                     <div class="card">
                         <h3 class="card-header">My Homestay</h3>
                         <div class="card-block">
-                            <form action="/Homestay" method="POST">
+                            <form action="Homestay" method="POST">
                                 <div class="form-group has-feedback" id="homestayNameInDiv">
                                     <label for="homestayname">Homestay Name</label>
                                     <input type="text" class="form-control" name="homestayname" id="homestayNameIn" placeholder="" required>
