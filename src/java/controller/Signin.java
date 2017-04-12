@@ -18,6 +18,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet(name = "Signin", urlPatterns = {"/Signin"})
 public class Signin extends HttpServlet {
@@ -34,9 +35,20 @@ public class Signin extends HttpServlet {
         select_customer.setString(2, request.getParameter("password"));
         
         ResultSet display_customer = select_customer.executeQuery();
-        display_customer.next();
-        System.out.println("Username is " + display_customer.getString("username"));
-        System.out.println("Password is " + display_customer.getString("password"));
+        
+        HttpSession session = request.getSession();
+        
+        if (!display_customer.next()) {
+            response.sendRedirect("/iHome");
+        }
+        else {
+            session.setAttribute("username", display_customer.getString("username"));
+            session.setAttribute("firstname", display_customer.getString("first_name"));
+            session.setAttribute("lastname", display_customer.getString("last_name"));
+            session.setAttribute("email", display_customer.getString("email"));
+            session.setAttribute("phone", display_customer.getString("phone"));
+            response.sendRedirect("profile.jsp");
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
