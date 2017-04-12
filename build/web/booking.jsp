@@ -1,99 +1,70 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <jsp:include page="templates/header.jsp" />
-        <div class="container mt-5">
-            <div class="row justify-content-center mt-3 mb-3">
-                <div class="col-sm-6">
-                    <div class="card">
-                        <h3 class="card-header">Customer Information</h3>
-                        <div class="card-block">
-                            <div class="row">
-                                <div class="col">
-                                    <table class="table">
-                                        <tbody>
-                                            <tr>
-                                                <td class="align-middle">First Name:</td>
-                                                <td>
-                                                    <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput" placeholder="First name">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="align-middle">Last Name:</td>
-                                                <td>
-                                                    <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput" placeholder="Last name">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="align-middle">Email</td>
-                                                <td>
-                                                    <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput" placeholder="Email address">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="align-middle">Phone Number</td>
-                                                <td>
-                                                    <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput" placeholder="Phone number">
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>                
+<div class="container mt-5">
+    <div class="row justify-content-center mt-3 mb-3">
+        <div class="col-sm-12 col-md-6">
+            <div class="card">
+                <h3 class="card-header">Customer Information</h3>
+                <div class="card-block">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <form action="/Booking" method="POST">
+                                <div class="form-group has-feedback" id="firstNameInDiv">
+                                    <label for="firstname">First Name</label>
+                                    <input type="text" class="form-control" name="firstname" id="firstNameIn" placeholder="John" required>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6">
-                    <div class="card">
-                        <h3 class="card-header">Homestay Book</h3>
-                        <div class="card-block">
-                            <div class="row">
-                                <div class="col">
-                                    <table class="table">
-                                        <tbody>
-                                            <tr>
-                                                <td class="align-middle">ชื่อโฮมสเตย์</td>
-                                                <td>
-                                                    <p>Example 1</p>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="align-middle">Check-in</td>
-                                                <td>
-                                                    <input type="date" class="form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="align-middle">Check-out</td>
-                                                <td>
-                                                    <input type="date" class="form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="align-middle">จำนวนผู้เข้าพัก</td>
-                                                <td>
-                                                    <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="align-middle">Total Price</td>
-                                                <td>
-                                                    <p class="align-middle">500 Bath</p>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                    <div class="row">
-                                        <div class="col">
-                                            <a class="btn btn-primary" href="booking_confirm.html">Confirm</a>
-                                            <a class="btn btn-secondary"  href="detail.html">Cancel</a>
-                                        </div>
-                                    </div>
+                                <div class="form-group has-feedback" id="lastNameInDiv">
+                                    <label for="firstname">Last Name</label>
+                                    <input type="text" class="form-control" name="lastname" id="lastNameIn" placeholder="English" required>
                                 </div>
-                            </div>
+                                <div class="form-group has-feedback" id="emailInDiv">
+                                    <label for="username">Email</label>
+                                    <input type="email" class="form-control" name="email" id="emailIn" placeholder="john@english.com" required>
+                                </div>
+                                <div class="form-group has-feedback" id="phneInDiv">
+                                    <label for="phone">Phone Number</label>
+                                    <input type="text" class="form-control" name="phone" id="phoneIn" placeholder="094-546-467" required>
+                                </div>  
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
+        <div class="col-sm-12 col-md-6">
+            <div class="card">
+                <h3 class="card-header">Booking Information</h3>
+                <div class="card-block">
+                    <div class="row">
+                        <div class="col">
+                            <form action="/Booking" method="POST">
+                                <div class="form-group has-feedback" id="homestayNameInDivInDiv">
+                                    <label for="homestayName">Homestay Name</label>
+                                    <input type="text" class="form-control" name="homestayname" id="homestayNameIn" placeholder="" value="Example A" required disabled>
+                                </div>
+                                <div class="form-group has-feedback" id="checkinInDiv">
+                                    <label for="checkin">Check-in</label>
+                                    <input type="date" class="form-control" name="checkin" id="checkinIn" placeholder="" required>
+                                </div>
+                                <div class="form-group has-feedback" id="checkoutInDiv">
+                                    <label for="checkout">Check-out</label>
+                                    <input type="date" class="form-control" name="checkout" id="checkoutIn" placeholder="" required>
+                                </div>
+                                <div class="form-group has-feedback" id="priceInDiv">
+                                    <label for="price">Price Total</label>
+                                    <input type="text" class="form-control" name="price" id="priceIn" placeholder="" required>
+                                </div>
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-primary btn-block" id="signUpButton">Confirm Booking</button>
+                                    <button type="submit" class="btn btn-secondary btn-block" id="signUpButton">Cancel</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> 
+    </div>
+</div>
 <jsp:include page="templates/modal.jsp" />
 <jsp:include page="templates/footer.jsp" />

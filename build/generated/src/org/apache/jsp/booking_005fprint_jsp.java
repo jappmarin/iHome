@@ -42,7 +42,7 @@ public final class booking_005fprint_jsp extends org.apache.jasper.runtime.HttpJ
       _jspx_resourceInjector = (org.glassfish.jsp.api.ResourceInjector) application.getAttribute("com.sun.appserv.jsp.resource.injector");
 
       out.write('\n');
-      org.apache.jasper.runtime.JspRuntimeLibrary.include(request, response, "templates/header.jsp", out, false);
+      org.apache.jasper.runtime.JspRuntimeLibrary.include(request, response, "templates/headerauth.jsp", out, false);
       out.write("\n");
       out.write("        <div class=\"container mt-5\">\n");
       out.write("            <div class=\"row\">\n");

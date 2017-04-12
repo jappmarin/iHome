@@ -6,11 +6,11 @@
                     <div class="card">
                         <h3 class="card-header">Booking Number - #00001</h3>
                         <div class="card-block">
-                            <h5 class="card-title">Booking Number : <small class="text-muted">00001</small></h5>
-                            <h5 class="card-title">Pincode : <small class="text-muted">1234</small></h5>
-                            <h5 class="card-title">Name : <small class="text-muted">Teerawut Kitbunjerdjarud</small></h5>
-                            <h5 class="card-title">Phone Number : <small class="text-muted">055-555-555</small></h5>
-                            <h5 class="card-title">Email : <small class="text-muted">example@example.com</small></h5>
+                            <p class="card-text">Booking Number : <small class="text-muted">00001</small></p>
+                            <p class="card-text">Pincode : <small class="text-muted">1234</small></p>
+                            <p class="card-text">Name : <small class="text-muted">Teerawut Kitbunjerdjarud</small></p>
+                            <p class="card-text">Phone Number : <small class="text-muted">055-555-555</small></p>
+                            <p class="card-text">Email : <small class="text-muted">example@example.com</small></p>
                         </div>
                     </div>
                 </div>
@@ -18,12 +18,12 @@
                     <div class="card">
                         <h3 class="card-header">Booking Detail</h3>
                         <div class="card-block">
-                            <h5 class="card-title">Homestay Name : <small class="text-muted">Example 1</small></h5>
-                            <h5 class="card-title">Booking Detail : <small class="text-muted">2 nights, 1 Room, 2 People</small></h5>
-                            <h5 class="card-title">Checkin : <small class="text-muted">31/03/2017</small></h5>
-                            <h5 class="card-title">Checkout : <small class="text-muted">02/04/2017</small></h5>
-                            <h5 class="card-title">Room Price : <small class="text-muted">3000 THB</small></h5>
-                            <h5 class="card-title">Contact : <small class="text-muted">012-345-678</small></h5>
+                            <p class="card-text">Homestay Name : <small class="text-muted">Example 1</small></p>
+                            <p class="card-text">Booking Detail : <small class="text-muted">2 nights, 1 Room, 2 People</small></p>
+                            <p class="card-text">Checkin : <small class="text-muted">31/03/2017</small></p>
+                            <p class="card-text">Checkout : <small class="text-muted">02/04/2017</small></p>
+                            <p class="card-text">Room Price : <small class="text-muted">3000 THB</small></p>
+                            <p class="card-text">Contact : <small class="text-muted">012-345-678</small></p>
                         </div>
                     </div>
                 </div>

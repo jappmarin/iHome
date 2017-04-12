@@ -33,6 +33,8 @@
                                 <div class="card-block">
                                     <h4 class="card-title">Homestay Detail</h4>
                                     <p class="card-text">There are 7 beds (3 queen beds, 1 double lower bunk, 1 double upper bunk, 1 single foamie (child size) and 1 double bed). The base rate (before extra person rates are added) is for 8 occupants.</p>
+                                    <h4 class="card-title">Price</h4>
+                                    <p class="card-text">200 Bath / Night / Person</p>
                                     <a href="booking.jsp" class="btn btn-primary btn-lg">Booking</a>
                                 </div>
                             </div>

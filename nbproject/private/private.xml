@@ -2,6 +2,14 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/D:/project-homestay/iHome/web/signin.jsp</file>
+            <file>file:/D:/project-homestay/iHome/web/signup.jsp</file>
+            <file>file:/D:/project-homestay/iHome/web/booking_print.jsp</file>
+            <file>file:/D:/project-homestay/iHome/web/booking.jsp</file>
+            <file>file:/D:/project-homestay/iHome/web/cp.jsp</file>
+            <file>file:/D:/project-homestay/iHome/web/templates/header.jsp</file>
+            <file>file:/D:/project-homestay/iHome/web/detail.jsp</file>
+        </group>
     </open-files>
 </project-private>
