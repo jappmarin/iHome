@@ -55,7 +55,7 @@ public class AddHomestay extends HttpServlet {
         session.setAttribute("hs_price", display_roomtype.getString("rt_price"));
         session.setAttribute("hs_desc", display_roomtype.getString("rt_desc"));
         
-        response.sendRedirect("detail.jsp");
+        response.sendRedirect("profile_host.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

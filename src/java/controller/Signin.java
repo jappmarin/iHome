@@ -41,7 +41,7 @@ public class Signin extends HttpServlet {
         HttpSession session = request.getSession();
 
         if (!display_customer.next()) {
-            response.sendRedirect("/iHome");
+            response.sendRedirect("index.jsp");
         } else {
             session.setAttribute("username", display_customer.getString("username"));
             session.setAttribute("firstname", display_customer.getString("f_name"));
