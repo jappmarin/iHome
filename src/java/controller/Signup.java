@@ -42,7 +42,7 @@ public class Signup extends HttpServlet {
         insert_customer.setString(8, (String) session.getAttribute("customer_type"));
         insert_customer.executeUpdate();
 
-        PreparedStatement select_customer = connection.prepareStatement("select * from test_base.customer where username = ? and password = ?");
+        PreparedStatement select_customer = connection.prepareStatement("select * from ihome.customer where username = ? and password = ?");
         select_customer.setString(1, request.getParameter("username"));
         select_customer.setString(2, request.getParameter("password"));
         ResultSet display_customer = select_customer.executeQuery();

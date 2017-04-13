@@ -35,7 +35,7 @@ public class EditProfile extends HttpServlet {
         System.out.println("Password" + password);
 
         if (password.equals(request.getParameter("password"))) {
-            PreparedStatement update_customer = connection.prepareStatement("update customer set first_name = ?, last_name = ?, email = ?, phone = ?");
+            PreparedStatement update_customer = connection.prepareStatement("update ihome.customer set f_name = ?, l_name = ?, email = ?, phone = ?");
             update_customer.setString(1, request.getParameter("firstname"));
             update_customer.setString(2, request.getParameter("lastname"));
             update_customer.setString(3, request.getParameter("email"));
@@ -43,15 +43,15 @@ public class EditProfile extends HttpServlet {
             update_customer.executeUpdate();
 
         }
-        PreparedStatement select_customer = connection.prepareStatement("select * from customer where username = ? and password = ?");
+        PreparedStatement select_customer = connection.prepareStatement("select * from ihome.customer where username = ? and password = ?");
         select_customer.setString(1, (String) session.getAttribute("username"));
         select_customer.setString(2, (String) session.getAttribute("password"));
         ResultSet display_customer = select_customer.executeQuery();
         display_customer.next();
 
         session.setAttribute("username", display_customer.getString("username"));
-        session.setAttribute("firstname", display_customer.getString("first_name"));
-        session.setAttribute("lastname", display_customer.getString("last_name"));
+        session.setAttribute("firstname", display_customer.getString("f_name"));
+        session.setAttribute("lastname", display_customer.getString("l_name"));
         session.setAttribute("email", display_customer.getString("email"));
         session.setAttribute("phone", display_customer.getString("phone"));
         response.sendRedirect("profile.jsp");
