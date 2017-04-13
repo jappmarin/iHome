@@ -13,7 +13,7 @@
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbars" aria-controls="navbars" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="index.jsp">
                 <img src="asset/img/logo.png" width="30" height="30" class="logo d-inline-block align-top">iHome
             </a>
             <div class="collapse navbar-collapse" id="navbars">
@@ -22,7 +22,7 @@
                         <a class="nav-link" href="profile.jsp">Profile</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="index.jsp">Logout</a>
+                        <a class="nav-link" href="Logout">Logout</a>
                     </li>
                 </ul>
             </div>

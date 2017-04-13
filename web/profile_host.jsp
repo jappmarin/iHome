@@ -1,5 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<jsp:include page="templates/headerauth.jsp" />
+<% if (session.isNew()) {  %><jsp:include page="templates/header.jsp" /><% } else { %><jsp:include page="templates/headerauth.jsp" /><% }%>
         <div class="container">
             <div class="row justify-content-center mt-5">
                 <div class="col-sm-4" id="profile">

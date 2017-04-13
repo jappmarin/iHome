@@ -53,7 +53,7 @@ public class Signup extends HttpServlet {
         session.setAttribute("lastname", display_customer.getString("l_name"));
         session.setAttribute("email", display_customer.getString("email"));
         session.setAttribute("phone", display_customer.getString("phone"));
-        response.sendRedirect("profile.jsp");
+        response.sendRedirect("index.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
