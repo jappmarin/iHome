@@ -26,29 +26,36 @@ public class Signin extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
-        
+
         ServletContext context = getServletContext();
         Connection connection = (Connection) context.getAttribute("connection");
-        
+
         PreparedStatement select_customer = connection.prepareStatement("select * from customer where username = ? and password = ?");
         select_customer.setString(1, request.getParameter("username"));
         select_customer.setString(2, request.getParameter("password"));
-        
+
         ResultSet display_customer = select_customer.executeQuery();
-        
+
         HttpSession session = request.getSession();
-        
+
         if (!display_customer.next()) {
             response.sendRedirect("/iHome");
-        }
-        else {
+        } else {
             session.setAttribute("username", display_customer.getString("username"));
             session.setAttribute("firstname", display_customer.getString("f_name"));
             session.setAttribute("lastname", display_customer.getString("l_name"));
             session.setAttribute("email", display_customer.getString("email"));
             session.setAttribute("phone", display_customer.getString("phone"));
             session.setAttribute("password", display_customer.getString("password"));
-            response.sendRedirect("profile.jsp");
+            session.setAttribute("customer_type", display_customer.getString("customer_type"));
+
+            if (session.getAttribute("customer_type").equals("Guest")) {
+                response.sendRedirect("profile.jsp");
+            } 
+            else if (session.getAttribute("customer_type").equals("Host")) {
+                
+                response.sendRedirect("profile_host.jsp");
+            }
         }
     }
 

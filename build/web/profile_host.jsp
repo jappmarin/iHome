@@ -6,10 +6,10 @@
                     <div class="card">
                         <h3 class="card-header">My Profile</h3>
                         <div class="card-block">
-                            <p>Username : iamteerawut</p>
-                            <p>Name : Teerawut Kitbunjerdjarud</p>
-                            <p>Email : t.kitbunjerdjarud@gmail.com</p>
-                            <p>Phone Number : 094-546-4678</p>
+                            <p>Username : ${sessionScope.username}</p>
+                            <p>Name : ${sessionScope.firstname} ${sessionScope.lastname}</p>
+                            <p>Email : ${sessionScope.email}</p>
+                            <p>Phone Number : ${sessionScope.phone}</p>
                             <button type="submit" class="btn btn-primary btn-block">Edit Profile</button>
                         </div>
                     </div>
@@ -18,9 +18,9 @@
                     <div class="card">
                         <h3 class="card-header">My Homestay</h3>
                         <div class="card-block">
-                            <p>Homestay Name : Example A</p>
-                            <p>Price : 200 Bath / Night / Person</p>
-                            <p>Guest : 5 Person</p>
+                            <p>Homestay Name : ${sessionScope.hs_name}</p>
+                            <p>Price : ${sessionScope.hs_price} Bath / Night</p>
+                            <p>Guest : ${sessionScope.hs_guest} Person</p>
                             <div id="map" style="height:200px"></div>
                             <script>
                                 function initMap() {
