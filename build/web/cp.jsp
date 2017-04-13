@@ -1,60 +1,51 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <% if (session.isNew()) {  %><jsp:include page="templates/header.jsp" /><% } else { %><jsp:include page="templates/headerauth.jsp" /><% }%>
-        <div class="container mt-5">
-            <div class="row justify-content-center">
-                <div class="col-sm-12">
+        <div class="container">
+            <div class="row justify-content-center mt-5">
+                <div class="col-md-9">
                     <div class="card">
                         <h3 class="card-header">Control Panel</h3>
                         <div class="card-block">
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th>ID_HOMESTAY</th>
-                                                <th>HOMESTAY_NAME</th>
-                                                <th>HOMESTAY_DETAIL</th>
-                                                <th>STATUS</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <th scope="row">1</th>
-                                                <td>Example 1</td>
-                                                <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal1">
-                                                        View Detail
-                                                    </button></td>
-                                                <td><button type="button" class="btn btn-success">Approve</button></td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">2</th>
-                                                <td>Example 2</td>
-                                                <td>
-                                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal2">
-                                                        View Detail
-                                                    </button>
-                                                </td>
-                                                <td><button type="button" class="btn btn-success">Approve</button></td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">3</th>
-                                                <td>Example 3</td>
-                                                <td>
-                                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal3">
-                                                        View Detail
-                                                    </button>
-                                                </td>
-                                                <td><button type="button" class="btn btn-warning">Pending</button>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
+                            <table class="table table-bordered text-center" style="background-color: #fff">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">#</th>
+                                        <th class="text-center">Homestay Name</th>
+                                        <th class="text-center">Homestay Detail</th>
+                                        <th class="text-center">Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row" class="text-center">1</th>
+                                        <td>Example 1</td>
+                                        <td></td>
+                                        <td><button type="button" class="btn btn-success">Success</button></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" class="text-center">2</th>
+                                        <td>Example 2</td>
+                                        <td></td>
+                                        <td><button type="button" class="btn btn-warning">Warning</button></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" class="text-center">3</th>
+                                        <td>Example 3</td>
+                                        <td></td>
+                                        <td><button type="button" class="btn btn-warning">Warning</button></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" class="text-center">4</th>
+                                        <td>Example 4</td>
+                                        <td></td>
+                                        <td><button type="button" class="btn btn-warning">Warning</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <button type="submit" class="btn btn-primary btn-block" id="signUpButton">Save change</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-<jsp:include page="templates/modal.jsp" />
 <jsp:include page="templates/footer.jsp" />
