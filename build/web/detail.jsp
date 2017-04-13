@@ -2,7 +2,7 @@
 <jsp:include page="templates/header.jsp" />
         <div class="container mt-5">
             <div class="card">
-                <h3 class="card-header">Shuswap: Blind Bay</h3>
+                <h3 class="card-header">${sessionScope.hs_name}</h3>
                 <div class="card-block">
                     <div class="row justify-content-center">
                         <div class="col-sm-6">
@@ -32,9 +32,9 @@
                             <div class="card">
                                 <div class="card-block">
                                     <h4 class="card-title">Homestay Detail</h4>
-                                    <p class="card-text">There are 7 beds (3 queen beds, 1 double lower bunk, 1 double upper bunk, 1 single foamie (child size) and 1 double bed). The base rate (before extra person rates are added) is for 8 occupants.</p>
+                                    <p class="card-text">${sessionScope.hs_desc}</p>
                                     <h4 class="card-title">Price</h4>
-                                    <p class="card-text">200 Bath / Night / Person</p>
+                                    <p class="card-text">${sessionScope.hs_price} / Night</p>
                                     <a href="booking.jsp" class="btn btn-primary btn-lg">Booking</a>
                                 </div>
                             </div>

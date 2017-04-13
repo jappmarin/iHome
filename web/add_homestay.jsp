@@ -6,7 +6,7 @@
                     <div class="card">
                         <h3 class="card-header">My Homestay</h3>
                         <div class="card-block">
-                            <form action="Homestay" method="POST">
+                            <form action="AddHomestay" method="POST">
                                 <div class="form-group has-feedback" id="homestayNameInDiv">
                                     <label for="homestayname">Homestay Name</label>
                                     <input type="text" class="form-control" name="homestayname" id="homestayNameIn" placeholder="" required>
@@ -18,6 +18,10 @@
                                 <div class="form-group has-feedback" id="guestInDiv">
                                     <label for="guest">Guest</label>
                                     <input type="text" class="form-control" name="guest" id="guestIn" placeholder="" required>
+                                </div>
+                                <div class="form-group has-feedback" id="detailInDiv">
+                                    <label for="detail">Homestay Detail</label>
+                                    <textarea class="form-control" name="detail" id="detailIn" rows="3"></textarea>
                                 </div>
                                 <div class="form-group has-feedback" id="addressInDiv">
                                     <label for="address">Homestay Address</label>
@@ -33,7 +37,7 @@
                                 </div>
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-primary btn-block" id="addHomestayButton">Add Homestay</button>
-                                    <button class="btn btn-secondary btn-block" id="addHomestayButton">Cancel</button>
+                                    <button class="btn btn-secondary btn-block" id="cancelAddHomestayButton">Cancel</button>
                                 </div>
                             </form>
                         </div>

@@ -52,7 +52,7 @@ public final class signup_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                        <div class=\"card-block\">\n");
       out.write("                            <form action=\"Signup\" method=\"POST\">\n");
       out.write("                                ");
- session.setAttribute("customer_type", "Customer"); 
+ session.setAttribute("customer_type", "Guest"); 
       out.write("\n");
       out.write("                                <div class=\"form-group has-feedback\" id=\"firstNameInDiv\">\n");
       out.write("                                    <label for=\"firstname\">First Name</label>\n");

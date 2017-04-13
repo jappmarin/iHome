@@ -20,40 +20,42 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebServlet(name = "Signup", urlPatterns = {"/Signup"})
-public class Signup extends HttpServlet {
+@WebServlet(name = "AddHomestay", urlPatterns = {"/AddHomestay"})
+public class AddHomestay extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
-
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        
         ServletContext context = getServletContext();
         Connection connection = (Connection) context.getAttribute("connection");
         HttpSession session = request.getSession();
 
-        PreparedStatement insert_customer = connection.prepareStatement("insert into test_base.customer (username, password, f_name, l_name, email, birth_date, phone, customer_type) values (?, ?, ?, ?, ?, ?, ?, ?)");
-        insert_customer.setString(1, request.getParameter("username"));
-        insert_customer.setString(2, request.getParameter("password"));
-        insert_customer.setString(3, request.getParameter("firstname"));
-        insert_customer.setString(4, request.getParameter("lastname"));
-        insert_customer.setString(5, request.getParameter("email"));
-        insert_customer.setString(6, request.getParameter("birthdate"));
-        insert_customer.setString(7, request.getParameter("phone"));
-        insert_customer.setString(8, (String) session.getAttribute("customer_type"));
-        insert_customer.executeUpdate();
+        PreparedStatement insert_homestay = connection.prepareStatement("insert into test_base.homestay (hs_name) values (?)");
+        insert_homestay.setString(1, request.getParameter("homestayname"));
+        insert_homestay.executeUpdate();
+        
+        PreparedStatement insert_detail = connection.prepareStatement("insert into test_base.roomtype (rt_price, rt_desc) values (?, ?)");
+        insert_detail.setString(1, request.getParameter("price"));
+        insert_detail.setString(2, request.getParameter("detail"));
+        insert_detail.executeUpdate();
 
-        PreparedStatement select_customer = connection.prepareStatement("select * from test_base.customer where username = ? and password = ?");
-        select_customer.setString(1, request.getParameter("username"));
-        select_customer.setString(2, request.getParameter("password"));
-        ResultSet display_customer = select_customer.executeQuery();
-        display_customer.next();
+        PreparedStatement select_homestay = connection.prepareStatement("select * from test_base.homestay");
+        ResultSet display_homestay = select_homestay.executeQuery();
+        display_homestay.next();
 
-        session.setAttribute("username", display_customer.getString("username"));
-        session.setAttribute("firstname", display_customer.getString("f_name"));
-        session.setAttribute("lastname", display_customer.getString("l_name"));
-        session.setAttribute("email", display_customer.getString("email"));
-        session.setAttribute("phone", display_customer.getString("phone"));
-        response.sendRedirect("profile.jsp");
+        session.setAttribute("hs_name", display_homestay.getString("hs_name"));
+        
+        PreparedStatement select_roomtype = connection.prepareStatement("select * from test_base.roomtype");
+        ResultSet display_roomtype = select_roomtype.executeQuery();
+        display_roomtype.next();
+        
+        session.setAttribute("hs_price", display_roomtype.getString("rt_price"));
+        session.setAttribute("hs_desc", display_roomtype.getString("rt_desc"));
+        
+        response.sendRedirect("detail.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -71,7 +73,7 @@ public class Signup extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(Signup.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AddHomestay.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -89,7 +91,7 @@ public class Signup extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(Signup.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AddHomestay.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
