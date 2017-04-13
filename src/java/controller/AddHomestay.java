@@ -33,22 +33,22 @@ public class AddHomestay extends HttpServlet {
         Connection connection = (Connection) context.getAttribute("connection");
         HttpSession session = request.getSession();
 
-        PreparedStatement insert_homestay = connection.prepareStatement("insert into test_base.homestay (hs_name) values (?)");
+        PreparedStatement insert_homestay = connection.prepareStatement("insert into ihome.homestay (hs_name) values (?)");
         insert_homestay.setString(1, request.getParameter("homestayname"));
         insert_homestay.executeUpdate();
         
-        PreparedStatement insert_detail = connection.prepareStatement("insert into test_base.roomtype (rt_price, rt_desc) values (?, ?)");
+        PreparedStatement insert_detail = connection.prepareStatement("insert into ihome.roomtype (rt_price, rt_desc) values (?, ?)");
         insert_detail.setString(1, request.getParameter("price"));
         insert_detail.setString(2, request.getParameter("detail"));
         insert_detail.executeUpdate();
 
-        PreparedStatement select_homestay = connection.prepareStatement("select * from test_base.homestay");
+        PreparedStatement select_homestay = connection.prepareStatement("select * from ihome.homestay");
         ResultSet display_homestay = select_homestay.executeQuery();
         display_homestay.next();
 
         session.setAttribute("hs_name", display_homestay.getString("hs_name"));
         
-        PreparedStatement select_roomtype = connection.prepareStatement("select * from test_base.roomtype");
+        PreparedStatement select_roomtype = connection.prepareStatement("select * from ihome.roomtype");
         ResultSet display_roomtype = select_roomtype.executeQuery();
         display_roomtype.next();
         

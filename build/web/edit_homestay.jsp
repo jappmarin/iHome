@@ -2,7 +2,7 @@
 <% if (session.getAttribute("username") == null) {  %><jsp:include page="templates/header.jsp" /><% } else { %><jsp:include page="templates/headerauth.jsp" /><% }%>
         <div class="container">
             <div class="row justify-content-center mt-5">
-                <div class="col-sm-4 col-md-8" id="homestay">
+                <div class="col-sm-12 col-md-8" id="homestay">
                     <div class="card">
                         <h3 class="card-header">My Homestay</h3>
                         <div class="card-block">
@@ -32,8 +32,8 @@
                                     <input type="text" class="form-control" name="longtitude" id="longtitudeIn" placeholder="" required>
                                 </div>
                                 <div class="text-center">
-                                    <button type="submit" class="btn btn-primary btn-block" id="addHomestayButton">Save changes</button>
-                                    <button class="btn btn-secondary btn-block" id="addHomestayButton">Cancel</button>
+                                    <button type="submit" class="btn btn-primary btn-block" id="editHomestayButton">Save changes</button>
+                                    <a href="profile_host.jsp" class="btn btn-secondary btn-block" id="cancelEditHomestayButton">Cancel</a>
                                 </div>
                             </form>
                         </div>

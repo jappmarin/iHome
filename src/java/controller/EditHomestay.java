@@ -28,23 +28,34 @@ public class EditHomestay extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
-        
+
         ServletContext context = getServletContext();
         Connection connection = (Connection) context.getAttribute("connection");
         HttpSession session = request.getSession();
 
-        PreparedStatement select_homestay = connection.prepareStatement("select * from ihome.homestay where hs_name = ?");
-        select_homestay.setString(1, request.getParameter("homestayname"));
+        PreparedStatement insert_homestay = connection.prepareStatement("update ihome.homestay set hs_name = ?");
+        insert_homestay.setString(1, request.getParameter("homestayname"));
+        insert_homestay.executeUpdate();
+
+        PreparedStatement insert_detail = connection.prepareStatement("update ihome.roomtype set rt_price = ?, rt_desc = ?");
+        insert_detail.setString(1, request.getParameter("price"));
+        insert_detail.setString(2, request.getParameter("detail"));
+        insert_detail.executeUpdate();
+
+        PreparedStatement select_homestay = connection.prepareStatement("select * from ihome.homestay");
         ResultSet display_homestay = select_homestay.executeQuery();
         display_homestay.next();
 
         session.setAttribute("hs_name", display_homestay.getString("hs_name"));
-//        session.setAttribute("hs_price", display_homestay.getString("hs_price"));
-//        session.setAttribute("hs_guest", display_homestay.getString("hs_guest"));
 
-        PreparedStatement update_homestay = connection.prepareStatement("update ihome.homestay set hs_name = ?");
-        update_homestay.setString(1, request.getParameter("homestayname"));
-        update_homestay.executeUpdate();
+        PreparedStatement select_roomtype = connection.prepareStatement("select * from ihome.roomtype");
+        ResultSet display_roomtype = select_roomtype.executeQuery();
+        display_roomtype.next();
+        
+        session.setAttribute("hs_price", display_roomtype.getString("rt_price"));
+        session.setAttribute("hs_desc", display_roomtype.getString("rt_desc"));
+
+        response.sendRedirect("profile_host.jsp");
     }
 
 // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
