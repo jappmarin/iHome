@@ -27,5 +27,4 @@
                 </div>
             </div>
         </div>
-<jsp:include page="templates/modal.jsp" />
 <jsp:include page="templates/footer.jsp" />

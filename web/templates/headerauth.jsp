@@ -19,7 +19,13 @@
             <div class="collapse navbar-collapse" id="navbars">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="profile.jsp">Profile</a>
+                        <a class="nav-link" href="
+                           <% if (session.getAttribute("customer_type").equals("Guest")) { %>
+                           profile.jsp
+                           <% } else { %>
+                           profile_host.jsp
+                           <% }%>"
+                           >${sessionScope.username}</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="Logout">Logout</a>
