@@ -54,7 +54,7 @@ public class Signin extends HttpServlet {
             } 
             else if (session.getAttribute("customer_type").equals("Host")) {
                 
-                response.sendRedirect("profile_host.jsp");
+                response.sendRedirect("/auth/index.jsp");
             }
         }
     }

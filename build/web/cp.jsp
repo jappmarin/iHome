@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<jsp:include page="templates/header.jsp" />
+<jsp:include page="templates/headerauth.jsp" />
         <div class="container mt-5">
             <div class="row justify-content-center">
                 <div class="col-sm-12">

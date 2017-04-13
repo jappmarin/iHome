@@ -20,43 +20,31 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebServlet(name = "EditProfile", urlPatterns = {"/EditProfile"})
-public class EditProfile extends HttpServlet {
+@WebServlet(name = "EditHomestay", urlPatterns = {"/EditHomestay"})
+public class EditHomestay extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
-
         ServletContext context = getServletContext();
         Connection connection = (Connection) context.getAttribute("connection");
         HttpSession session = request.getSession();
 
-        String password = (String) session.getAttribute("password");
+        PreparedStatement select_homestay = connection.prepareStatement("select * from ihome.homestay where hs_name = ?");
+        select_homestay.setString(1, request.getParameter("homestayname"));
+        ResultSet display_homestay = select_homestay.executeQuery();
+        display_homestay.next();
 
-        if (password.equals(request.getParameter("password"))) {
-            PreparedStatement update_customer = connection.prepareStatement("update ihome.customer set f_name = ?, l_name = ?, email = ?, phone = ?");
-            update_customer.setString(1, request.getParameter("firstname"));
-            update_customer.setString(2, request.getParameter("lastname"));
-            update_customer.setString(3, request.getParameter("email"));
-            update_customer.setString(4, request.getParameter("phone"));
-            update_customer.executeUpdate();
+        session.setAttribute("hs_name", display_homestay.getString("hs_name"));
+//        session.setAttribute("hs_price", display_homestay.getString("hs_price"));
+//        session.setAttribute("hs_guest", display_homestay.getString("hs_guest"));
 
-        }
-        PreparedStatement select_customer = connection.prepareStatement("select * from ihome.customer where username = ? and password = ?");
-        select_customer.setString(1, (String) session.getAttribute("username"));
-        select_customer.setString(2, (String) session.getAttribute("password"));
-        ResultSet display_customer = select_customer.executeQuery();
-        display_customer.next();
-
-        session.setAttribute("username", display_customer.getString("username"));
-        session.setAttribute("firstname", display_customer.getString("f_name"));
-        session.setAttribute("lastname", display_customer.getString("l_name"));
-        session.setAttribute("email", display_customer.getString("email"));
-        session.setAttribute("phone", display_customer.getString("phone"));
-        response.sendRedirect("profile.jsp");
+        PreparedStatement update_homestay = connection.prepareStatement("update ihome.homestay set hs_name = ?");
+        update_homestay.setString(1, request.getParameter("homestayname"));
+        update_homestay.executeUpdate();
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -71,7 +59,7 @@ public class EditProfile extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(EditProfile.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EditHomestay.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -89,7 +77,7 @@ public class EditProfile extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(EditProfile.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EditHomestay.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
