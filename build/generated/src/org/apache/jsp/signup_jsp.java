@@ -51,6 +51,9 @@ public final class signup_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                        <h3 class=\"card-header\">Sign Up</h3>\n");
       out.write("                        <div class=\"card-block\">\n");
       out.write("                            <form action=\"Signup\" method=\"POST\">\n");
+      out.write("                                ");
+ session.setAttribute("customer_type", "Customer"); 
+      out.write("\n");
       out.write("                                <div class=\"form-group has-feedback\" id=\"firstNameInDiv\">\n");
       out.write("                                    <label for=\"firstname\">First Name</label>\n");
       out.write("                                    <input type=\"text\" class=\"form-control\" name=\"firstname\" id=\"firstNameIn\" placeholder=\"John\" required=\"\">\n");
@@ -69,7 +72,7 @@ public final class signup_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                                </div>\n");
       out.write("                                <div class=\"form-group has-feedback\" id=\"birthdateInDiv\">\n");
       out.write("                                    <label for=\"birthdate\">Birthdate</label>\n");
-      out.write("                                    <input type=\"date\" class=\"form-control\" name=\"birthdate\" id=\"phoneIn\" placeholder=\"\" required>\n");
+      out.write("                                    <input type=\"date\" class=\"form-control\" name=\"birthdate\" id=\"birthdateIn\" placeholder=\"\" required>\n");
       out.write("                                </div>\n");
       out.write("                                <div class=\"form-group has-feedback\" id=\"phoneInDiv\">\n");
       out.write("                                    <label for=\"phone\">Phone Number</label>\n");

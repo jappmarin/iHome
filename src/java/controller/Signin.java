@@ -43,8 +43,8 @@ public class Signin extends HttpServlet {
         }
         else {
             session.setAttribute("username", display_customer.getString("username"));
-            session.setAttribute("firstname", display_customer.getString("first_name"));
-            session.setAttribute("lastname", display_customer.getString("last_name"));
+            session.setAttribute("firstname", display_customer.getString("f_name"));
+            session.setAttribute("lastname", display_customer.getString("l_name"));
             session.setAttribute("email", display_customer.getString("email"));
             session.setAttribute("phone", display_customer.getString("phone"));
             session.setAttribute("password", display_customer.getString("password"));

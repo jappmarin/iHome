@@ -31,7 +31,7 @@ public class Signup extends HttpServlet {
         Connection connection = (Connection) context.getAttribute("connection");
         HttpSession session = request.getSession();
 
-        PreparedStatement insert_customer = connection.prepareStatement("insert into customer (username, password, first_name, last_name, email, birthdate, phone) values (?, ?, ?, ?, ?, ?, ?)");
+        PreparedStatement insert_customer = connection.prepareStatement("insert into customer (username, password, f_name, l_name, email, birth_date, phone, customer_type, customer_id) values (?, ?, ?, ?, ?, ?, ?, ?, ?)");
         insert_customer.setString(1, request.getParameter("username"));
         insert_customer.setString(2, request.getParameter("password"));
         insert_customer.setString(3, request.getParameter("firstname"));
@@ -39,6 +39,8 @@ public class Signup extends HttpServlet {
         insert_customer.setString(5, request.getParameter("email"));
         insert_customer.setString(6, request.getParameter("birthdate"));
         insert_customer.setString(7, request.getParameter("phone"));
+        insert_customer.setString(8, (String) session.getAttribute("customer_type"));
+        insert_customer.setInt(9, 1);
         insert_customer.executeUpdate();
         
         PreparedStatement select_customer = connection.prepareStatement("select * from customer where username = ? and password = ?");
@@ -48,8 +50,8 @@ public class Signup extends HttpServlet {
         display_customer.next();
 
         session.setAttribute("username", display_customer.getString("username"));
-        session.setAttribute("firstname", display_customer.getString("first_name"));
-        session.setAttribute("lastname", display_customer.getString("last_name"));
+        session.setAttribute("firstname", display_customer.getString("f_name"));
+        session.setAttribute("lastname", display_customer.getString("l_name"));
         session.setAttribute("email", display_customer.getString("email"));
         session.setAttribute("phone", display_customer.getString("phone"));
         response.sendRedirect("profile.jsp");
