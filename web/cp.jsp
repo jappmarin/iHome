@@ -11,7 +11,7 @@
                                     <tr>
                                         <th class="text-center">#</th>
                                         <th class="text-center">Homestay Name</th>
-                                        <th class="text-center">Homestay Detail</th>
+                                        <th class="text-center">License Number</th>
                                         <th class="text-center">Status</th>
                                     </tr>
                                 </thead>
