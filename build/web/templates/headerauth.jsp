@@ -22,7 +22,7 @@
                         <a class="nav-link" href="
                            <% if (session.getAttribute("customer_type").equals("Guest")) { %>
                            profile.jsp
-                           <% } else { %>
+                           <% } else if (session.getAttribute("customer_type").equals("Host")) { %>
                            profile_host.jsp
                            <% }%>"
                            >Profile</a>

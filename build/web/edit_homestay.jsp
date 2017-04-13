@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<% if (session.getAttribute("username") == null) {  %><jsp:include page="templates/header.jsp" /><% } else { %><jsp:include page="templates/headerauth.jsp" /><% }%>
+<% if (session.getAttribute("username") != null) {  %><jsp:include page="templates/headerauth.jsp" /><% } else { %><jsp:include page="templates/header.jsp" /><% }%>
         <div class="container">
             <div class="row justify-content-center mt-5">
                 <div class="col-sm-12 col-md-8" id="homestay">
@@ -10,6 +10,10 @@
                                 <div class="form-group has-feedback" id="homestayNameInDiv">
                                     <label for="homestayname">Homestay Name</label>
                                     <input type="text" class="form-control" name="homestayname" id="homestayNameIn" placeholder="" required>
+                                </div>
+                                <div class="form-group has-feedback" id="detailInDiv">
+                                    <label for="detail">Homestay Detail</label>
+                                    <textarea class="form-control" name="detail" id="detailIn" rows="3"></textarea>
                                 </div>
                                 <div class="form-group has-feedback" id="priceInDiv">
                                     <label for="price">Price</label>
@@ -32,8 +36,8 @@
                                     <input type="text" class="form-control" name="longtitude" id="longtitudeIn" placeholder="" required>
                                 </div>
                                 <div class="text-center">
-                                    <button type="submit" class="btn btn-primary btn-block" id="editHomestayButton">Save changes</button>
-                                    <a href="profile_host.jsp" class="btn btn-secondary btn-block" id="cancelEditHomestayButton">Cancel</a>
+                                    <button type="submit" class="btn btn-primary btn-block" id="addHomestayButton">Add Homestay</button>
+                                    <button class="btn btn-secondary btn-block" id="cancelAddHomestayButton">Cancel</button>
                                 </div>
                             </form>
                         </div>

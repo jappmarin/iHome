@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<% if (session.getAttribute("username") == null) {  %><jsp:include page="templates/header.jsp" /><% } else { %><jsp:include page="templates/headerauth.jsp" /><% }%>
+<% if (session.getAttribute("username") != null) {  %><jsp:include page="templates/headerauth.jsp" /><% } else { %><jsp:include page="templates/header.jsp" /><% }%>
         <div class="container mt-5">
             <div class="row justify-content-center mt-3 mb-3">
                 <div class="col-sm-12 col-md-6">
@@ -11,19 +11,19 @@
                                     <form action="Booking" method="POST">
                                         <div class="form-group has-feedback" id="firstNameInDiv">
                                             <label for="firstname">First Name</label>
-                                            <input type="text" class="form-control" name="firstname" id="firstNameIn" placeholder="John" required>
+                                            <input type="text" class="form-control" name="firstname" id="firstNameIn" placeholder="John" value="${sessionScope.firstname}" required>
                                         </div>
                                         <div class="form-group has-feedback" id="lastNameInDiv">
                                             <label for="firstname">Last Name</label>
-                                            <input type="text" class="form-control" name="lastname" id="lastNameIn" placeholder="English" required>
+                                            <input type="text" class="form-control" name="lastname" id="lastNameIn" placeholder="English" value="${sessionScope.lastname}" required>
                                         </div>
                                         <div class="form-group has-feedback" id="emailInDiv">
                                             <label for="username">Email</label>
-                                            <input type="email" class="form-control" name="email" id="emailIn" placeholder="john@english.com" required>
+                                            <input type="email" class="form-control" name="email" id="emailIn" placeholder="john@english.com" value="${sessionScope.email}" required>
                                         </div>
                                         <div class="form-group has-feedback" id="phneInDiv">
                                             <label for="phone">Phone Number</label>
-                                            <input type="text" class="form-control" name="phone" id="phoneIn" placeholder="094-546-467" required>
+                                            <input type="text" class="form-control" name="phone" id="phoneIn" placeholder="094-546-467" value="${sessionScope.phone}" required>
                                         </div>  
                                     </form>
                                 </div>
@@ -52,7 +52,7 @@
                                         </div>
                                         <div class="form-group has-feedback" id="priceInDiv">
                                             <label for="price">Price Total</label>
-                                            <input type="text" class="form-control" name="price" id="priceIn" placeholder="" required>
+                                            <input type="text" class="form-control" name="price" id="priceIn" placeholder="" value="${sessionScope.hs_price}" disabled>
                                         </div>
                                         <div class="text-center">
                                             <button type="submit" class="btn btn-primary btn-block" id="signUpButton">Confirm Booking</button>

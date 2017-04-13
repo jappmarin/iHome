@@ -32,10 +32,9 @@ public class Signin extends HttpServlet {
         ServletContext context = getServletContext();
         Connection connection = (Connection) context.getAttribute("connection");
 
-        PreparedStatement select_customer = connection.prepareStatement("select * from customer where username = ? and password = ?");
+        PreparedStatement select_customer = connection.prepareStatement("select * from test_base.customer where username = ? and password = ?");
         select_customer.setString(1, request.getParameter("username"));
         select_customer.setString(2, request.getParameter("password"));
-
         ResultSet display_customer = select_customer.executeQuery();
 
         HttpSession session = request.getSession();
