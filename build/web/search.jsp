@@ -5,8 +5,9 @@
         <div class="container mt-5">   
             <div class="row">
                 <div class="col-sm-3 col-md-3">
-                    <div class="card">
+                    <div class="card mt-2">
                         <div class="card-block">
+                            <form action="Search" method="POST">
                             <h5 class="card-title">Search within results</h5>
                             <hr>
                             <h6 class="card-title">Search results for:</h6>
@@ -80,26 +81,30 @@
                                 </label>
                             </p>
                             <button type="submit" class="btn btn-primary btn-block">Search</button>
+                            </form>
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-9">
-                    <% ArrayList<Homestay> allHome = (ArrayList<Homestay>) request.getAttribute("allHome");
-                        if (allHome != null) {
-                            for (Homestay home : allHome) {%>
-                    <div class="card-deck">
-                        <div class="card">
-                            <img class="card-img-top w-100" src="https://pix6.agoda.net/hotelImages/236/236936/236936_14050218100019292572.jpg?s=500x500&ar=1x1&p=true" alt="Card image cap">
-                            <div class="card-block">
-                                <h4 class="card-title"><%= home.getHs_name() %></h4>
-                                <p class="card-text"><%= home.getHs_desc() %></p>
-                                <p class="card-text">Price : <%= home.getHs_price() %></p>
-                            </div>
-                            <div class="card-footer">
-                                <a class="btn btn-primary" href="detail.jsp" role="button">See detail</a>
+                <div class="col-sm-9 col-md-9">
+                    <div class="row">
+                        <% ArrayList<Homestay> allHome = (ArrayList<Homestay>) request.getAttribute("allHome");
+                            if (allHome != null) {
+                                for (Homestay home : allHome) {%>
+                        <div class="col-sm-4 col-md-4">
+                            <div class="card mt-2">
+                                <img class="card-img-top w-100" src="https://pix6.agoda.net/hotelImages/236/236936/236936_14050218100019292572.jpg?s=500x500&ar=1x1&p=true" alt="Card image cap">
+                                <div class="card-block">
+                                    <h4 class="card-title"><%= home.getHs_name()%></h4>
+                                    <p class="card-text"><%= home.getHs_desc()%></p>
+                                    <p class="card-text">Price : <%= home.getHs_price()%></p>
+                                </div>
+                                <div class="card-footer">
+                                    <a class="btn btn-primary" href="detail.jsp" role="button">See detail</a>
+                                </div>
                             </div>
                         </div>
-                        <% }}%>
+                        <% }
+                            }%>
                     </div>
                 </div>
             </div>
