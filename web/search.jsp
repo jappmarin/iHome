@@ -91,7 +91,7 @@
                             if (allHome != null) {
                                 for (Homestay home : allHome) {%>
                         <div class="col-sm-4 col-md-4">
-                            <div class="card mt-2">
+                            <div class="card text-center mt-2">
                                 <img class="card-img-top w-100" src="https://pix6.agoda.net/hotelImages/236/236936/236936_14050218100019292572.jpg?s=500x500&ar=1x1&p=true" alt="Card image cap">
                                 <div class="card-block">
                                     <h4 class="card-title"><%= home.getHs_name()%></h4>
