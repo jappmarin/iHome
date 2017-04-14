@@ -52,19 +52,7 @@ public class Signup extends HttpServlet {
             customer.setCustomer_type(customer_type);
             customer.addNewCustomer(connection);
 
-            PreparedStatement select_customer = connection.prepareStatement("select * from test_base.customer where username = ? and password = ?");
-            select_customer.setString(1, username);
-            select_customer.setString(2, password);
-            ResultSet display_customer = select_customer.executeQuery();
-            display_customer.next();
-            
-            session.setAttribute("username", display_customer.getString("username"));
-            session.setAttribute("firstname", display_customer.getString("f_name"));
-            session.setAttribute("lastname", display_customer.getString("l_name"));
-            session.setAttribute("email", display_customer.getString("email"));
-            session.setAttribute("phone", display_customer.getString("phone"));
-
-            response.sendRedirect("index.jsp");
+            response.sendRedirect("signin.jsp");
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
@@ -79,7 +67,6 @@ public class Signup extends HttpServlet {
 //        insert_customer.setString(7, phone);
 //        insert_customer.setString(8, customer_type);
 //        insert_customer.executeUpdate();
-
 //        response.sendRedirect("index.jsp");
     }
 

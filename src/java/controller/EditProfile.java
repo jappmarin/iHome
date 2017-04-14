@@ -34,34 +34,40 @@ public class EditProfile extends HttpServlet {
         HttpSession session = request.getSession();
 
         String password = (String) session.getAttribute("password");
+        String confirmPassword = request.getParameter("password");
 
-        if (password.equals(request.getParameter("password"))) {
-            PreparedStatement update_customer = connection.prepareStatement("update ihome.customer set f_name = ?, l_name = ?, email = ?, phone = ?");
+        if (password.equals(confirmPassword)) {
+            PreparedStatement update_customer = connection.prepareStatement("update test_base.customer set f_name = ?, l_name = ?, email = ?, phone = ? where username = ? and password = ?");
             update_customer.setString(1, request.getParameter("firstname"));
             update_customer.setString(2, request.getParameter("lastname"));
             update_customer.setString(3, request.getParameter("email"));
             update_customer.setString(4, request.getParameter("phone"));
+            update_customer.setString(5, (String) session.getAttribute("username"));
+            update_customer.setString(6, (String) session.getAttribute("password"));
             update_customer.executeUpdate();
 
-        }
-        PreparedStatement select_customer = connection.prepareStatement("select * from ihome.customer where username = ? and password = ?");
-        select_customer.setString(1, (String) session.getAttribute("username"));
-        select_customer.setString(2, (String) session.getAttribute("password"));
-        ResultSet display_customer = select_customer.executeQuery();
-        display_customer.next();
+            PreparedStatement select_customer = connection.prepareStatement("select * from test_base.customer where username = ? and password = ?");
+            select_customer.setString(1, (String) session.getAttribute("username"));
+            select_customer.setString(2, (String) session.getAttribute("password"));
+            ResultSet display_customer = select_customer.executeQuery();
+            display_customer.next();
 
-        session.setAttribute("username", display_customer.getString("username"));
-        session.setAttribute("firstname", display_customer.getString("f_name"));
-        session.setAttribute("lastname", display_customer.getString("l_name"));
-        session.setAttribute("email", display_customer.getString("email"));
-        session.setAttribute("phone", display_customer.getString("phone"));
-        
-        if (session.getAttribute("customer_type").equals("Guest")) {
-            response.sendRedirect("profile.jsp");
+            session.setAttribute("username", display_customer.getString("username"));
+            session.setAttribute("firstname", display_customer.getString("f_name"));
+            session.setAttribute("lastname", display_customer.getString("l_name"));
+            session.setAttribute("email", display_customer.getString("email"));
+            session.setAttribute("phone", display_customer.getString("phone"));
+
+            if (session.getAttribute("customer_type").equals("Guest")) {
+                response.sendRedirect("profile.jsp");
+            } else {
+                response.sendRedirect("profile_host.jsp");
+            }
+
+        } else {
+            response.sendRedirect("error.jsp");
         }
-        else {
-            response.sendRedirect("profile_host.jsp");
-        }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

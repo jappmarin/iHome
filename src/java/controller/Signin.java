@@ -40,14 +40,15 @@ public class Signin extends HttpServlet {
         HttpSession session = request.getSession();
 
         if (!display_customer.next()) {
-            response.sendRedirect("index.jsp");
+            response.sendRedirect("error.jsp");
         } else {
             session.setAttribute("username", display_customer.getString("username"));
+            session.setAttribute("password", display_customer.getString("password"));
             session.setAttribute("firstname", display_customer.getString("f_name"));
             session.setAttribute("lastname", display_customer.getString("l_name"));
+            session.setAttribute("birthdate", display_customer.getString("birth_date"));
             session.setAttribute("email", display_customer.getString("email"));
             session.setAttribute("phone", display_customer.getString("phone"));
-            session.setAttribute("password", display_customer.getString("password"));
             session.setAttribute("customer_type", display_customer.getString("customer_type"));
 
             response.sendRedirect("index.jsp");
