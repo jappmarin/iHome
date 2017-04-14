@@ -40,7 +40,7 @@
                                     <form action="/Booking" method="POST">
                                         <div class="form-group has-feedback" id="homestayNameInDivInDiv">
                                             <label for="homestayName">Homestay Name</label>
-                                            <input type="text" class="form-control" name="homestayname" id="homestayNameIn" placeholder="" value="Example A" required disabled>
+                                            <input type="text" class="form-control" name="homestayname" id="homestayNameIn" placeholder="" value="${sessionScope.hs_name}" required disabled>
                                         </div>
                                         <div class="form-group has-feedback" id="checkinInDiv">
                                             <label for="checkin">Check-in</label>
@@ -55,8 +55,8 @@
                                             <input type="text" class="form-control" name="price" id="priceIn" placeholder="" value="${sessionScope.hs_price}" disabled>
                                         </div>
                                         <div class="text-center">
-                                            <button type="submit" class="btn btn-primary btn-block" id="signUpButton">Confirm Booking</button>
-                                            <button type="submit" class="btn btn-secondary btn-block" id="signUpButton">Cancel</button>
+                                            <button type="submit" class="btn btn-primary btn-block" id="confirmButton">Confirm Booking</button>
+                                            <a class="btn btn-secondary btn-block" href="detail.jsp" id="cancelButton">Cancel</a>
                                         </div>
                                     </form>
                                 </div>
