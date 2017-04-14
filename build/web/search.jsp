@@ -93,6 +93,7 @@
                             <div class="card-block">
                                 <h4 class="card-title"><%= home.getHs_name() %></h4>
                                 <p class="card-text"><%= home.getHs_desc() %></p>
+                                <p class="card-text">Price : <%= home.getHs_price() %></p>
                             </div>
                             <div class="card-footer">
                                 <a class="btn btn-primary" href="detail.jsp" role="button">See detail</a>
