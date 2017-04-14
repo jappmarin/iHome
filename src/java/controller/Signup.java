@@ -10,8 +10,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,12 +17,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.Customer;
 
 @WebServlet(name = "Signup", urlPatterns = {"/Signup"})
 public class Signup extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, SQLException {
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
@@ -33,29 +32,55 @@ public class Signup extends HttpServlet {
         Connection connection = (Connection) context.getAttribute("connection");
         HttpSession session = request.getSession();
 
-        PreparedStatement insert_customer = connection.prepareStatement("insert into test_base.customer (username, password, f_name, l_name, email, birth_date, phone, customer_type) values (?, ?, ?, ?, ?, ?, ?, ?)");
-        insert_customer.setString(1, request.getParameter("username"));
-        insert_customer.setString(2, request.getParameter("password"));
-        insert_customer.setString(3, request.getParameter("firstname"));
-        insert_customer.setString(4, request.getParameter("lastname"));
-        insert_customer.setString(5, request.getParameter("email"));
-        insert_customer.setString(6, request.getParameter("birthdate"));
-        insert_customer.setString(7, request.getParameter("phone"));
-        insert_customer.setString(8, (String) session.getAttribute("customer_type"));
-        insert_customer.executeUpdate();
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        String firstname = request.getParameter("firstname");
+        String lastname = request.getParameter("lastname");
+        String email = request.getParameter("email");
+        String birthdate = request.getParameter("birthdate");
+        String phone = request.getParameter("phone");
+        String customer_type = (String) session.getAttribute("customer_type");
 
-        PreparedStatement select_customer = connection.prepareStatement("select * from ihome.customer where username = ? and password = ?");
-        select_customer.setString(1, request.getParameter("username"));
-        select_customer.setString(2, request.getParameter("password"));
-        ResultSet display_customer = select_customer.executeQuery();
-        display_customer.next();
+        try {
+            Customer customer = new Customer(username);
+            customer.setPassword(password);
+            customer.setFirstname(firstname);
+            customer.setLastname(lastname);
+            customer.setEmail(email);
+            customer.setBirthdate(birthdate);
+            customer.setPhone(phone);
+            customer.setCustomer_type(customer_type);
+            customer.addNewCustomer(connection);
 
-        session.setAttribute("username", display_customer.getString("username"));
-        session.setAttribute("firstname", display_customer.getString("f_name"));
-        session.setAttribute("lastname", display_customer.getString("l_name"));
-        session.setAttribute("email", display_customer.getString("email"));
-        session.setAttribute("phone", display_customer.getString("phone"));
-        response.sendRedirect("index.jsp");
+            PreparedStatement select_customer = connection.prepareStatement("select * from test_base.customer where username = ? and password = ?");
+            select_customer.setString(1, username);
+            select_customer.setString(2, password);
+            ResultSet display_customer = select_customer.executeQuery();
+            display_customer.next();
+            
+            session.setAttribute("username", display_customer.getString("username"));
+            session.setAttribute("firstname", display_customer.getString("f_name"));
+            session.setAttribute("lastname", display_customer.getString("l_name"));
+            session.setAttribute("email", display_customer.getString("email"));
+            session.setAttribute("phone", display_customer.getString("phone"));
+
+            response.sendRedirect("index.jsp");
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+//        PreparedStatement insert_customer = connection.prepareStatement("insert into test_base.customer (username, password, f_name, l_name, email, birth_date, phone, customer_type) values (?, ?, ?, ?, ?, ?, ?, ?)");
+//        insert_customer.setString(1, username);
+//        insert_customer.setString(2, password);
+//        insert_customer.setString(3, firstname);
+//        insert_customer.setString(4, lastname);
+//        insert_customer.setString(5, email);
+//        insert_customer.setString(6, birthdate);
+//        insert_customer.setString(7, phone);
+//        insert_customer.setString(8, customer_type);
+//        insert_customer.executeUpdate();
+
+//        response.sendRedirect("index.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -70,11 +95,7 @@ public class Signup extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(Signup.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**
@@ -88,11 +109,7 @@ public class Signup extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(Signup.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**

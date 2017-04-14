@@ -13,7 +13,7 @@
                             <div class="row justify-content-center">
                                 <div class="col-sm-6 col-md-6">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" id="search" aria-describedby="search" placeholder="eg. Samut Prakan, Bangkok, Chaingmai">
+                                        <input type="text" class="form-control" id="search" name="search" placeholder="eg. Samut Prakan, Bangkok, Chaingmai">
                                     </div>
                                 </div>
                             </div>
