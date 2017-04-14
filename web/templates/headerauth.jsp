@@ -21,9 +21,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="
                            <% if (session.getAttribute("customer_type").equals("Guest")) { %>
-                           profile.jsp
+                           profile.jsp?=${sessionScope.username}
                            <% } else if (session.getAttribute("customer_type").equals("Host")) { %>
-                           profile_host.jsp
+                           profile_host.jsp?=${sessionScope.username}
                            <% }%>"
                            >Profile</a>
                     </li>
