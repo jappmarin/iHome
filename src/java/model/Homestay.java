@@ -5,48 +5,17 @@
  */
 package model;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
 public class Homestay {
+
     private String hs_name;
     private String hs_desc;
     private float hs_price;
-    private int hs_amount;
+    private int hs_guest;
+    private String hs_address;
     private String hs_lat;
     private String hs_long;
-    private String province;
-    private String amphoe;
-    private String tambon;
-    private Connection connection;
-    
-    public Homestay(Connection connection, String homestayname) throws SQLException {
-        this.hs_name = homestayname;
-        this.connection = connection;
-        
-        PreparedStatement select_homestay = connection.prepareStatement("select hs_name, hs_price, hs_amount, hs_lat, hs_long from homestay where hs_name = '" + homestayname + "'");
-        ResultSet display_homestay = select_homestay.executeQuery();
+    private String hs_province;
 
-        if (display_homestay.next()) {
-            this.hs_name = display_homestay.getString("hs_name");
-            this.hs_price = display_homestay.getFloat("hs_price");
-            this.hs_amount = display_homestay.getInt("hs_amount");
-            this.hs_lat = display_homestay.getString("hs_lat");
-            this.hs_long = display_homestay.getString("hs_long");
-        }
-    }
-    
-    public void addNewHomestay(Connection connection) throws SQLException {
-        PreparedStatement insert_homestay = connection.prepareStatement("insert into homestay(hs_name, hs_price, hs_amount, hs_lat, hs_long) values (?,?,?,?,?)");
-        insert_homestay.setString(1, this.getHs_name());
-        insert_homestay.setFloat(2, this.getHs_price());
-        insert_homestay.setInt(3, this.getHs_amount());
-        insert_homestay.setString(4, this.getHs_lat());
-        insert_homestay.setString(5, this.getHs_long());
-        insert_homestay.executeUpdate();
-    }
     public String getHs_name() {
         return hs_name;
     }
@@ -71,12 +40,12 @@ public class Homestay {
         this.hs_price = hs_price;
     }
 
-    public int getHs_amount() {
-        return hs_amount;
+    public int getHs_guest() {
+        return hs_guest;
     }
 
-    public void setHs_amount(int hs_amount) {
-        this.hs_amount = hs_amount;
+    public void setHs_guest(int hs_guest) {
+        this.hs_guest = hs_guest;
     }
 
     public String getHs_lat() {
@@ -94,28 +63,20 @@ public class Homestay {
     public void setHs_long(String hs_long) {
         this.hs_long = hs_long;
     }
-
-    public String getProvince() {
-        return province;
+    
+    public String getHs_province() {
+        return hs_province;
+    }
+    
+    public void setHs_province(String hs_province) {
+        this.hs_province = hs_province;
+    }
+    public String getHs_address() {
+        return hs_address;
     }
 
-    public void setProvince(String province) {
-        this.province = province;
+    public void setHs_address(String hs_address) {
+        this.hs_address = hs_address;
     }
 
-    public String getAmphoe() {
-        return amphoe;
-    }
-
-    public void setAmphoe(String amphoe) {
-        this.amphoe = amphoe;
-    }
-
-    public String getTambon() {
-        return tambon;
-    }
-
-    public void setTambon(String tambon) {
-        this.tambon = tambon;
-    }
 }

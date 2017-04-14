@@ -67,7 +67,7 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                            </div>\n");
       out.write("                            <div class=\"row justify-content-center mt-2 mb-4\">\n");
       out.write("                                <div class=\"col-sm-2 col-md-2 text-center\">\n");
-      out.write("                                    <a class=\"btn btn-primary btn-lg\" href=\"search.jsp\">Search</a>\n");
+      out.write("                                    <a class=\"btn btn-primary btn-lg\" href=\"Search\">Search</a>\n");
       out.write("                                </div>\n");
       out.write("                            </div>\n");
       out.write("                        </div>\n");
