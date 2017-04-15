@@ -4,7 +4,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
 
-public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
+public final class profile_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
 
   private static final JspFactory _jspxFactory = JspFactory.getDefaultFactory();
@@ -50,28 +50,25 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\n");
       out.write("        <div class=\"container\">\n");
       out.write("            <div class=\"row justify-content-center mt-5\">\n");
-      out.write("                <div class=\"col-sm-12\">\n");
+      out.write("                <div class=\"col-sm-12 col-md-6\" id=\"profile\">\n");
       out.write("                    <div class=\"card\">\n");
+      out.write("                        <h3 class=\"card-header\">My Profile</h3>\n");
       out.write("                        <div class=\"card-block\">\n");
-      out.write("                            <div class=\"row justify-content-center mt-5 mb-4\">\n");
-      out.write("                                <div class=\"col-sm-12 col-md-12\">\n");
-      out.write("                                    <h2 class=\"text-center\">Where would you like to stay?</h2>\n");
-      out.write("                                </div>\n");
-      out.write("                            </div>\n");
-      out.write("                            <div class=\"row justify-content-center\">\n");
-      out.write("                                <div class=\"col-sm-6 col-md-6\">\n");
-      out.write("                                    <div class=\"form-group\">\n");
-      out.write("                                        <input type=\"text\" class=\"form-control\" id=\"search\" name=\"search\" placeholder=\"eg. Samut Prakan, Bangkok, Chaingmai\">\n");
-      out.write("                                    </div>\n");
-      out.write("                                </div>\n");
-      out.write("                            </div>\n");
-      out.write("                            <div class=\"row justify-content-center mt-2 mb-4\">\n");
-      out.write("                                <div class=\"col-sm-2 col-md-2 text-center\">\n");
-      out.write("                                    <a class=\"btn btn-primary btn-lg\" href=\"");
-      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${SITE_URL}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("/Search\">Search</a>\n");
-      out.write("                                </div>\n");
-      out.write("                            </div>\n");
+      out.write("                            <p>Username : ");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${sessionScope.customer.username}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("</p>\n");
+      out.write("                            <p>Name : ");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${sessionScope.customer.firstname}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write(' ');
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${sessionScope.customer.lastname}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("</p>\n");
+      out.write("                            <p>Email : ");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${sessionScope.customer.email}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("</p>\n");
+      out.write("                            <p>Phone Number : ");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${sessionScope.customer.phone}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("</p>\n");
+      out.write("                            <a href=\"edit_profile.jsp\" class=\"btn btn-primary btn-block\">Edit Profile</a>\n");
       out.write("                        </div>\n");
       out.write("                    </div>\n");
       out.write("                </div>\n");

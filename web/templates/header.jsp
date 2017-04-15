@@ -16,7 +16,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <a class="navbar-brand" href="${SITE_URL}/index.jsp">
-                <img src="asset/img/logo.png" width="30" height="30" class="logo d-inline-block align-top">iHome
+                <img src="${SITE_URL}/asset/img/logo.png" width="30" height="30" class="logo d-inline-block align-top">iHome
             </a>
             <div class="collapse navbar-collapse" id="navbars">
                 <ul class="navbar-nav ml-auto">

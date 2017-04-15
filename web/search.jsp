@@ -1,6 +1,6 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="model.Homestay"%>
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <% if (session.getAttribute("customer") != null) {  %><jsp:include page="templates/headerauth.jsp" /><% } else { %><jsp:include page="templates/header.jsp" /><% }%>
         <div class="container mt-5">   
             <div class="row justify-content-center">
@@ -8,9 +8,7 @@
                     <div class="card mt-2">
                         <div class="card-block">
                             <form action="Search" method="POST">
-                                <h5 class="card-title">Search within results</h5>
-                                <hr>
-                                <h6 class="card-title">Search results for:</h6>
+                                <h5 class="card-title">Search results for:</h5>
                                 <p class="card-text">
                                 <div class="form-group row">
                                     <div class="col-sm-12">
@@ -19,30 +17,51 @@
                                 </div>
                                 </p>
                                 <hr>
-                                <h6 class="card-title">Accommodation type</h6>
+                                <h6 class="card-title">ภูมิภาค</h6>
                                 <p class="card-text">
                                     <label class="custom-control custom-checkbox">
                                         <input type="checkbox" class="custom-control-input">
                                         <span class="custom-control-indicator"></span>
-                                        <span class="custom-control-description">Resort</span>
+                                        <span class="custom-control-description">ภาคเหนือ</span>
                                     </label>
                                 </p>
                                 <p class="card-text">
                                     <label class="custom-control custom-checkbox">
                                         <input type="checkbox" class="custom-control-input">
                                         <span class="custom-control-indicator"></span>
-                                        <span class="custom-control-description">Hotel</span>
+                                        <span class="custom-control-description">ภาคกลาง</span>
                                     </label>
                                 </p>
                                 <p class="card-text">
                                     <label class="custom-control custom-checkbox">
                                         <input type="checkbox" class="custom-control-input">
                                         <span class="custom-control-indicator"></span>
-                                        <span class="custom-control-description">Guest House / Bed & Breakfast</span>
+                                        <span class="custom-control-description">ภาคตะวันออก</span>
+                                    </label>
+                                </p>
+                                <p class="card-text">
+                                    <label class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input">
+                                        <span class="custom-control-indicator"></span>
+                                        <span class="custom-control-description">ภาคตะวันออกเฉียงเหนือ</span>
+                                    </label>
+                                </p>
+                                <p class="card-text">
+                                    <label class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input">
+                                        <span class="custom-control-indicator"></span>
+                                        <span class="custom-control-description">ภาคตะวันตก</span>
+                                    </label>
+                                </p>
+                                <p class="card-text">
+                                    <label class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input">
+                                        <span class="custom-control-indicator"></span>
+                                        <span class="custom-control-description">ภาคใต้</span>
                                     </label>
                                 </p>
                                 <hr>
-                                <h6 class="card-title">Accommodation type</h6>
+                                <h6 class="card-title">Price</h6>
                                 <p class="card-text">
                                 <div class="form-group row mx-auto align-items-center">
                                     Lowest Price
@@ -58,28 +77,7 @@
                                 </div>
                                 </p>
                                 <hr>
-                                <h6 class="card-title">Facilities</h6>
-                                <p class="card-text">
-                                    <label class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input">
-                                        <span class="custom-control-indicator"></span>
-                                        <span class="custom-control-description">Swimming Pool</span>
-                                    </label>
-                                </p>
-                                <p class="card-text">
-                                    <label class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input">
-                                        <span class="custom-control-indicator"></span>
-                                        <span class="custom-control-description">Internet</span>
-                                    </label>
-                                </p>
-                                <p class="card-text">
-                                    <label class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input">
-                                        <span class="custom-control-indicator"></span>
-                                        <span class="custom-control-description">Gym/Fitness</span>
-                                    </label>
-                                </p>
+                                
                                 <button type="submit" class="btn btn-primary btn-block">Search</button>
                             </form>
                         </div>
@@ -99,7 +97,7 @@
                                             <p class="card-text">Price : <%=home.getHs_price()%></p>
                                         </div>
                                         <div class="card-footer">
-                                            <a class="btn btn-primary" href="detail.jsp" role="button">See detail</a>
+                                            <a class="btn btn-primary" href="${SITE_URL}/View/?id=<%=home.getHs_id()%>">See more</a>
                                         </div>
                                     </div>
                                 </div>

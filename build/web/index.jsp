@@ -19,7 +19,7 @@
                             </div>
                             <div class="row justify-content-center mt-2 mb-4">
                                 <div class="col-sm-2 col-md-2 text-center">
-                                    <a class="btn btn-primary btn-lg" href="Search">Search</a>
+                                    <a class="btn btn-primary btn-lg" href="${SITE_URL}/Search">Search</a>
                                 </div>
                             </div>
                         </div>

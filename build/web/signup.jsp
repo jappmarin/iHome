@@ -46,7 +46,7 @@
                             </form>
                             <hr>
                             <div class="text-center">
-                                <p>Already a member? <a href="signin.jsp" class="btn btn-secondary btn-sm">Sign In</a></p>
+                                <p>Already a member? <a href="${SITE_URL}/signin.jsp" class="btn btn-secondary btn-sm">Sign In</a></p>
                             </div>
                         </div>
                     </div>
