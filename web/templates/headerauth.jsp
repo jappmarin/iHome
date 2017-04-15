@@ -27,8 +27,11 @@
                            profile.jsp
                            <% } else if (session.getAttribute("customer_type").equals("Host")) {%>
                            profile_host.jsp
+                           <% } else if (session.getAttribute("customer_type").equals("Admin")) {%>
+                           cp.jsp
                            <% } %>"
-                           >Profile</a>
+                           ><% if (session.getAttribute("customer_type").equals("Admin")) { %>
+                            Control Panel<% } else { %>Profile <% } %></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="Logout">Logout</a>
