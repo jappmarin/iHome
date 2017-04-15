@@ -5,8 +5,13 @@
  */
 package model;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
 public class Homestay {
 
+    private String hs_id;
     private String hs_name;
     private String hs_desc;
     private float hs_price;
@@ -63,20 +68,29 @@ public class Homestay {
     public void setHs_long(String hs_long) {
         this.hs_long = hs_long;
     }
-    
+
     public String getHs_province() {
         return hs_province;
     }
-    
+
     public void setHs_province(String hs_province) {
         this.hs_province = hs_province;
     }
+
     public String getHs_address() {
         return hs_address;
     }
 
     public void setHs_address(String hs_address) {
         this.hs_address = hs_address;
+    }
+
+    public String getHs_id() {
+        return hs_id;
+    }
+
+    public void setHs_id(String hs_id) {
+        this.hs_id = hs_id;
     }
 
 }

@@ -7,11 +7,6 @@ package controller;
 
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,36 +15,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.Customer;
-import model.Homestay;
 
-@WebServlet(name = "Signin", urlPatterns = {"/Signin"})
-public class Signin extends HttpServlet {
+@WebServlet(name = "View", urlPatterns = {"/View"})
+public class View extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, SQLException {
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
-
-        ServletContext context = getServletContext();
+        
+        ServletContext context = request.getServletContext();
         Connection connection = (Connection) context.getAttribute("connection");
-
-        PreparedStatement select_customer = connection.prepareStatement("select * from test_base.customer where username = ? and password = ?");
-        select_customer.setString(1, request.getParameter("username"));
-        select_customer.setString(2, request.getParameter("password"));
-        ResultSet display_customer = select_customer.executeQuery();
-
         HttpSession session = request.getSession();
-
-        if (!display_customer.next()) {
-            response.sendRedirect("error.jsp");
-        } else {
-            Customer customer = new Customer(connection, request.getParameter("username"), request.getParameter("password"));
-            session.setAttribute("customer", customer);
-            session.setAttribute("customer_type" , customer.getCustomer_type());
-            
-            response.sendRedirect("index.jsp");
-        }
+        Customer customer = (Customer) session.getAttribute("customer");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -64,11 +43,7 @@ public class Signin extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(Signin.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**
@@ -82,11 +57,7 @@ public class Signin extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(Signin.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**

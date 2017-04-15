@@ -1,3 +1,4 @@
+<%@page import="model.Customer"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="SITE_URL" value="${pageContext.request.contextPath}" scope="request"/>
@@ -23,10 +24,10 @@
                     <li class="nav-item">
                         <a class="nav-link" href="
                            <% if (session.getAttribute("customer_type").equals("Guest")) { %>
-                           profile.jsp?=${sessionScope.username}
-                           <% } else if (session.getAttribute("customer_type").equals("Host")) { %>
-                           profile_host.jsp?=${sessionScope.username}
-                           <% }%>"
+                           profile.jsp
+                           <% } else if (session.getAttribute("customer_type").equals("Host")) {%>
+                           profile_host.jsp
+                           <% } %>"
                            >Profile</a>
                     </li>
                     <li class="nav-item">

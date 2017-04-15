@@ -6,21 +6,42 @@
 package controller;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet(name = "Booking", urlPatterns = {"/Booking"})
 public class Booking extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
-        
+
+        HttpSession session = request.getSession();
+        ServletContext context = getServletContext();
+        Connection connection = (Connection) context.getAttribute("connection");
+
+        PreparedStatement insert_booking = connection.prepareStatement("insert into test_base.booking (check_in, check_out, total, customer_id, hs_id) values (?, ?, ?, ?, ?)");
+        insert_booking.setString(1, request.getParameter("checkin"));
+        insert_booking.setString(2, request.getParameter("checkout"));
+        insert_booking.setFloat(3, 200);
+        insert_booking.setInt(4, (Integer) session.getAttribute("customer_id"));
+        insert_booking.setInt(5, (Integer) session.getAttribute("hs_id"));
+        insert_booking.executeUpdate();
+
+        response.sendRedirect("booking_print.jsp");
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -35,7 +56,11 @@ public class Booking extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(Booking.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -49,7 +74,11 @@ public class Booking extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(Booking.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

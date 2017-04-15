@@ -47,7 +47,6 @@
                             <hr>
                             <div class="text-center">
                                 <p>Already a member? <a href="signin.jsp" class="btn btn-secondary btn-sm">Sign In</a></p>
-
                             </div>
                         </div>
                     </div>

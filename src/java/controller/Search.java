@@ -41,6 +41,7 @@ public class Search extends HttpServlet {
         
         while(display_homestay.next()) {
             Homestay homestay = new Homestay();
+            homestay.setHs_id(display_homestay.getString("hs_id"));
             homestay.setHs_name(display_homestay.getString("hs_name"));
             homestay.setHs_desc(display_homestay.getString("hs_desc"));
             homestay.setHs_price(display_homestay.getFloat("hs_price"));

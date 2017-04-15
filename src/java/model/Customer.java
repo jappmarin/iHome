@@ -9,7 +9,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import javax.servlet.http.HttpSession;
 
 public class Customer {
 
@@ -27,8 +26,9 @@ public class Customer {
         this.username = username;
     }
 
-    public Customer(Connection connection, String username) throws SQLException {
+    public Customer(Connection connection, String username, String password) throws SQLException {
         this.username = username;
+        this.password = password;
         this.connection = connection;
 
         PreparedStatement select_customer = connection.prepareStatement("select * from test_base.customer where username = ? and password = ?");
@@ -37,8 +37,8 @@ public class Customer {
         ResultSet display_customer = select_customer.executeQuery();
 
         if (display_customer.next()) {
-            this.username = display_customer.getString("username");
-            this.password = display_customer.getString("password");
+            this.username = username;
+            this.password = password;
             this.firstname = display_customer.getString("f_name");
             this.lastname = display_customer.getString("l_name");
             this.birthdate = display_customer.getString("birth_date");

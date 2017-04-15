@@ -54,7 +54,6 @@ public class Signup extends HttpServlet {
 
             response.sendRedirect("signin.jsp");
         } catch (SQLException ex) {
-            ex.printStackTrace();
         }
 
 //        PreparedStatement insert_customer = connection.prepareStatement("insert into test_base.customer (username, password, f_name, l_name, email, birth_date, phone, customer_type) values (?, ?, ?, ?, ?, ?, ?, ?)");
