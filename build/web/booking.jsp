@@ -39,7 +39,7 @@
                         <div class="card-block">
                             <div class="row">
                                 <div class="col">
-                                    <form action="" method="POST">
+                                    <form action="BookingConfirm" method="POST">
                                         <div class="form-group has-feedback" id="homestayNameInDivInDiv">
                                             <label for="homestayName">Homestay Name</label>
                                             <input type="text" class="form-control" name="homestayname" id="homestayNameIn" placeholder="" value="<%=homestay.getHs_name()%>" required disabled>
