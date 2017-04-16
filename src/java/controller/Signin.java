@@ -20,7 +20,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.Customer;
-import model.Homestay;
 
 @WebServlet(name = "Signin", urlPatterns = {"/Signin"})
 public class Signin extends HttpServlet {

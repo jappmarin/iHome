@@ -1,7 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Context path="/iHome">
   <Resource auth="Container" driverClassName="com.mysql.jdbc.Driver" maxActive="20" maxIdle="10" maxWait="-1" name="ihome" password="root" type="javax.sql.DataSource" url="jdbc:mysql://localhost:3306/ihome?zeroDateTimeBehavior=convertToNull" username="root"/>
-  <Resource auth="Container" driverClassName="org.apache.derby.jdbc.ClientDriver" maxActive="20" maxIdle="10" maxWait="-1" name="database" password="1710" type="javax.sql.DataSource" url="jdbc:derby://localhost:1527/iHome" username="japp"/>
-  <Resource auth="Container" driverClassName="com.mysql.jdbc.Driver" maxActive="20" maxIdle="10" maxWait="-1" name="iHomeDB" password="japp" type="javax.sql.DataSource" url="jdbc:mysql://localhost:3306/mysql?zeroDateTimeBehavior=convertToNull" username="root"/>
-  <Resource auth="Container" driverClassName="com.mysql.jdbc.Driver" maxActive="20" maxIdle="10" maxWait="-1" name="ihome2" password="japp" type="javax.sql.DataSource" url="jdbc:mysql://localhost:3306/mysql?zeroDateTimeBehavior=convertToNull" username="root"/>
 </Context>

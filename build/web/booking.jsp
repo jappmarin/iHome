@@ -11,19 +11,19 @@
                                     <form action="Booking" method="POST">
                                         <div class="form-group has-feedback" id="firstNameInDiv">
                                             <label for="firstname">First Name</label>
-                                            <input type="text" class="form-control" name="firstname" id="firstNameIn" placeholder="John" value="${sessionScope.firstname}" required>
+                                            <input type="text" class="form-control" name="firstname" id="firstNameIn" placeholder="John" value="${sessionScope.customer.firstname}" required>
                                         </div>
                                         <div class="form-group has-feedback" id="lastNameInDiv">
                                             <label for="firstname">Last Name</label>
-                                            <input type="text" class="form-control" name="lastname" id="lastNameIn" placeholder="English" value="${sessionScope.lastname}" required>
+                                            <input type="text" class="form-control" name="lastname" id="lastNameIn" placeholder="English" value="${sessionScope.customer.lastname}" required>
                                         </div>
                                         <div class="form-group has-feedback" id="emailInDiv">
                                             <label for="username">Email</label>
-                                            <input type="email" class="form-control" name="email" id="emailIn" placeholder="john@english.com" value="${sessionScope.email}" required>
+                                            <input type="email" class="form-control" name="email" id="emailIn" placeholder="john@english.com" value="${sessionScope.customer.email}" required>
                                         </div>
                                         <div class="form-group has-feedback" id="phneInDiv">
                                             <label for="phone">Phone Number</label>
-                                            <input type="text" class="form-control" name="phone" id="phoneIn" placeholder="094-546-467" value="${sessionScope.phone}" required>
+                                            <input type="text" class="form-control" name="phone" id="phoneIn" placeholder="094-546-467" value="${sessionScope.customer.phone}" required>
                                         </div>  
                                     </form>
                                 </div>
