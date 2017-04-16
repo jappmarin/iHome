@@ -19,6 +19,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import model.Homestay;
 
 @WebServlet(name = "View", urlPatterns = {"/View/"})
@@ -45,6 +46,14 @@ public class View extends HttpServlet {
             homestay.setHs_price(display_homestay.getFloat("hs_price"));
             homestay.setHs_guest(display_homestay.getInt("hs_guest"));
         }
+        
+       HttpSession session = request.getSession();
+       session.setAttribute("hs_id", homestay.getHs_id());
+//       session.setAttribute("hs_name", homestay.getHs_name());
+//       session.setAttribute("hs_desc", homestay.getHs_desc());
+//       session.setAttribute("hs_price", homestay.getHs_price());
+       
+       
         
         request.setAttribute("homestay", homestay);
         RequestDispatcher obj = request.getRequestDispatcher("/detail.jsp");
