@@ -11,7 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class Customer {
-
+    
     private String username;
     private String firstname;
     private String lastname;
@@ -50,14 +50,14 @@ public class Customer {
 
     public void addNewCustomer(Connection connection) throws SQLException {
         PreparedStatement insert_customer = connection.prepareStatement("insert into test_base.customer (username, password, f_name, l_name, email, birth_date, phone, customer_type) values (?, ?, ?, ?, ?, ?, ?, ?)");
-        insert_customer.setString(1, this.username);
-        insert_customer.setString(2, this.password);
-        insert_customer.setString(3, this.firstname);
-        insert_customer.setString(4, this.lastname);
-        insert_customer.setString(5, this.email);
-        insert_customer.setString(6, this.birthdate);
-        insert_customer.setString(7, this.phone);
-        insert_customer.setString(8, this.customer_type);
+        insert_customer.setString(1, this.getUsername());
+        insert_customer.setString(2, this.getPassword());
+        insert_customer.setString(3, this.getFirstname());
+        insert_customer.setString(4, this.getLastname());
+        insert_customer.setString(5, this.getEmail());
+        insert_customer.setString(6, this.getBirthdate());
+        insert_customer.setString(7, this.getPhone());
+        insert_customer.setString(8, this.getCustomer_type());
         insert_customer.executeUpdate();
     }
 
@@ -72,50 +72,46 @@ public class Customer {
 
     public void changeFirstname(Connection connection) throws SQLException {
         PreparedStatement update_customer = connection.prepareStatement("update test_base.customer set f_name = ? where username = ?");
-        update_customer.setString(1, firstname);
-        update_customer.setString(2, username);
+        update_customer.setString(1, getFirstname());
+        update_customer.setString(2, getUsername());
         update_customer.executeUpdate();
     }
 
     public void changeLastname(Connection connection) throws SQLException {
         PreparedStatement update_customer = connection.prepareStatement("update test_base.customer set l_name = ? where username = ?");
-        update_customer.setString(1, lastname);
-        update_customer.setString(2, username);
+        update_customer.setString(1, getLastname());
+        update_customer.setString(2, getUsername());
         update_customer.executeUpdate();
     }
 
     public void changeEmail(Connection connection) throws SQLException {
         PreparedStatement update_customer = connection.prepareStatement("update test_base.customer set email = ? where username = ?");
-        update_customer.setString(1, email);
-        update_customer.setString(2, username);
+        update_customer.setString(1, getEmail());
+        update_customer.setString(2, getUsername());
         update_customer.executeUpdate();
     }
 
     public void changePhone(Connection connection) throws SQLException {
         PreparedStatement update_customer = connection.prepareStatement("update test_base.customer set phone = ? where username = ?");
-        update_customer.setString(1, phone);
-        update_customer.setString(2, username);
+        update_customer.setString(1, getPhone());
+        update_customer.setString(2, getUsername());
         update_customer.executeUpdate();
     }
 
     public void changePassword(Connection connection) throws SQLException {
         PreparedStatement update_customer = connection.prepareStatement("update test_base.customer set password = ? where username = ?");
-        update_customer.setString(1, password);
-        update_customer.setString(2, username);
+        update_customer.setString(1, getPassword());
+        update_customer.setString(2, getUsername());
         update_customer.executeUpdate();
     }
 
     public boolean confirmPassword(Connection connection, String confirmPassword) throws SQLException {
         PreparedStatement select_customer = connection.prepareStatement("select password from test_base.customer where username = ? and password = ?");
-        select_customer.setString(1, username);
+        select_customer.setString(1, getUsername());
         select_customer.setString(2, confirmPassword);
         ResultSet display_customer = select_customer.executeQuery();
 
-        if (display_customer.next()) {
-            return true;
-        } else {
-            return false;
-        }
+        return display_customer.next();
 
     }
 
