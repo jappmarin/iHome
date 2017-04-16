@@ -38,7 +38,7 @@
                                     <p class="card-text"><%=homestay.getHs_desc()%></p>
                                     <h4 class="card-title">Price</h4>
                                     <p class="card-text"><%=homestay.getHs_price()%> / Night</p>
-                                    <a href="${SITE_URL}/booking.jsp" class="btn btn-primary btn-lg">Booking</a>
+                                    <a href="${SITE_URL}/Booking/?id=<%=homestay.getHs_id()%>" class="btn btn-primary btn-lg">Booking</a>
                                 </div>
                             </div>
                         </div>

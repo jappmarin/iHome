@@ -1,5 +1,7 @@
+<%@page import="model.Homestay"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <% if (session.getAttribute("customer") != null) {  %><jsp:include page="templates/headerauth.jsp" /><% } else { %><jsp:include page="templates/header.jsp" /><% }%>
+<% Homestay homestay = (Homestay) request.getAttribute("homestay");%>
         <div class="container mt-5">
             <div class="row justify-content-center mt-3 mb-3">
                 <div class="col-sm-12 col-md-6">
@@ -37,10 +39,10 @@
                         <div class="card-block">
                             <div class="row">
                                 <div class="col">
-                                    <form action="Booking" method="POST">
+                                    <form action="" method="POST">
                                         <div class="form-group has-feedback" id="homestayNameInDivInDiv">
                                             <label for="homestayName">Homestay Name</label>
-                                            <input type="text" class="form-control" name="homestayname" id="homestayNameIn" placeholder="" value="${sessionScope.hs_name}" required disabled>
+                                            <input type="text" class="form-control" name="homestayname" id="homestayNameIn" placeholder="" value="<%=homestay.getHs_name()%>" required disabled>
                                         </div>
                                         <div class="form-group has-feedback" id="checkinInDiv">
                                             <label for="checkin">Check-in</label>
@@ -52,7 +54,7 @@
                                         </div>
                                         <div class="form-group has-feedback" id="priceInDiv">
                                             <label for="price">Price Total</label>
-                                            <input type="text" class="form-control" name="price" id="priceIn" placeholder="" value="${sessionScope.hs_price}" disabled>
+                                            <input type="text" class="form-control" name="price" id="priceIn" placeholder="" value="<%=homestay.getHs_price()%>" disabled>
                                         </div>
                                         <div class="text-center">
                                             <button type="submit" class="btn btn-primary btn-block" id="confirmButton">Confirm Booking</button>
