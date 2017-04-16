@@ -10,27 +10,13 @@ package model;
  * @author tkitb
  */
 public class Booking {
-    private int book_id;
     private String check_in;
     private String check_out;
     private int night;
+    private float price;
     private float total;
     private String customer_id;
     private String room_id;
-
-    /**
-     * @return the book_id
-     */
-    public int getBook_id() {
-        return book_id;
-    }
-
-    /**
-     * @param book_id the book_id to set
-     */
-    public void setBook_id(int book_id) {
-        this.book_id = book_id;
-    }
 
     /**
      * @return the check_in
@@ -85,6 +71,7 @@ public class Booking {
      * @param total the total to set
      */
     public void setTotal(float total) {
+        total = price*night;
         this.total = total;
     }
 
