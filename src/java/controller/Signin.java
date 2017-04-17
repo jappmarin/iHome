@@ -43,11 +43,10 @@ public class Signin extends HttpServlet {
         if (!display_customer.next()) {
             response.sendRedirect("error.jsp");
         } else {
-            Customer customer = new Customer(connection, request.getParameter("username"), request.getParameter("password"));
+            Customer customer = new Customer(connection, request.getParameter("username"));
             session.setAttribute("customer", customer);
             session.setAttribute("customer_type" , customer.getCustomer_type());
-            
-            response.sendRedirect("index.jsp");
+            response.sendRedirect("../index.jsp");
         }
     }
 

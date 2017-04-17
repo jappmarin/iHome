@@ -8,6 +8,9 @@ package controller;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,41 +20,29 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.Customer;
 
-@WebServlet(name = "Signup", urlPatterns = {"/Signup"})
-public class Signup extends HttpServlet {
+@WebServlet(name = "ViewProfile", urlPatterns = {"/ViewProfile"})
+public class ViewProfile extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
 
-        ServletContext context = getServletContext();
+        ServletContext context = request.getServletContext();
         Connection connection = (Connection) context.getAttribute("connection");
         HttpSession session = request.getSession();
 
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
-        String firstname = request.getParameter("firstname");
-        String lastname = request.getParameter("lastname");
-        String email = request.getParameter("email");
-        String birthdate = request.getParameter("birthdate");
-        String phone = request.getParameter("phone");
-        String customer_type = (String) session.getAttribute("customer_type");
+        Customer profile = new Customer(connection, request.getParameter("username"));
 
-        try {
-            Customer customer = new Customer(username);
-            customer.setPassword(password);
-            customer.setFirstname(firstname);
-            customer.setLastname(lastname);
-            customer.setEmail(email);
-            customer.setBirthdate(birthdate);
-            customer.setPhone(phone);
-            customer.setCustomer_type(customer_type);
-            customer.addNewCustomer(connection);
-
-            response.sendRedirect("../signin.jsp");
-        } catch (SQLException ex) {
+        if (session.getAttribute("customer_type").equals("Host")) {
+            request.setAttribute("customer", profile);
+            RequestDispatcher obj = request.getRequestDispatcher("../profile_host.jsp");
+            obj.forward(request, response);
+        } else {
+            request.setAttribute("customer", profile);
+            RequestDispatcher obj = request.getRequestDispatcher("../profile.jsp");
+            obj.forward(request, response);
         }
     }
 
@@ -67,7 +58,11 @@ public class Signup extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(ViewProfile.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -81,7 +76,11 @@ public class Signup extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(ViewProfile.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

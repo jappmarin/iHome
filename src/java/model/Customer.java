@@ -26,19 +26,17 @@ public class Customer {
         this.username = username;
     }
 
-    public Customer(Connection connection, String username, String password) throws SQLException {
+    public Customer(Connection connection, String username) throws SQLException {
         this.username = username;
-        this.password = password;
         this.connection = connection;
 
-        PreparedStatement select_customer = connection.prepareStatement("select * from test_base.customer where username = ? and password = ?");
+        PreparedStatement select_customer = connection.prepareStatement("select * from test_base.customer where username = ?");
         select_customer.setString(1, username);
-        select_customer.setString(2, password);
         ResultSet display_customer = select_customer.executeQuery();
 
         if (display_customer.next()) {
             this.username = username;
-            this.password = password;
+            this.password = display_customer.getString("password");
             this.firstname = display_customer.getString("f_name");
             this.lastname = display_customer.getString("l_name");
             this.birthdate = display_customer.getString("birth_date");
@@ -110,7 +108,6 @@ public class Customer {
         select_customer.setString(1, getUsername());
         select_customer.setString(2, confirmPassword);
         ResultSet display_customer = select_customer.executeQuery();
-
         return display_customer.next();
 
     }
