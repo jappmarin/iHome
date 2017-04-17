@@ -1,3 +1,5 @@
+<%@page import="controller.Comment"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="model.Homestay"%>
 <%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <% if (session.getAttribute("customer") != null) {  %><jsp:include page="templates/headerauth.jsp" /><% } else { %><jsp:include page="templates/header.jsp" /><% }%>
@@ -191,23 +193,21 @@
                 <h3 class="card-header">Comment</h3>
                 <div class="card-block">
                     <ul class="list-unstyled">
+                        <% if (request.getAttribute("allComment") != null) { %>
+                        <% ArrayList<Comment> allComment = (ArrayList<Comment>) request.getAttribute("allComment");
+                        for (model.Comment comment: allComment) {%>
                         <li class="media">
                             <div class="media-body">
-                                <h5 class="mt-0 mb-1">Teerawut Kitbunjerdjarud</h5>
-                                <p>ที่พักนี้ดีมากๆครับ</p>
+                                <h5 class="mt-0 mb-1"><%=comment.getFirstname()%> <%=comment.getLastname()%></h5>
+                                <p><%=comment.getText()%></p>
                             </div>
                         </li>
                         <hr>
-                        <li class="media my-4">
-                            <div class="media-body">
-                                <h5 class="mt-0 mb-1">Parima Pirin</h5>
-                                <p>โฮสหล่อมากค่ะ</p>
-                            </div>
-                        </li>
-                        <hr>
+                        <% }
+} %>
                         <li class="media">
                             <div class="media-body">
-                                <form action="Comment" method="POST">
+                                <form action="${SITE_URL}/Review/?&id=<%=homestay.getHs_id()%>" method="POST">
                                     <textarea name="comment" rows="3" style="width: 100%; margin-top: 10px; margin-bottom: 10px;"></textarea>
                                     <button type="submit" class="btn btn-success btn-lg">Comment</button>
                                 </form>

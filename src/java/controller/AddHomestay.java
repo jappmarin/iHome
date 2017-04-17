@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controller;
 
 import java.awt.Color;
@@ -42,7 +37,7 @@ public class AddHomestay extends HttpServlet {
         HttpSession session = request.getSession();
 
         Homestay homestay = (Homestay) session.getAttribute("homestay");
-        
+
         String appPath = request.getServletContext().getRealPath("");
         String savePath = appPath + "/asset/img/homestay";
 
@@ -52,7 +47,7 @@ public class AddHomestay extends HttpServlet {
         }
 
         Part part = request.getPart("art");
-        String fileName = homestay.getHs_id()+ "_" + extractFileName(part);
+        String fileName = homestay.getHs_id() + "_" + extractFileName(part);
 
         ArrayList<String> acceptedFile = new ArrayList<String>();
         acceptedFile.add(".jpg");
@@ -82,11 +77,9 @@ public class AddHomestay extends HttpServlet {
 
             File file = new File(savePath + File.separator + fileName);
             file.delete();
-            
-        } catch (Exception ex) {
-            ex.printStackTrace();
+
+        } catch (IOException ex) {
             response.sendRedirect("Error.jsp");
-            return;
         }
 
         PreparedStatement insert_homestay = connection.prepareStatement("insert into test_base.homestay (hs_name, hs_desc, hs_price, hs_guest, hs_address, hs_province, hs_lat, hs_long) values (?, ?, ?, ?, ?, ?, ?, ?)");
@@ -116,7 +109,7 @@ public class AddHomestay extends HttpServlet {
 
         response.sendRedirect("profile_host.jsp");
     }
-    
+
     private String extractFileName(Part part) {
         String contentDisp = part.getHeader("content-disposition");
         String[] items = contentDisp.split(";");
@@ -174,7 +167,5 @@ public class AddHomestay extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
-    
 
 }
