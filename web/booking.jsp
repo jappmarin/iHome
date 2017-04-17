@@ -50,11 +50,11 @@
                                         </div>
                                         <div class="form-group has-feedback" id="checkoutInDiv">
                                             <label for="checkout">Check-out</label>
-                                            <input type="date" class="form-control" name="checkout" id="checkoutIn" placeholder="" required>
+                                            <input type="date" class="form-control" name="checkout" id="checkoutIn" placeholder="" onchange="findDiff();" required>
                                         </div>
                                         <div class="form-group has-feedback" id="priceInDiv">
                                             <label for="price">Price Total</label>
-                                            <input type="text" class="form-control" name="price" id="priceIn" placeholder="" value="<%=homestay.getHs_price()%>" disabled>
+                                            <input type="text" class="form-control" name="price" id="priceIn" placeholder="" value="" disabled>
                                         </div>
                                         <div class="text-center">
                                             <button type="submit" class="btn btn-primary btn-block" id="confirmButton">Confirm Booking</button>
@@ -68,4 +68,11 @@
                 </div> 
             </div>
         </div>
+        <script>
+            function findDiff() {
+               var diff = (Math.ceil((new Date(document.getElementById("checkoutIn").value) - new Date(document.getElementById("checkinIn").value)) / (1000 * 3600 * 24)));
+               document.getElementById("priceIn").value = diff * <%=homestay.getHs_price()%>;
+            }
+            
+        </script>
 <jsp:include page="templates/footer.jsp" />
