@@ -27,6 +27,14 @@
                                     <label for="address">Homestay Address</label>
                                     <textarea class="form-control" name="address" id="addressIn" rows="3"></textarea>
                                 </div>
+                                <div class="form-group has-feedback" id="provinceInDiv">
+                                    <label for="province">Province</label>
+                                    <input type="text" class="form-control" name="province" id="provinceIn" placeholder="" required>
+                                </div>
+                                <div class="form-group has-feedback" id="districtInDiv">
+                                    <label for="district">District</label>
+                                    <input type="text" class="form-control" name="district" id="districtIn" placeholder="" required>
+                                </div>
                                 <div class="form-group has-feedback" id="addressInDiv">
                                     <label for="art-file">Upload Picture</label>
                                     <input type="file" id="art-file" name="picture">
@@ -42,7 +50,7 @@
                                 </div>
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-primary btn-block" id="addHomestayButton">Add Homestay</button>
-                                    <button class="btn btn-secondary btn-block" id="cancelAddHomestayButton">Cancel</button>
+                                    <a class="btn btn-secondary btn-block" id="cancelAddHomestayButton" href="${SITE_URL}/profile_host.jsp">Cancel</a>
                                 </div>
                             </form>
                         </div>

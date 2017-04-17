@@ -75,6 +75,11 @@ public final class add_005fhomestay_jsp extends org.apache.jasper.runtime.HttpJs
       out.write("                                    <label for=\"address\">Homestay Address</label>\n");
       out.write("                                    <textarea class=\"form-control\" name=\"address\" id=\"addressIn\" rows=\"3\"></textarea>\n");
       out.write("                                </div>\n");
+      out.write("                                <div class=\"form-group has-feedback\" id=\"addressInDiv\">\n");
+      out.write("                                    <label for=\"art-file\">Upload Picture</label>\n");
+      out.write("                                    <input type=\"file\" id=\"art-file\" name=\"picture\">\n");
+      out.write("                                    <p class=\"help-block\">Upload .jpg, .png extensions only.</p>\n");
+      out.write("                                </div>\n");
       out.write("                                <div class=\"form-group has-feedback\" id=\"latitudeInDiv\">\n");
       out.write("                                    <label for=\"latitude\">Latitude</label>\n");
       out.write("                                    <input type=\"text\" class=\"form-control\" name=\"latitude\" id=\"latitudeIn\" placeholder=\"\" required>\n");

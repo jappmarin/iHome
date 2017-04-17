@@ -49,11 +49,9 @@ public class AddHomestay extends HttpServlet {
         Part part = request.getPart("art");
         String fileName = homestay.getHs_id() + "_" + extractFileName(part);
 
-        ArrayList<String> acceptedFile = new ArrayList<String>();
+        ArrayList<String> acceptedFile = new ArrayList<>();
         acceptedFile.add(".jpg");
-        acceptedFile.add(".bmp");
         acceptedFile.add(".png");
-        acceptedFile.add(".gif");
 
         if (!acceptedFile.contains((fileName.substring(fileName.length() - 4)).toLowerCase())) {
             out.println((fileName.substring(fileName.length() - 4)).toLowerCase());

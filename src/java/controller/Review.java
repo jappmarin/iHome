@@ -16,7 +16,7 @@ import javax.servlet.http.HttpSession;
 import model.Customer;
 import model.Homestay;
 
-@WebServlet(name = "Comment", urlPatterns = {"/Comment"})
+@WebServlet(name = "Review", urlPatterns = {"/Review"})
 public class Review extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -44,7 +44,6 @@ public class Review extends HttpServlet {
                 response.sendRedirect("../View/?id="+homestay.getHs_id());    
                 
             } catch (SQLException ex) {
-                ex.printStackTrace();
             }
     }
 
