@@ -6,31 +6,70 @@
 package controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import model.Homestay;
 
-@WebServlet(name = "BookingConfirm", urlPatterns = {"/BookingConfirm"})
+@WebServlet(name = "BookingConfirm", urlPatterns = {"/BookingConfirm/"})
 public class BookingConfirm extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, SQLException, ParseException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet BookingConfirm</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet BookingConfirm at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        
+        ServletContext context = getServletContext();
+        Connection connection = (Connection) context.getAttribute("connection");
+        HttpSession session = request.getSession();
+        
+        PreparedStatement select_homestay = connection.prepareStatement("select * from test_base.homestay where hs_id = '" + request.getParameter("id") + "';");
+        ResultSet display_homestay = select_homestay.executeQuery();
+
+        Homestay homestay = new Homestay();
+
+        if (display_homestay.next()) {
+            homestay.setHs_id(display_homestay.getString("hs_id"));
+            homestay.setHs_name(display_homestay.getString("hs_name"));
+            homestay.setHs_desc(display_homestay.getString("hs_desc"));
+            homestay.setHs_price(display_homestay.getFloat("hs_price"));
+            homestay.setHs_guest(display_homestay.getInt("hs_guest"));
         }
+        
+        session.setAttribute("hs_id", homestay.getHs_id());
+        
+        PreparedStatement insert_booking = connection.prepareStatement("insert into test_base.booking (check_in, check_out, hs_id) values (?,?,?)");
+        insert_booking.setString(1, request.getParameter("checkin"));
+        insert_booking.setString(2, request.getParameter("checkout"));
+//        insert_booking.setFloat(3, (Float.parseFloat(request.getParameter("price"))));
+        insert_booking.setString(3, homestay.getHs_id());
+        insert_booking.executeUpdate();
+        
+        PreparedStatement select_booking = connection.prepareStatement("select * from test_base.booking where hs_id = '" + request.getParameter("id") + "';" );
+        ResultSet display_booking = select_booking.executeQuery();
+        display_booking.next();
+        
+        request.setAttribute("booking_id", display_booking.getString("booking_id"));
+        request.setAttribute("check_in", display_booking.getString("check_in"));
+        request.setAttribute("check_out", display_booking.getString("check_out"));
+        request.setAttribute("total", display_booking.getString("total"));
+        request.setAttribute("homestay", homestay);
+        
+        RequestDispatcher obj = request.getRequestDispatcher("../booking_print.jsp");
+        obj.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -45,7 +84,13 @@ public class BookingConfirm extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(BookingConfirm.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ParseException ex) {
+            Logger.getLogger(BookingConfirm.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -59,7 +104,13 @@ public class BookingConfirm extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(BookingConfirm.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ParseException ex) {
+            Logger.getLogger(BookingConfirm.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

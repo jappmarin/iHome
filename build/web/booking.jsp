@@ -3,14 +3,14 @@
 <% if (session.getAttribute("customer") != null) {  %><jsp:include page="templates/headerauth.jsp" /><% } else { %><jsp:include page="templates/header.jsp" /><% }%>
 <% Homestay homestay = (Homestay) request.getAttribute("homestay");%>
         <div class="container mt-5">
-            <div class="row justify-content-center mt-3 mb-3">
-                <div class="col-sm-12 col-md-6">
-                    <div class="card">
-                        <h3 class="card-header">Customer Information</h3>
-                        <div class="card-block">
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <form action="Booking" method="POST">
+            <form action="${SITE_URL}/BookingConfirm/?id=<%=homestay.getHs_id()%>" method="POST">
+                <div class="row justify-content-center mt-3 mb-3">
+                    <div class="col-sm-12 col-md-6">
+                        <div class="card">
+                            <h3 class="card-header">Customer Information</h3>
+                            <div class="card-block">
+                                <div class="row">
+                                    <div class="col-sm-12">
                                         <div class="form-group has-feedback" id="firstNameInDiv">
                                             <label for="firstname">First Name</label>
                                             <input type="text" class="form-control" name="firstname" id="firstNameIn" placeholder="John" value="${sessionScope.customer.firstname}" required>
@@ -27,22 +27,20 @@
                                             <label for="phone">Phone Number</label>
                                             <input type="text" class="form-control" name="phone" id="phoneIn" placeholder="094-546-467" value="${sessionScope.customer.phone}" required>
                                         </div>  
-                                    </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-sm-12 col-md-6">
-                    <div class="card">
-                        <h3 class="card-header">Booking Information</h3>
-                        <div class="card-block">
-                            <div class="row">
-                                <div class="col">
-                                    <form action="BookingConfirm" method="POST">
+                    <div class="col-sm-12 col-md-6">
+                        <div class="card">
+                            <h3 class="card-header">Booking Information</h3>
+                            <div class="card-block">
+                                <div class="row">
+                                    <div class="col">
                                         <div class="form-group has-feedback" id="homestayNameInDivInDiv">
                                             <label for="homestayName">Homestay Name</label>
-                                            <input type="text" class="form-control" name="homestayname" id="homestayNameIn" placeholder="" value="<%=homestay.getHs_name()%>" required disabled>
+                                            <input type="text" class="form-control" name="homestayname" id="homestayNameIn" placeholder="" value="<%=homestay.getHs_name()%>" required>
                                         </div>
                                         <div class="form-group has-feedback" id="checkinInDiv">
                                             <label for="checkin">Check-in</label>
@@ -54,25 +52,24 @@
                                         </div>
                                         <div class="form-group has-feedback" id="priceInDiv">
                                             <label for="price">Price Total</label>
-                                            <input type="text" class="form-control" name="price" id="priceIn" placeholder="" value="" disabled>
+                                            <input type="text" class="form-control" name="price" id="priceIn" placeholder="" value="">
                                         </div>
                                         <div class="text-center">
                                             <button type="submit" class="btn btn-primary btn-block" id="confirmButton">Confirm Booking</button>
-                                            <a class="btn btn-secondary btn-block" href="detail.jsp" id="cancelButton">Cancel</a>
+                                            <a class="btn btn-secondary btn-block" href="${SITE_URL}/BookingConfirm/?id=<%=homestay.getHs_id()%>" id="cancelButton">Cancel</a>
                                         </div>
-                                    </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div> 
-            </div>
+                    </div> 
+                </div>
+            </form>
         </div>
         <script>
             function findDiff() {
-               var diff = (Math.ceil((new Date(document.getElementById("checkoutIn").value) - new Date(document.getElementById("checkinIn").value)) / (1000 * 3600 * 24)));
-               document.getElementById("priceIn").value = diff * <%=homestay.getHs_price()%>;
+                var diff = (Math.ceil((new Date(document.getElementById("checkoutIn").value) - new Date(document.getElementById("checkinIn").value)) / (1000 * 3600 * 24)));
+                document.getElementById("priceIn").value = diff * <%=homestay.getHs_price()%>;
             }
-            
         </script>
 <jsp:include page="templates/footer.jsp" />
