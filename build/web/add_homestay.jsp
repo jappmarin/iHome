@@ -27,6 +27,11 @@
                                     <label for="address">Homestay Address</label>
                                     <textarea class="form-control" name="address" id="addressIn" rows="3"></textarea>
                                 </div>
+                                <div class="form-group has-feedback" id="addressInDiv">
+                                    <label for="art-file">Upload Picture</label>
+                                    <input type="file" id="art-file" name="picture">
+                                    <p class="help-block">Upload .jpg, .png extensions only.</p>
+                                </div>
                                 <div class="form-group has-feedback" id="latitudeInDiv">
                                     <label for="latitude">Latitude</label>
                                     <input type="text" class="form-control" name="latitude" id="latitudeIn" placeholder="" required>
