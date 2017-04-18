@@ -14,7 +14,7 @@ public class Customer {
     private String email;
     private String phone;
     private String password;
-    private String customer_type;
+    private String type;
     private Connection connection;
 
     public Customer(String username) {
@@ -34,15 +34,15 @@ public class Customer {
             this.password = display_customer.getString("password");
             this.firstname = display_customer.getString("f_name");
             this.lastname = display_customer.getString("l_name");
-            this.birthdate = display_customer.getString("birth_date");
+            this.birthdate = display_customer.getString("birthdate");
             this.email = display_customer.getString("email");
             this.phone = display_customer.getString("phone");
-            this.customer_type = display_customer.getString("customer_type");
+            this.type = display_customer.getString("type");
         }
     }
 
     public void addNewCustomer(Connection connection) throws SQLException {
-        PreparedStatement insert_customer = connection.prepareStatement("insert into test_base.customer (username, password, f_name, l_name, email, birth_date, phone, customer_type) values (?, ?, ?, ?, ?, ?, ?, ?)");
+        PreparedStatement insert_customer = connection.prepareStatement("insert into test_base.customer (username, password, f_name, l_name, email, birthdate, phone, type) values (?, ?, ?, ?, ?, ?, ?, ?)");
         insert_customer.setString(1, this.getUsername());
         insert_customer.setString(2, this.getPassword());
         insert_customer.setString(3, this.getFirstname());
@@ -50,7 +50,7 @@ public class Customer {
         insert_customer.setString(5, this.getEmail());
         insert_customer.setString(6, this.getBirthdate());
         insert_customer.setString(7, this.getPhone());
-        insert_customer.setString(8, this.getCustomer_type());
+        insert_customer.setString(8, this.getType());
         insert_customer.executeUpdate();
     }
 
@@ -163,12 +163,12 @@ public class Customer {
         this.password = password;
     }
 
-    public String getCustomer_type() {
-        return customer_type;
+    public String getType() {
+        return type;
     }
 
-    public void setCustomer_type(String customer_type) {
-        this.customer_type = customer_type;
+    public void setType(String type) {
+        this.type = type;
     }
 
     public Connection getConnection() {

@@ -40,7 +40,7 @@ public class Signin extends HttpServlet {
         } else {
             Customer customer = new Customer(connection, request.getParameter("username"));
             session.setAttribute("customer", customer);
-            session.setAttribute("customer_type" , customer.getCustomer_type());
+            session.setAttribute("type" , customer.getType());
             response.sendRedirect("index.jsp");
         }
     }

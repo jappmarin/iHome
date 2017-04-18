@@ -32,7 +32,7 @@ public class Signup extends HttpServlet {
         String email = request.getParameter("email");
         String birthdate = request.getParameter("birthdate");
         String phone = request.getParameter("phone");
-        String customer_type = (String) session.getAttribute("customer_type");
+        String type = (String) session.getAttribute("type");
 
         try {
             Customer customer = new Customer(username);
@@ -42,7 +42,7 @@ public class Signup extends HttpServlet {
             customer.setEmail(email);
             customer.setBirthdate(birthdate);
             customer.setPhone(phone);
-            customer.setCustomer_type(customer_type);
+            customer.setType(type);
             customer.addNewCustomer(connection);
 
             response.sendRedirect("signin.jsp");
