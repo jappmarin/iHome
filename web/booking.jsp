@@ -48,15 +48,15 @@
                                         </div>
                                         <div class="form-group has-feedback" id="checkoutInDiv">
                                             <label for="checkout">Check-out</label>
-                                            <input type="date" class="form-control" name="checkout" id="checkoutIn" placeholder="" onchange="findDiff();" required>
+                                            <input type="date" class="form-control" name="checkout" id="checkoutIn" placeholder="" onchange="totalDate();" required>
                                         </div>
                                         <div class="form-group has-feedback" id="priceInDiv">
                                             <label for="price">Price Total</label>
-                                            <input type="text" class="form-control" name="price" id="priceIn" placeholder="" value="">
+                                            <input type="text" class="form-control" name="price" id="priceIn" placeholder="" value="" disabled>
                                         </div>
                                         <div class="text-center">
                                             <button type="submit" class="btn btn-primary btn-block" id="confirmButton">Confirm Booking</button>
-                                            <a class="btn btn-secondary btn-block" href="${SITE_URL}/BookingConfirm/?id=<%=homestay.getHs_id()%>" id="cancelButton">Cancel</a>
+                                            <a class="btn btn-secondary btn-block" href="${SITE_URL}/Booking/?id=<%=homestay.getHs_id()%>" id="cancelButton">Cancel</a>
                                         </div>
                                     </div>
                                 </div>
@@ -67,7 +67,7 @@
             </form>
         </div>
         <script>
-            function findDiff() {
+            function totalDate() {
                 var diff = (Math.ceil((new Date(document.getElementById("checkoutIn").value) - new Date(document.getElementById("checkinIn").value)) / (1000 * 3600 * 24)));
                 document.getElementById("priceIn").value = diff * <%=homestay.getHs_price()%>;
             }

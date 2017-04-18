@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controller;
 
 import java.io.IOException;
@@ -54,7 +49,7 @@ public class BookingConfirm extends HttpServlet {
         PreparedStatement insert_booking = connection.prepareStatement("insert into test_base.booking (check_in, check_out, hs_id) values (?,?,?)");
         insert_booking.setString(1, request.getParameter("checkin"));
         insert_booking.setString(2, request.getParameter("checkout"));
-//        insert_booking.setFloat(3, (Float.parseFloat(request.getParameter("price"))));
+        insert_booking.setFloat(3, (Float.parseFloat(request.getParameter("price"))));
         insert_booking.setString(3, homestay.getHs_id());
         insert_booking.executeUpdate();
         
