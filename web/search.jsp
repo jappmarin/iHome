@@ -66,13 +66,29 @@
                                 <div class="form-group row mx-auto align-items-center">
                                     Lowest Price
                                     <div class="col-sm-6">
-                                        <input class="form-control" type="number" value="400" id="example-number-input">
+                                        <input class="form-control" type="number" value="400" id="lowestPriceIn">
                                     </div>
                                 </div>
                                 <div class="form-group row mx-auto align-items-center">
                                     Highest Price
                                     <div class="col-sm-6">
-                                        <input class="form-control" type="number" value="2000" id="example-number-input">
+                                        <input class="form-control" type="number" value="2000" id="highestPriceIn">
+                                    </div>
+                                </div>
+                                </p>
+                                <hr>
+                                <h6 class="card-title">Date</h6>
+                                <p class="card-text">
+                                <div class="form-group row mx-auto align-items-center">
+                                    Check in
+                                    <div class="col-sm-12">
+                                        <input class="form-control" type="date" value="" id="checkinIn">
+                                    </div>
+                                </div>
+                                <div class="form-group row mx-auto align-items-center">
+                                    Check out
+                                    <div class="col-sm-12">
+                                        <input class="form-control" type="date" value="" id="checkoutIn">
                                     </div>
                                 </div>
                                 </p>
