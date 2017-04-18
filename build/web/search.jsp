@@ -89,8 +89,8 @@
                         if (allHome != null) {
                             for (Homestay home : allHome) {%>
                                 <div class="col-sm-4">
-                                    <div class="card text-center mt-2">
-                                        <img class="card-img-top" src="">
+                                    <div class="card text-center mt-2" style="height: 600px;">
+                                        <img class="card-img-top" src="${SITE_URL}/asset/img/logo.png" style="width: 100%; height: 30%;">
                                         <div class="card-block">
                                             <h4 class="card-title"><%=home.getHs_name()%></h4>
                                             <p class="card-text"><%=home.getHs_desc()%></p>
@@ -105,27 +105,6 @@
                         }%>
                     </div>
                 </div>
-            </div>
-            <div class="row justify-content-center mt-3">
-                <nav aria-label="Page navigation example">
-                    <ul class="pagination">
-                        <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Previous">
-                                <span aria-hidden="true">&laquo;</span>
-                                <span class="sr-only">Previous</span>
-                            </a>
-                        </li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Next">
-                                <span aria-hidden="true">&raquo;</span>
-                                <span class="sr-only">Next</span>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
             </div>
         </div>
 <jsp:include page="templates/footer.jsp" />

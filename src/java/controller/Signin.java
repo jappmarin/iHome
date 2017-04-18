@@ -46,7 +46,7 @@ public class Signin extends HttpServlet {
             Customer customer = new Customer(connection, request.getParameter("username"));
             session.setAttribute("customer", customer);
             session.setAttribute("customer_type" , customer.getCustomer_type());
-            response.sendRedirect("../index.jsp");
+            response.sendRedirect("index.jsp");
         }
     }
 

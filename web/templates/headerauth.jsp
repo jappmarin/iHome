@@ -29,11 +29,11 @@
                     <li class="nav-item">
                         <a class="nav-link" href="
                            <% if (session.getAttribute("customer_type").equals("Guest")) { %>
-                           profile.jsp
+                           ${SITE_URL}/profile.jsp
                            <% } else if (session.getAttribute("customer_type").equals("Host")) {%>
-                           profile_host.jsp
+                           ${SITE_URL}/profile_host.jsp
                            <% } else if (session.getAttribute("customer_type").equals("Admin")) {%>
-                           cp.jsp
+                           ${SITE_URL}/cp.jsp
                            <% } %>
                            ">
                            <% if (session.getAttribute("customer_type").equals("Admin")) { %>

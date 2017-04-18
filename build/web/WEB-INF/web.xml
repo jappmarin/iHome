@@ -10,7 +10,7 @@
         </session-timeout>
     </session-config>
     <resource-ref>
-        <description>jdbc:mysql://localhost:3306/ihome?zeroDateTimeBehavior=convertToNull</description>
+        <description>jdbc:mysql://localhost:3306/mysql?zeroDateTimeBehavior=convertToNull</description>
         <res-ref-name>ihome</res-ref-name>
         <res-type>javax.sql.DataSource</res-type>
         <res-auth>Container</res-auth>

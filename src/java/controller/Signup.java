@@ -50,7 +50,7 @@ public class Signup extends HttpServlet {
             customer.setCustomer_type(customer_type);
             customer.addNewCustomer(connection);
 
-            response.sendRedirect("../signin.jsp");
+            response.sendRedirect("signin.jsp");
         } catch (SQLException ex) {
         }
     }
