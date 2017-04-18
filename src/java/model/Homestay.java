@@ -1,5 +1,9 @@
 package model;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
 public class Homestay {
 
     private String hs_id;
@@ -12,6 +16,19 @@ public class Homestay {
     private String hs_long;
     private String hs_province;
 
+    public void editHomestay(Connection connection) throws SQLException {
+        PreparedStatement update_homestay = connection.prepareStatement("update test_base.homestay set homestayname = ?, homestay_desc = ?, price = ?, guest = ? where username = ?");
+        update_homestay.setString(1, this.getHs_name());
+        update_homestay.setString(2, this.getHs_desc());
+        update_homestay.setFloat(3, this.getHs_price());
+        update_homestay.setInt(4, this.getHs_guest());
+        update_homestay.executeUpdate();
+    }
+    
+    public void deleteHomestay(Connection connection) throws SQLException {
+        
+    }
+    
     public String getHs_name() {
         return hs_name;
     }
