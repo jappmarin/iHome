@@ -43,12 +43,12 @@ public class Homestay {
             this.hs_province = display_homestay.getString("homestay_province");
             this.hs_district = display_homestay.getString("homestay_district");
             this.hs_lat = display_homestay.getString("homestay_latitude");
-            this.hs_long = display_homestay.getString("homestay_longtitude");
+            this.hs_long = display_homestay.getString("homestay_longitude");
         }
     }
 
     public void addHomestay(Connection connection) throws SQLException {
-        PreparedStatement insert_homestay = connection.prepareStatement("insert into test_base.homestay (homestay_name, homestay_desc, homestay_address, homestay_license, homestay_region, homestay_province, homestay_district, homestay_latitude, homestay_longtitude, username) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        PreparedStatement insert_homestay = connection.prepareStatement("insert into test_base.homestay (homestay_name, homestay_desc, homestay_address, homestay_license, homestay_region, homestay_province, homestay_district, homestay_latitude, homestay_longitude, username) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
         insert_homestay.setString(1, this.getHs_name());
         insert_homestay.setString(2, this.getHs_desc());
         insert_homestay.setString(3, this.getHs_address());
@@ -63,7 +63,7 @@ public class Homestay {
     }
 
     public void editHomestay(Connection connection, String username) throws SQLException {
-        PreparedStatement update_homestay = connection.prepareStatement("update test_base.homestay set homestay_name = ?, homestay_desc = ?, homestay_address = ?, homestay_license = ?, homestay_region = ?, homestay_province = ?, homestay_district = ?, homestay_latitude = ?, homestay_longtitude = ? where username = ?");
+        PreparedStatement update_homestay = connection.prepareStatement("update test_base.homestay set homestay_name = ?, homestay_desc = ?, homestay_address = ?, homestay_license = ?, homestay_region = ?, homestay_province = ?, homestay_district = ?, homestay_latitude = ?, homestay_longitude = ? where username = ?");
         update_homestay.setString(1, this.getHs_name());
         update_homestay.setString(2, this.getHs_desc());
         update_homestay.setString(3, this.getHs_address());

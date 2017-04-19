@@ -104,13 +104,12 @@
                     <% ArrayList<Homestay> allHome = (ArrayList<Homestay>) request.getAttribute("allHome");
                         if (allHome != null) {
                             for (Homestay home : allHome) {%>
-                                <div class="col-sm-4">
+                                <div class="col-sm-6">
                                     <div class="card text-center mt-2" style="height: 600px;">
                                         <img class="card-img-top" src="${SITE_URL}/asset/img/logo.png" style="width: 100%; height: 30%;">
                                         <div class="card-block">
                                             <h4 class="card-title"><%=home.getHs_name()%></h4>
                                             <p class="card-text"><%=home.getHs_desc()%></p>
-                                            <p class="card-text">Price : <%=home.getHs_price()%></p>
                                         </div>
                                         <div class="card-footer">
                                             <a class="btn btn-primary" href="${SITE_URL}/View/?id=<%=home.getHs_id()%>">See more</a>

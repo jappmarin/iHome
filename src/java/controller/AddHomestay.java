@@ -38,7 +38,7 @@ public class AddHomestay extends HttpServlet {
         String hs_province = request.getParameter("province");
         String hs_district = request.getParameter("district");
         String hs_lat = request.getParameter("latitude");
-        String hs_long = request.getParameter("longtitude");
+        String hs_long = request.getParameter("longitude");
 
         try {
             Homestay homestay = new Homestay();
