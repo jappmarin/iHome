@@ -28,28 +28,28 @@ public class View extends HttpServlet {
 
         ServletContext context = request.getServletContext();
         Connection connection = (Connection) context.getAttribute("connection");
-        
-        PreparedStatement select_homestay = connection.prepareStatement("select * from test_base.homestay where hs_id = '" + request.getParameter("id") + "';");
+
+        PreparedStatement select_homestay = connection.prepareStatement("select * from test_base.homestay where homestay_id = '" + request.getParameter("id") + "';");
         ResultSet display_homestay = select_homestay.executeQuery();
 
         Homestay homestay = new Homestay();
 
         if (display_homestay.next()) {
-            homestay.setHs_id(display_homestay.getString("hs_id"));
-            homestay.setHs_name(display_homestay.getString("hs_name"));
-            homestay.setHs_desc(display_homestay.getString("hs_desc"));
-            homestay.setHs_price(display_homestay.getFloat("hs_price"));
-            homestay.setHs_guest(display_homestay.getInt("hs_guest"));
+            homestay.setHs_id(display_homestay.getString("homestay_id"));
+            homestay.setHs_name(display_homestay.getString("homestay_name"));
+            homestay.setHs_desc(display_homestay.getString("homestay_desc"));
+            homestay.setHs_address(display_homestay.getString("homestay_address"));
+            homestay.setHs_license(display_homestay.getString("homestay_license"));
+            homestay.setHs_region(display_homestay.getString("homestay_region"));
+            homestay.setHs_province(display_homestay.getString("homestay_province"));
+            homestay.setHs_district(display_homestay.getString("homestay_district"));
+            homestay.setHs_lat(display_homestay.getString("homestay_latitude"));
+            homestay.setHs_long(display_homestay.getString("homestay_longtitude"));
         }
-        
-       HttpSession session = request.getSession();
-       session.setAttribute("hs_id", homestay.getHs_id());
-//       session.setAttribute("hs_name", homestay.getHs_name());
-//       session.setAttribute("hs_desc", homestay.getHs_desc());
-//       session.setAttribute("hs_price", homestay.getHs_price());
-       
-       
-        
+
+        HttpSession session = request.getSession();
+        session.setAttribute("homestay_id", homestay.getHs_id());
+
         request.setAttribute("homestay", homestay);
         RequestDispatcher obj = request.getRequestDispatcher("/detail.jsp");
         obj.forward(request, response);
