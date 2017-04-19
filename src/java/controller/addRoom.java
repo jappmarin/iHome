@@ -40,7 +40,7 @@ public class addRoom extends HttpServlet {
         float room_price = Float.parseFloat(request.getParameter("room_price"));
         String room_picture = request.getParameter("room_picture");
         int homestay_id = Integer.parseInt(request.getParameter("homestay_id"));
-        
+        String[] room_fac = request.getParameterValues("facilities");
         
         ServletContext context = getServletContext();
         Connection connection = (Connection) context.getAttribute("connection");  
