@@ -1,109 +1,188 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <% if (session.getAttribute("customer") != null) {  %><jsp:include page="templates/headerauth.jsp" /><% } else { %><jsp:include page="templates/header.jsp" /><% }%>
-        <div class="container">
-            <div class="row justify-content-center mt-5">
-                <div class="col-sm-12 col-md-8" id="homestay">
-                    <div class="card">
-                        <h3 class="card-header">My Homestay</h3>
-                        <div class="card-block">
-                            <form action="AddHomestay" method="POST">
-                                <div class="form-group has-feedback" id="homestayNameInDiv">
-                                    <label for="homestayname">ชื่อโฮมสเตย์</label>
-                                    <input type="text" class="form-control" name="homestayname" id="homestayNameIn" placeholder="" required>
-                                </div>
-                                <div class="form-group has-feedback" id="describeInDiv">
-                                    <label for="describe">รายละเอียดโฮมสเตย์</label>
-                                    <textarea class="form-control" id="describeIn" rows="2"></textarea>
-                                </div>
-                                <div class="form-group has-feedback" id="priceInDiv">
-                                    <label for="price">ราคาต่อคืน</label>
-                                    <input type="text" class="form-control" name="price" id="priceIn" placeholder="" required>
-                                </div>
-                                <div class="form-group has-feedback" id="guestInDiv">
-                                    <label for="guest">จำนวนผู้เข้าพัก</label>
-                                    <input type="text" class="form-control" name="guest" id="guestIn" placeholder="" required>
-                                </div>
-                                <div class="form-group has-feedback" id="addressInDiv">
-                                    <label for="addresse">ที่อยู่</label>
-                                    <textarea class="form-control" id="addressIn" rows="2"></textarea>
-                                </div>
-                                <div class="form-group has-feedback" id="districtInDiv">
-                                    <label for="district">อำเภอ</label>
-                                    <input type="text" class="form-control" name="district" id="districtIn" placeholder="" required>
-                                </div>
-                                <div class="form-group has-feedback" id="provinceInDiv">
-                                    <label for="province">จังหวัด</label>
-                                    <input type="text" class="form-control" name="province" id="provinceIn" placeholder="" required>
-                                </div>
-                                <div class="form-group has-feedback" id="zipInDiv">
-                                    <label for="zip">รหัสไปรษณีย์</label>
-                                    <input type="text" class="form-control" name="zip" id="zipIn" placeholder="" required>
-                                </div>
-                                <fieldset class="form-group">
-                                    <div class="form-group">
-                                        <label>ภูมิภาค</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <label class="form-check-label">
-                                            <input type="radio" class="form-check-input" name="optionsRadios" id="northIn" value="North" checked>
-                                            ภาคเหนือ
-                                        </label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <label class="form-check-label">
-                                            <input type="radio" class="form-check-input" name="optionsRadios" id="nothEastIn" value="NorthEast">
-                                            ภาคตะวันออกเฉียงเหนือ
-                                        </label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <label class="form-check-label">
-                                            <input type="radio" class="form-check-input" name="optionsRadios" id="westIn" value="West">
-                                            ภาคตะวันตก
-                                        </label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <label class="form-check-label">
-                                            <input type="radio" class="form-check-input" name="optionsRadios" id="centralIn" value="Central">
-                                            ภาคกลาง
-                                        </label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <label class="form-check-label">
-                                            <input type="radio" class="form-check-input" name="optionsRadios" id="eastIn" value="East">
-                                            ภาคตะวันออก
-                                        </label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <label class="form-check-label">
-                                            <input type="radio" class="form-check-input" name="optionsRadios" id="southIn" value="South">
-                                            ภาคใต้
-                                        </label>
-                                    </div>
-                                </fieldset>
-                                <label for="guest">อัพโหลดรูปภาพ</label>
-                                <div class="form-group has-feedback">
-                                    <label class="custom-file">
-                                        <input type="file" id="file" class="custom-file-input">
-                                        <span class="custom-file-control"></span>
-                                    </label>
-                                    <small id="fileHelp" class="form-text text-muted">Upload .jpg, .png extensions only.</small>
-                                </div>
-                                <div class="form-group has-feedback" id="latitudeInDiv">
-                                    <label for="latitude">Latitude</label>
-                                    <input type="text" class="form-control" name="latitude" id="latitudeIn" placeholder="" required>
-                                </div>
-                                <div class="form-group has-feedback" id="longtitudeInDiv">
-                                    <label for="longtitude">Longtitude</label>
-                                    <input type="text" class="form-control" name="longtitude" id="longtitudeIn" placeholder="" required>
-                                </div>
-                                <div class="text-center">
-                                    <button type="submit" class="btn btn-primary btn-block" id="addHomestayButton">Add Homestay</button>
-                                    <button class="btn btn-secondary btn-block" id="addHomestayButton">Cancel</button>
-                                </div>
-                            </form>
+<div class="container">
+    <div class="row justify-content-center mt-5">
+        <div class="col-sm-12 col-md-8" id="homestay">
+            <div class="card">
+                <h3 class="card-header">My Room</h3>
+                <div class="card-block">
+                    <form action="AddHomestay" method="POST">
+                        <div class="form-group has-feedback" id="homestayNameInDiv">
+                            <label for="homestayname">ชื่อห้อง</label>
+                            <input type="text" class="form-control" name="room_name" id="roomNameIn" placeholder="" required>
                         </div>
-                    </div>
+                        <div class="form-group has-feedback" id="priceInDiv">
+                            <label for="price">ราคาต่อคืน</label>
+                            <input type="text" class="form-control" name="room_price" id="priceIn" placeholder="" required>
+                        </div>
+                        <div class="form-group has-feedback" id="guestInDiv">
+                            <label for="guest">จำนวนผู้เข้าพักสูงสุด</label>
+                            <input type="text" class="form-control" name="room_limit" id="limitIn" placeholder="" required>
+                        </div>
+                        <label for="facilities"> สิ่งอำนวยความสะดวก </label>
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="checkbox" class="form-check-input" name="facilities" id="tvIn" value="1" > โทรทัศน์
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="checkbox" class="form-check-input" name="facilities" id="tvIn" value="23" > โทรศัพท์บ้าน
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="checkbox" class="form-check-input" name="facilities" id="tvIn" value="26" > ชุดโซฟา
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="checkbox" class="form-check-input" name="facilities" id="tvIn" value="6" > ตู้เสื้อผ้า
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="checkbox" class="form-check-input" name="facilities" id="tvIn" value="27" > โต๊ะเครื่องแป้ง
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="checkbox" class="form-check-input" name="facilities" id="tvIn" value="20" > เตารีด
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="checkbox" class="form-check-input" name="facilities" id="tvIn" value="8" > โคมไฟ
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="checkbox" class="form-check-input" name="facilities" id="tvIn" value="9" > พัดลมตั้งโต๊ะ
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="checkbox" class="form-check-input" name="facilities" id="tvIn" value="10" > พัดลมเพดาน
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="checkbox" class="form-check-input" name="facilities" id="tvIn" value="11" > เครื่องปรับอากาศ
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="checkbox" class="form-check-input" name="facilities" id="tvIn" value="13" > กาต้มน้ำร้อน
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="checkbox" class="form-check-input" name="facilities" id="tvIn" value="14" > ไดร์เป่าผม
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="checkbox" class="form-check-input" name="facilities" id="tvIn" value="15" > อินเทอร์เน็ต
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="checkbox" class="form-check-input" name="facilities" id="tvIn" value="16" > คอมพิวเตอร์
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="checkbox" class="form-check-input" name="facilities" id="tvIn" value="19" > ฝักบัว
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="checkbox" class="form-check-input" name="facilities" id="tvIn" value="18" > เครื่องทำน้ำอุ่น
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="checkbox" class="form-check-input" name="facilities" id="tvIn" value="22" > เตาอบไมโครเวฟ
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="checkbox" class="form-check-input" name="facilities" id="tvIn" value="2" > ตู้เย็น
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="checkbox" class="form-check-input" name="facilities" id="tvIn" value="25" > ครัว
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="checkbox" class="form-check-input" name="facilities" id="tvIn" value="21" > ที่จอดรถ
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="checkbox" class="form-check-input" name="facilities" id="tvIn" value="24" > จักรยาน
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <label for="facilities"> ประเภทเตียง :    </label>
+                        <div class="form-check form-check-inline">
+                            <label class="form-check-label">
+                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="28"> เตียงเดี่ยว
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <label class="form-check-label">
+                                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="29"> เตียงคู่
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <label class="form-check-label">
+                                <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="30"> เตียง 2 ชั้น
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <label class="form-check-label">
+                                <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="31" > ฝูกนอน
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <label class="form-check-label">
+                                <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="32"> เต็นท์
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <label class="form-check-label">
+                                <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value=""> อื่นๆ
+                            </label>
+                        </div>
+                        
+                        <div class="col text-center">
+                            <label for="guest">อัพโหลดรูปภาพ</label>
+                            <div class="form-group has-feedback">
+                                <label class="custom-file">
+                                    <input type="file" id="file" class="custom-file-input">
+                                    <span class="custom-file-control"></span>
+                                </label>
+                                <small id="fileHelp" class="form-text text-muted">Upload .jpg, .png extensions only.</small>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary btn-block" id="addHomestayButton">Add Room</button>
+                            <button class="btn btn-secondary btn-block" id="addHomestayButton">Cancel</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
+    </div>
+</div>
 <jsp:include page="templates/footer.jsp" />

@@ -25,10 +25,11 @@
                                 }
                             </script>
                             <a href="edit_homestay.jsp" class="btn btn-primary btn-block mt-3">Edit Homestay</a>
-                            <a href="add_homestay.jsp" class="btn btn-success btn-block mt-3">Add Homestay</a>
+                            
                             <a href="add_room.jsp" class="btn btn-success btn-block mt-3">Add Room</a>
                         </div>
                     </div>
+                                    <a href="add_homestay.jsp" class="btn btn-success btn-block mt-3">Add Homestay</a>
                 </div>
             </div>
         </div>

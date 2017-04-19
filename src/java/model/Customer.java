@@ -34,10 +34,10 @@ public class Customer {
             this.password = display_customer.getString("password");
             this.firstname = display_customer.getString("f_name");
             this.lastname = display_customer.getString("l_name");
-            this.birthdate = display_customer.getString("birthdate");
+            this.birthdate = display_customer.getString("birth_date");
             this.email = display_customer.getString("email");
             this.phone = display_customer.getString("phone");
-            this.type = display_customer.getString("type");
+            this.type = display_customer.getString("customer_type");
         }
     }
 

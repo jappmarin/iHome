@@ -15,14 +15,6 @@
                                     <label for="describe">รายละเอียดโฮมสเตย์</label>
                                     <textarea class="form-control" id="describeIn" rows="2"></textarea>
                                 </div>
-                                <div class="form-group has-feedback" id="priceInDiv">
-                                    <label for="price">ราคาต่อคืน</label>
-                                    <input type="text" class="form-control" name="price" id="priceIn" placeholder="" required>
-                                </div>
-                                <div class="form-group has-feedback" id="guestInDiv">
-                                    <label for="guest">จำนวนผู้เข้าพัก</label>
-                                    <input type="text" class="form-control" name="guest" id="guestIn" placeholder="" required>
-                                </div>
                                 <div class="form-group has-feedback" id="addressInDiv">
                                     <label for="addresse">ที่อยู่</label>
                                     <textarea class="form-control" id="addressIn" rows="2"></textarea>
