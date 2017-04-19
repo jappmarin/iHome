@@ -28,15 +28,15 @@
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="
-                           <% if (session.getAttribute("customer_type").equals("Guest")) { %>
+                           <% if (session.getAttribute("type").equals("GUEST")) { %>
                            ${SITE_URL}/profile.jsp
-                           <% } else if (session.getAttribute("customer_type").equals("Host")) {%>
+                           <% } else if (session.getAttribute("type").equals("HOST")) {%>
                            ${SITE_URL}/profile_host.jsp
-                           <% } else if (session.getAttribute("customer_type").equals("Admin")) {%>
+                           <% } else if (session.getAttribute("type").equals("ADMIN")) {%>
                            ${SITE_URL}/cp.jsp
                            <% } %>
                            ">
-                           <% if (session.getAttribute("customer_type").equals("Admin")) { %>
+                           <% if (session.getAttribute("type").equals("ADMIN")) { %>
                            Control Panel
                            <% } else { %>
                            Profile

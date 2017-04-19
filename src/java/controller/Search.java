@@ -51,7 +51,7 @@ public class Search extends HttpServlet {
         }
         
         request.setAttribute("allHome", allHome);
-        RequestDispatcher obj = request.getRequestDispatcher("search.jsp");
+        RequestDispatcher obj = request.getRequestDispatcher("/search.jsp");
         obj.forward(request, response);
     }
 
