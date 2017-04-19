@@ -2,33 +2,89 @@ package model;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class Homestay {
 
     private String hs_id;
     private String hs_name;
     private String hs_desc;
-    private float hs_price;
-    private int hs_guest;
     private String hs_address;
+    private String hs_license;
+    private String hs_region;
+    private String hs_province;
+    private String hs_district;
     private String hs_lat;
     private String hs_long;
-    private String hs_province;
+    private String host;
+    private Connection connection;
 
-    public void editHomestay(Connection connection) throws SQLException {
-        PreparedStatement update_homestay = connection.prepareStatement("update test_base.homestay set homestayname = ?, homestay_desc = ?, price = ?, guest = ? where username = ?");
+    public Homestay() {
+
+    }
+
+    public void OwnHomestay(Connection connection, String username) throws SQLException {
+        this.host = username;
+        this.connection = connection;
+
+        PreparedStatement select_homestay = connection.prepareStatement("select * from test_base.homestay where username = ?");
+        select_homestay.setString(1, username);
+        ResultSet display_homestay = select_homestay.executeQuery();
+
+        if (display_homestay.next()) {
+            this.host = username;
+            this.hs_name = display_homestay.getString("homestay_name");
+            this.hs_desc = display_homestay.getString("homestay_desc");
+            this.hs_address = display_homestay.getString("homestay_address");
+            this.hs_license = display_homestay.getString("homestay_license");
+            this.hs_region = display_homestay.getString("homestay_region");
+            this.hs_province = display_homestay.getString("homestay_province");
+            this.hs_district = display_homestay.getString("homestay_district");
+            this.hs_lat = display_homestay.getString("homestay_latitude");
+            this.hs_long = display_homestay.getString("homestay_longtitude");
+        }
+    }
+
+    public void addHomestay(Connection connection) throws SQLException {
+        PreparedStatement insert_homestay = connection.prepareStatement("insert into test_base.homestay (homestay_name, homestay_desc, homestay_address, homestay_license, homestay_region, homestay_province, homestay_district, homestay_latitude, homestay_longtitude, username) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        insert_homestay.setString(1, this.getHs_name());
+        insert_homestay.setString(2, this.getHs_desc());
+        insert_homestay.setString(3, this.getHs_address());
+        insert_homestay.setString(4, this.getHs_license());
+        insert_homestay.setString(5, this.getHs_region());
+        insert_homestay.setString(6, this.getHs_province());
+        insert_homestay.setString(7, this.getHs_district());
+        insert_homestay.setString(8, this.getHs_lat());
+        insert_homestay.setString(9, this.getHs_long());
+        insert_homestay.setString(10, this.getHost());
+        insert_homestay.executeUpdate();
+    }
+
+    public void editHomestay(Connection connection, String username) throws SQLException {
+        PreparedStatement update_homestay = connection.prepareStatement("update test_base.homestay set homestay_name = ?, homestay_desc = ?, homestay_address = ?, homestay_license = ?, homestay_region = ?, homestay_province = ?, homestay_district = ?, homestay_latitude = ?, homestay_longtitude = ? where username = ?");
         update_homestay.setString(1, this.getHs_name());
         update_homestay.setString(2, this.getHs_desc());
-        update_homestay.setFloat(3, this.getHs_price());
-        update_homestay.setInt(4, this.getHs_guest());
+        update_homestay.setString(3, this.getHs_address());
+        update_homestay.setString(4, this.getHs_license());
+        update_homestay.setString(5, this.getHs_region());
+        update_homestay.setString(6, this.getHs_province());
+        update_homestay.setString(7, this.getHs_district());
+        update_homestay.setString(8, this.getHs_lat());
+        update_homestay.setString(9, this.getHs_long());
+        update_homestay.setString(10, this.getHost());
         update_homestay.executeUpdate();
     }
-    
-    public void deleteHomestay(Connection connection) throws SQLException {
-        
+
+    public String getHs_id() {
+        return hs_id;
     }
-    
+
+    public void setHs_id(String hs_id) {
+        this.hs_id = hs_id;
+    }
+
     public String getHs_name() {
         return hs_name;
     }
@@ -45,20 +101,12 @@ public class Homestay {
         this.hs_desc = hs_desc;
     }
 
-    public float getHs_price() {
-        return hs_price;
+    public String getHs_address() {
+        return hs_address;
     }
 
-    public void setHs_price(float hs_price) {
-        this.hs_price = hs_price;
-    }
-
-    public int getHs_guest() {
-        return hs_guest;
-    }
-
-    public void setHs_guest(int hs_guest) {
-        this.hs_guest = hs_guest;
+    public void setHs_address(String hs_address) {
+        this.hs_address = hs_address;
     }
 
     public String getHs_lat() {
@@ -85,20 +133,42 @@ public class Homestay {
         this.hs_province = hs_province;
     }
 
-    public String getHs_address() {
-        return hs_address;
+    public String getHs_region() {
+        return hs_region;
     }
 
-    public void setHs_address(String hs_address) {
-        this.hs_address = hs_address;
+    public void setHs_region(String hs_region) {
+        this.hs_region = hs_region;
     }
 
-    public String getHs_id() {
-        return hs_id;
+    public String getHs_district() {
+        return hs_district;
     }
 
-    public void setHs_id(String hs_id) {
-        this.hs_id = hs_id;
+    public void setHs_district(String hs_district) {
+        this.hs_district = hs_district;
+    }
+
+    public String getHs_license() {
+        return hs_license;
+    }
+
+    public void setHs_license(String hs_license) {
+        this.hs_license = hs_license;
+    }
+
+    /**
+     * @return the host
+     */
+    public String getHost() {
+        return host;
+    }
+
+    /**
+     * @param host the host to set
+     */
+    public void setHost(String host) {
+        this.host = host;
     }
 
 }
