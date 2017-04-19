@@ -19,6 +19,10 @@ public class Room {
     private String room_picture;
     private int homestay_id;
     private Connection connection;
+    
+    public Room(){
+        
+    }
 
     public Room(int room_id) {
         this.room_id = room_id;
