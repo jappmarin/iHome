@@ -136,32 +136,32 @@
                         <label for="facilities"> ประเภทเตียง :    </label>
                         <div class="form-check form-check-inline">
                             <label class="form-check-label">
-                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="28"> เตียงเดี่ยว
+                                <input class="form-check-input" type="checkbox" name="facilities" id="inlineCheckbox1" value="28"> เตียงเดี่ยว
                             </label>
                         </div>
                         <div class="form-check form-check-inline">
                             <label class="form-check-label">
-                                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="29"> เตียงคู่
+                                <input class="form-check-input" type="checkbox" name="facilities" id="inlineCheckbox2" value="29"> เตียงคู่
                             </label>
                         </div>
                         <div class="form-check form-check-inline">
                             <label class="form-check-label">
-                                <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="30"> เตียง 2 ชั้น
+                                <input class="form-check-input" type="checkbox" name="facilities" id="inlineCheckbox3" value="30"> เตียง 2 ชั้น
                             </label>
                         </div>
                         <div class="form-check form-check-inline">
                             <label class="form-check-label">
-                                <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="31" > ฝูกนอน
+                                <input class="form-check-input" type="checkbox" name="facilities" id="inlineCheckbox3" value="31" > ฝูกนอน
                             </label>
                         </div>
                         <div class="form-check form-check-inline">
                             <label class="form-check-label">
-                                <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="32"> เต็นท์
+                                <input class="form-check-input" type="checkbox" name="facilities" id="inlineCheckbox3" value="32"> เต็นท์
                             </label>
                         </div>
                         <div class="form-check form-check-inline">
                             <label class="form-check-label">
-                                <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value=""> อื่นๆ
+                                <input class="form-check-input" type="checkbox" name="facilities" id="inlineCheckbox3" value=""> อื่นๆ
                             </label>
                         </div>
                         

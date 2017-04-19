@@ -28,12 +28,12 @@ public class Room {
         this.room_id = room_id;
     }
 
-    public Room(Connection connection, int room_id) throws SQLException {
-        this.room_id = room_id;
+    public Room(Connection connection, String room_name) throws SQLException {
+        this.room_name = room_name;
         this.connection = connection;
         
-        PreparedStatement select_room = connection.prepareStatement("select * from ihome.room where username = ?");
-        select_room.setInt(1, room_id);
+        PreparedStatement select_room = connection.prepareStatement("select * from test_base3.room where room_name = ?");
+        select_room.setString(1, room_name);
         ResultSet display_room = select_room.executeQuery();
         if (display_room.next()) {
             this.room_id = display_room.getInt("room_id");
@@ -47,7 +47,7 @@ public class Room {
     }
 
     public void addNewRoom(Connection connection) throws SQLException {
-        PreparedStatement insert_room = connection.prepareStatement("insert into ihome.room (room_name, room_limit, room_price, room_picture, homestay_id) values (?,?,?,?,?)");
+        PreparedStatement insert_room = connection.prepareStatement("insert into test_base3.room (room_name, room_limit, room_price, room_picture, homestay_id) values (?,?,?,?,?)");
         insert_room.setString(1, this.getRoom_name());
         insert_room.setInt(2, this.getRoom_limit());
         insert_room.setFloat(3, this.getRoom_price());
@@ -57,38 +57,45 @@ public class Room {
     }
 
     public void changeRoom_name(Connection connection) throws SQLException {
-        PreparedStatement update_room = connection.prepareStatement("update ihome.room set room_name = ? where room_id = ?");
+        PreparedStatement update_room = connection.prepareStatement("update test_base3.room set room_name = ? where room_id = ?");
         update_room.setString(1, this.getRoom_name());
         update_room.setInt(2, this.getRoom_id());
         update_room.executeUpdate();
     }
 
     public void changeRoom_limit(Connection connection) throws SQLException {
-        PreparedStatement update_room = connection.prepareStatement("update ihome.room set room_limit = ? where room_id = ?");
+        PreparedStatement update_room = connection.prepareStatement("update test_base3.room set room_limit = ? where room_id = ?");
         update_room.setInt(1, this.getRoom_limit());
         update_room.setInt(2, this.getRoom_id());
         update_room.executeUpdate();
     }
 
     public void changeRoom_price(Connection connection) throws SQLException {
-        PreparedStatement update_room = connection.prepareStatement("update ihome.room set room_price = ? where room_id = ?");
+        PreparedStatement update_room = connection.prepareStatement("update test_base3.room set room_price = ? where room_id = ?");
         update_room.setFloat(1, this.getRoom_price());
         update_room.setInt(2, this.getRoom_id());
         update_room.executeUpdate();
     }
 
     public void changeRoom_picture(Connection connection) throws SQLException {
-        PreparedStatement update_room = connection.prepareStatement("update ihome.room set room_picture = ? where room_id = ?");
+        PreparedStatement update_room = connection.prepareStatement("update test_base3.room set room_picture = ? where room_id = ?");
         update_room.setString(1, this.getRoom_picture());
         update_room.setInt(2, this.getRoom_id());
         update_room.executeUpdate();
     }
 
     public void changeHomestay_id(Connection connection) throws SQLException {
-        PreparedStatement update_room = connection.prepareStatement("update ihome.room set homestay_id = ? where room_id = ?");
+        PreparedStatement update_room = connection.prepareStatement("update test_base3.room set homestay_id = ? where room_id = ?");
         update_room.setInt(1, this.getHomestay_id());
         update_room.setInt(2, this.getRoom_id());
         update_room.executeUpdate();
+    }
+    
+    public void addRoom_facilities(Connection connection, int room_id, int fac_id) throws SQLException{
+        PreparedStatement insert_fac = connection.prepareStatement("insert into test_base3.room_fac(room_id, fac_id) value(?, ?)");
+        insert_fac.setInt(1, room_id);
+        insert_fac.setInt(1, fac_id);
+        insert_fac.executeUpdate();
     }
 
     /**
