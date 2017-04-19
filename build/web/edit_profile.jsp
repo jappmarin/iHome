@@ -9,23 +9,23 @@
                             <form action="EditProfile" method="POST">
                                 <div class="form-group has-feedback" id="usernameInDiv">
                                     <label for="username">Username</label>
-                                    <input type="text" class="form-control" name="username" id="usernameIn" placeholder="" value="${sessionScope.username}" required disabled>
+                                    <input type="text" class="form-control" name="username" id="usernameIn" placeholder="" value="${sessionScope.customer.username}" required disabled>
                                 </div>
                                 <div class="form-group has-feedback" id="firstNameInDiv">
                                     <label for="firstname">First Name</label>
-                                    <input type="text" class="form-control" name="firstname" id="firstNameIn" placeholder="" value="${sessionScope.firstname}" required>
+                                    <input type="text" class="form-control" name="firstname" id="firstNameIn" placeholder="" value="${sessionScope.customer.firstname}" required>
                                 </div>
                                 <div class="form-group has-feedback" id="lastNameInDiv">
                                     <label for="lastname">Last Name</label>
-                                    <input type="text" class="form-control" name="lastname" id="lastNameIn" placeholder="" value="${sessionScope.lastname}" required>
+                                    <input type="text" class="form-control" name="lastname" id="lastNameIn" placeholder="" value="${sessionScope.customer.lastname}" required>
                                 </div>
                                 <div class="form-group has-feedback" id="emailInDiv">
                                     <label for="email">Email</label>
-                                    <input type="email" class="form-control" name="email" id="emailIn" placeholder="" value="${sessionScope.email}" required>
+                                    <input type="email" class="form-control" name="email" id="emailIn" placeholder="" value="${sessionScope.customer.email}" required>
                                 </div>
                                 <div class="form-group has-feedback" id="phoneInDiv">
                                     <label for="phone">Phone Number</label>
-                                    <input type="text" class="form-control" name="phone" id="phoneIn" placeholder="" value="${sessionScope.phone}" required>
+                                    <input type="text" class="form-control" name="phone" id="phoneIn" placeholder="" value="${sessionScope.customer.phone}" required>
                                 </div>
                                 <div class="form-group has-feedback" id="passwordInDiv">
                                     <label for="password">Re-enter your Password</label>

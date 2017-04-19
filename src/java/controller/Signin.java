@@ -32,12 +32,13 @@ public class Signin extends HttpServlet {
         select_customer.setString(1, request.getParameter("username"));
         select_customer.setString(2, request.getParameter("password"));
         ResultSet display_customer = select_customer.executeQuery();
-
+        
         HttpSession session = request.getSession();
 
         if (!display_customer.next()) {
             response.sendRedirect("error.jsp");
         } else {
+            
             Customer customer = new Customer(connection, request.getParameter("username"));
             session.setAttribute("customer", customer);
             session.setAttribute("type" , customer.getType());

@@ -30,7 +30,7 @@ public class Booking extends HttpServlet {
         ServletContext context = getServletContext();
         Connection connection = (Connection) context.getAttribute("connection");
         
-        PreparedStatement select_homestay = connection.prepareStatement("select * from test_base.homestay where hs_id = '" + request.getParameter("id") + "';");
+        PreparedStatement select_homestay = connection.prepareStatement("select * from test_base.homestay where homestay_id = '" + request.getParameter("id") + "';");
         ResultSet display_homestay = select_homestay.executeQuery();
 
         Homestay homestay = new Homestay();
@@ -45,7 +45,7 @@ public class Booking extends HttpServlet {
             homestay.setHs_province(display_homestay.getString("homestay_province"));
             homestay.setHs_district(display_homestay.getString("homestay_district"));
             homestay.setHs_lat(display_homestay.getString("homestay_latitude"));
-            homestay.setHs_long(display_homestay.getString("homestay_longtitude"));
+            homestay.setHs_long(display_homestay.getString("homestay_longitude"));
         }
         
        session.setAttribute("homestay_id", homestay.getHs_id());

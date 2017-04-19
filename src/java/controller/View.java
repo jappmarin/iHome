@@ -44,7 +44,7 @@ public class View extends HttpServlet {
             homestay.setHs_province(display_homestay.getString("homestay_province"));
             homestay.setHs_district(display_homestay.getString("homestay_district"));
             homestay.setHs_lat(display_homestay.getString("homestay_latitude"));
-            homestay.setHs_long(display_homestay.getString("homestay_longtitude"));
+            homestay.setHs_long(display_homestay.getString("homestay_longitude"));
         }
 
         HttpSession session = request.getSession();

@@ -69,7 +69,7 @@
         <script>
             function totalDate() {
                 var diff = (Math.ceil((new Date(document.getElementById("checkoutIn").value) - new Date(document.getElementById("checkinIn").value)) / (1000 * 3600 * 24)));
-                document.getElementById("priceIn").value = diff * <%=homestay.getHs_price()%>;
+                document.getElementById("priceIn").value = diff;
             }
         </script>
 <jsp:include page="templates/footer.jsp" />
