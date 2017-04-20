@@ -26,7 +26,7 @@ import model.Room;
  * @author JAPP
  */
 @WebServlet(name = "AddRoom", urlPatterns = {"/AddRoom"})
-public class addRoom extends HttpServlet {
+public class AddRoom extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException {
@@ -38,7 +38,8 @@ public class addRoom extends HttpServlet {
         String room_name = request.getParameter("room_name");
         int room_limit = Integer.parseInt(request.getParameter("room_limit"));
         float room_price = Float.parseFloat(request.getParameter("room_price"));
-        String room_picture = request.getParameter("room_picture");
+        String room_picture = "r2.jpg";
+//                request.getParameter("room_picture");
         int homestay_id = Integer.parseInt(request.getParameter("homestay_id"));
         String[] room_fac = request.getParameterValues("facilities");
         
@@ -71,7 +72,7 @@ public class addRoom extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(addRoom.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AddRoom.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -81,7 +82,7 @@ public class addRoom extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(addRoom.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AddRoom.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
