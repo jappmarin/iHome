@@ -3,6 +3,7 @@ package model;
 public class Comment {
     private String username;
     private String hs_id;
+    private String room_id;
     private String firstname;
     private String lastname;
     private String comment_date;
@@ -54,6 +55,20 @@ public class Comment {
 
     public void setText(String text) {
         this.text = text;
+    }
+
+    /**
+     * @return the room_id
+     */
+    public String getRoom_id() {
+        return room_id;
+    }
+
+    /**
+     * @param room_id the room_id to set
+     */
+    public void setRoom_id(String room_id) {
+        this.room_id = room_id;
     }
     
 }

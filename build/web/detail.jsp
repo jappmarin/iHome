@@ -114,6 +114,7 @@
             </div>
         </div>
     </div>
+    <div class="row">
         <div class="card mt-3 mb-3">
             <h3 class="card-header">Comment</h3>
             <div class="card-block">
@@ -142,4 +143,5 @@
             </div>
         </div>
     </div>
+</div>
 <jsp:include page="templates/footer.jsp" />
