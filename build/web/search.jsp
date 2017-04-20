@@ -7,12 +7,12 @@
                 <div class="col-sm-3">
                     <div class="card mt-2">
                         <div class="card-block">
-                            <form action="Search" method="POST">
+                            <form action="Search" method="GET">
                                 <h5 class="card-title">Search results for:</h5>
                                 <p class="card-text">
                                 <div class="form-group row">
                                     <div class="col-sm-12">
-                                        <input class="form-control" type="search" value="eg. Bangkok, Chaingmai" id="example-search-input">
+                                        <input class="form-control" type="search" name="search" value="<%=request.getParameter("search")%>" id="search">
                                     </div>
                                 </div>
                                 </p>
@@ -20,42 +20,42 @@
                                 <h6 class="card-title">ภูมิภาค</h6>
                                 <p class="card-text">
                                     <label class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input">
+                                        <input type="checkbox" class="custom-control-input" name="region" value="N">
                                         <span class="custom-control-indicator"></span>
                                         <span class="custom-control-description">ภาคเหนือ</span>
                                     </label>
                                 </p>
                                 <p class="card-text">
                                     <label class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input">
+                                        <input type="checkbox" class="custom-control-input" name="region" value="C">
                                         <span class="custom-control-indicator"></span>
                                         <span class="custom-control-description">ภาคกลาง</span>
                                     </label>
                                 </p>
                                 <p class="card-text">
-                                    <label class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input">
+                                    <label class="custom-control custom-checkbox" >
+                                        <input type="checkbox" class="custom-control-input" name="region" value="E">
                                         <span class="custom-control-indicator"></span>
                                         <span class="custom-control-description">ภาคตะวันออก</span>
                                     </label>
                                 </p>
                                 <p class="card-text">
-                                    <label class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input">
+                                    <label class="custom-control custom-checkbox" >
+                                        <input type="checkbox" class="custom-control-input" name="region" value="NE">
                                         <span class="custom-control-indicator"></span>
                                         <span class="custom-control-description">ภาคตะวันออกเฉียงเหนือ</span>
                                     </label>
                                 </p>
                                 <p class="card-text">
                                     <label class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input">
+                                        <input type="checkbox" class="custom-control-input" name="region" value="W">
                                         <span class="custom-control-indicator"></span>
                                         <span class="custom-control-description">ภาคตะวันตก</span>
                                     </label>
                                 </p>
                                 <p class="card-text">
                                     <label class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input">
+                                        <input type="checkbox" class="custom-control-input" name="region" value="S">
                                         <span class="custom-control-indicator"></span>
                                         <span class="custom-control-description">ภาคใต้</span>
                                     </label>
@@ -66,13 +66,13 @@
                                 <div class="form-group row mx-auto align-items-center">
                                     Lowest Price
                                     <div class="col-sm-6">
-                                        <input class="form-control" type="number" value="400" id="lowestPriceIn">
+                                        <input class="form-control" type="number" name="min_price" value="<%=request.getParameter("min_price")%>" id="lowestPriceIn" placeholder="200">
                                     </div>
                                 </div>
                                 <div class="form-group row mx-auto align-items-center">
                                     Highest Price
                                     <div class="col-sm-6">
-                                        <input class="form-control" type="number" value="2000" id="highestPriceIn">
+                                        <input class="form-control" type="number" name="max_price" value="<%=request.getParameter("max_price")%>" id="highestPriceIn" placeholder="1500">
                                     </div>
                                 </div>
                                 </p>
@@ -82,13 +82,13 @@
                                 <div class="form-group row mx-auto align-items-center">
                                     Check in
                                     <div class="col-sm-12">
-                                        <input class="form-control" type="date" value="" id="checkinIn">
+                                        <input class="form-control" type="date" name="c_in" value="" id="checkinIn">
                                     </div>
                                 </div>
                                 <div class="form-group row mx-auto align-items-center">
                                     Check out
                                     <div class="col-sm-12">
-                                        <input class="form-control" type="date" value="" id="checkoutIn">
+                                        <input class="form-control" type="date" name="c_out" value="" id="checkoutIn">
                                     </div>
                                 </div>
                                 </p>
