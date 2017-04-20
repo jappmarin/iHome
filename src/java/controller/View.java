@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.Homestay;
+import model.Room;
 
 @WebServlet(name = "View", urlPatterns = {"/View/"})
 public class View extends HttpServlet {
@@ -36,6 +37,7 @@ public class View extends HttpServlet {
 
         if (display_homestay.next()) {
             homestay.setHs_id(display_homestay.getString("homestay_id"));
+            
             homestay.setHs_name(display_homestay.getString("homestay_name"));
             homestay.setHs_desc(display_homestay.getString("homestay_desc"));
             homestay.setHs_address(display_homestay.getString("homestay_address"));
@@ -46,11 +48,27 @@ public class View extends HttpServlet {
             homestay.setHs_lat(display_homestay.getString("homestay_latitude"));
             homestay.setHs_long(display_homestay.getString("homestay_longitude"));
         }
+        
+        PreparedStatement select_room = connection.prepareStatement("select * from test_base.room where homestay_id = '" + request.getParameter("id") + "';");
+        ResultSet display_room = select_room.executeQuery();
+        
+        Room room = new Room();
+        
+        if (display_room.next()){
+            room.setRoom_id(display_room.getInt("room_id"));
+            room.setRoom_name(display_room.getString("room_name"));
+            room.setRoom_price(display_room.getFloat("room_price"));
+            room.setRoom_limit(display_room.getInt("room_limit"));
+            room.setRoom_picture(display_room.getString("room_picture"));
+        }
+        
 
         HttpSession session = request.getSession();
         session.setAttribute("homestay_id", homestay.getHs_id());
+        session.setAttribute("room_id", room.getRoom_id());
 
         request.setAttribute("homestay", homestay);
+        request.setAttribute("room", room);
         RequestDispatcher obj = request.getRequestDispatcher("/detail.jsp");
         obj.forward(request, response);
     }

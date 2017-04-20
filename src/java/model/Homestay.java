@@ -4,11 +4,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 public class Homestay {
 
     private String hs_id;
+    private String hs_pic;
     private String hs_name;
     private String hs_desc;
     private String hs_address;
@@ -26,29 +26,30 @@ public class Homestay {
     }
 
     public void OwnHomestay(Connection connection, String username) throws SQLException {
-        this.host = username;
-        this.connection = connection;
+        this.setHost(username);
+        this.setConnection(connection);
 
         PreparedStatement select_homestay = connection.prepareStatement("select * from test_base.homestay where username = ?");
         select_homestay.setString(1, username);
         ResultSet display_homestay = select_homestay.executeQuery();
 
         if (display_homestay.next()) {
-            this.host = username;
-            this.hs_name = display_homestay.getString("homestay_name");
-            this.hs_desc = display_homestay.getString("homestay_desc");
-            this.hs_address = display_homestay.getString("homestay_address");
-            this.hs_license = display_homestay.getString("homestay_license");
-            this.hs_region = display_homestay.getString("homestay_region");
-            this.hs_province = display_homestay.getString("homestay_province");
-            this.hs_district = display_homestay.getString("homestay_district");
-            this.hs_lat = display_homestay.getString("homestay_latitude");
-            this.hs_long = display_homestay.getString("homestay_longitude");
+            this.setHost(username);
+            this.setHs_name(display_homestay.getString("homestay_name"));
+            this.setHs_pic(display_homestay.getString("homestay_picture"));
+            this.setHs_desc(display_homestay.getString("homestay_desc"));
+            this.setHs_address(display_homestay.getString("homestay_address"));
+            this.setHs_license(display_homestay.getString("homestay_license"));
+            this.setHs_region(display_homestay.getString("homestay_region"));
+            this.setHs_province(display_homestay.getString("homestay_province"));
+            this.setHs_district(display_homestay.getString("homestay_district"));
+            this.setHs_lat(display_homestay.getString("homestay_latitude"));
+            this.setHs_long(display_homestay.getString("homestay_longitude"));
         }
     }
 
     public void addHomestay(Connection connection) throws SQLException {
-        PreparedStatement insert_homestay = connection.prepareStatement("insert into test_base.homestay (homestay_name, homestay_desc, homestay_address, homestay_license, homestay_region, homestay_province, homestay_district, homestay_latitude, homestay_longitude, username) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        PreparedStatement insert_homestay = connection.prepareStatement("insert into test_base.homestay (homestay_name, homestay_desc, homestay_address, homestay_license, homestay_region, homestay_province, homestay_district, homestay_latitude, homestay_longitude, homestay_picture, username) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
         insert_homestay.setString(1, this.getHs_name());
         insert_homestay.setString(2, this.getHs_desc());
         insert_homestay.setString(3, this.getHs_address());
@@ -58,12 +59,13 @@ public class Homestay {
         insert_homestay.setString(7, this.getHs_district());
         insert_homestay.setString(8, this.getHs_lat());
         insert_homestay.setString(9, this.getHs_long());
-        insert_homestay.setString(10, this.getHost());
+        insert_homestay.setString(10, this.getHs_pic());
+        insert_homestay.setString(11, this.getHost());
         insert_homestay.executeUpdate();
     }
 
     public void editHomestay(Connection connection, String username) throws SQLException {
-        PreparedStatement update_homestay = connection.prepareStatement("update test_base.homestay set homestay_name = ?, homestay_desc = ?, homestay_address = ?, homestay_license = ?, homestay_region = ?, homestay_province = ?, homestay_district = ?, homestay_latitude = ?, homestay_longitude = ? where username = ?");
+        PreparedStatement update_homestay = connection.prepareStatement("update test_base.homestay set homestay_name = ?, homestay_desc = ?, homestay_address = ?, homestay_license = ?, homestay_region = ?, homestay_province = ?, homestay_district = ?, homestay_latitude = ?, homestay_longitude = ?, homestay_picture = ? where username = ?");
         update_homestay.setString(1, this.getHs_name());
         update_homestay.setString(2, this.getHs_desc());
         update_homestay.setString(3, this.getHs_address());
@@ -73,7 +75,8 @@ public class Homestay {
         update_homestay.setString(7, this.getHs_district());
         update_homestay.setString(8, this.getHs_lat());
         update_homestay.setString(9, this.getHs_long());
-        update_homestay.setString(10, this.getHost());
+        update_homestay.setString(10, this.getHs_pic());
+        update_homestay.setString(11, this.getHost());
         update_homestay.executeUpdate();
     }
 
@@ -169,6 +172,34 @@ public class Homestay {
      */
     public void setHost(String host) {
         this.host = host;
+    }
+
+    /**
+     * @return the hs_pic
+     */
+    public String getHs_pic() {
+        return hs_pic;
+    }
+
+    /**
+     * @param hs_pic the hs_pic to set
+     */
+    public void setHs_pic(String hs_pic) {
+        this.hs_pic = hs_pic;
+    }
+
+    /**
+     * @return the connection
+     */
+    public Connection getConnection() {
+        return connection;
+    }
+
+    /**
+     * @param connection the connection to set
+     */
+    public void setConnection(Connection connection) {
+        this.connection = connection;
     }
 
 }
