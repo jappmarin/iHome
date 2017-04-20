@@ -81,11 +81,10 @@ public class ViewHomestay extends HttpServlet {
             allComment.add(comment);
         }
         
-        
-        HttpSession session = request.getSession();
-        session.setAttribute("homestay_id", homestay.getHs_id());
-        session.setAttribute("room_id", room.getRoom_id());
+        request.setAttribute("homestay_id", homestay.getHs_id());
+        request.setAttribute("room_id", room.getRoom_id());
 
+        request.setAttribute("allComment", allComment);
         request.setAttribute("homestay", homestay);
         request.setAttribute("room", room);
         RequestDispatcher obj = request.getRequestDispatcher("/detail.jsp");
