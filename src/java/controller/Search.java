@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -37,6 +38,23 @@ public class Search extends HttpServlet {
         Connection connection = (Connection) context.getAttribute("connection");
 
         ArrayList<Homestay> allHome = new ArrayList<>();
+        String sql = "select * from test_base.homestay where homestay_name like '%" + search + "%'";
+        Statement select_homestay_name = connection.createStatement();
+        ResultSet display_homestay_name = select_homestay_name.executeQuery(sql);
+        while (display_homestay_name.next()) {
+            Homestay homestay = new Homestay();
+            homestay.setHs_id(display_homestay_name.getString("homestay_id"));
+            homestay.setHs_name(display_homestay_name.getString("homestay_name"));
+            homestay.setHs_desc(display_homestay_name.getString("homestay_desc"));
+            homestay.setHs_address(display_homestay_name.getString("homestay_address"));
+            homestay.setHs_license(display_homestay_name.getString("homestay_license"));
+            homestay.setHs_region(display_homestay_name.getString("homestay_region"));
+            homestay.setHs_province(display_homestay_name.getString("homestay_province"));
+            homestay.setHs_district(display_homestay_name.getString("homestay_district"));
+            homestay.setHs_lat(display_homestay_name.getString("homestay_latitude"));
+            homestay.setHs_long(display_homestay_name.getString("homestay_longitude"));
+            allHome.add(homestay);
+        }
 
         PreparedStatement select_homestay_provinc = connection.prepareStatement("select * from test_base.homestay where homestay_province = ?");
         select_homestay_provinc.setString(1, search);
@@ -55,7 +73,7 @@ public class Search extends HttpServlet {
             homestay.setHs_long(display_homestay_province.getString("homestay_longitude"));
             allHome.add(homestay);
         }
-        
+
         PreparedStatement select_homestay_district = connection.prepareStatement("select * from test_base.homestay where homestay_district = ?");
         select_homestay_district.setString(1, search);
         ResultSet display_homestay_district = select_homestay_district.executeQuery();
@@ -73,7 +91,7 @@ public class Search extends HttpServlet {
             homestay.setHs_long(display_homestay_district.getString("homestay_longitude"));
             allHome.add(homestay);
         }
-        
+
         if (region != null) {
             for (String reg : region) {
                 PreparedStatement select_homestay_region = connection.prepareStatement("select * from test_base.homestay where homestay_region = ?");
@@ -93,6 +111,27 @@ public class Search extends HttpServlet {
                     homestay.setHs_long(display_homestay_region.getString("homestay_longitude"));
                     allHome.add(homestay);
                 }
+            }
+        }
+
+        if (c_in == null || c_out == null) {
+            PreparedStatement select_homestay_date = connection.prepareStatement("select * from test_base.booking join test_base.room using(room_id) where check_in >= ? and check_out <= ?");
+            select_homestay_date.setString(1, c_in);
+            select_homestay_date.setString(2, c_out);
+            ResultSet display_homestay_date = select_homestay_district.executeQuery();
+            while (display_homestay_date.next()) {
+                Homestay homestay = new Homestay();
+                homestay.setHs_id(display_homestay_date.getString("homestay_id"));
+                homestay.setHs_name(display_homestay_date.getString("homestay_name"));
+                homestay.setHs_desc(display_homestay_date.getString("homestay_desc"));
+                homestay.setHs_address(display_homestay_date.getString("homestay_address"));
+                homestay.setHs_license(display_homestay_date.getString("homestay_license"));
+                homestay.setHs_region(display_homestay_date.getString("homestay_region"));
+                homestay.setHs_province(display_homestay_date.getString("homestay_province"));
+                homestay.setHs_district(display_homestay_date.getString("homestay_district"));
+                homestay.setHs_lat(display_homestay_date.getString("homestay_latitude"));
+                homestay.setHs_long(display_homestay_date.getString("homestay_longitude"));
+                allHome.add(homestay);
             }
         }
 

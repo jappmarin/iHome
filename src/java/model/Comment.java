@@ -1,5 +1,7 @@
 package model;
 
+
+
 public class Comment {
     private String username;
     private String hs_id;
@@ -8,7 +10,10 @@ public class Comment {
     private String lastname;
     private String comment_date;
     private String text;
-
+    
+    public Comment(){
+    }
+    
     public String getUsername() {
         return username;
     }

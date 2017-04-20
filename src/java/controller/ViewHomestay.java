@@ -28,11 +28,13 @@ public class ViewHomestay extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
+        
+//        int Homestay_id = Integer.parseInt(request.getParameter("id"));
 
         ServletContext context = request.getServletContext();
         Connection connection = (Connection) context.getAttribute("connection");
 
-        PreparedStatement select_homestay = connection.prepareStatement("select * from test_base.homestay where homestay_id = '" + request.getParameter("id") + "';");
+        PreparedStatement select_homestay = connection.prepareStatement("select * from test_base.homestay where homestay_id = '" + request.getParameter("homestay_id") + "';");
         ResultSet display_homestay = select_homestay.executeQuery();
 
         Homestay homestay = new Homestay();
@@ -51,7 +53,7 @@ public class ViewHomestay extends HttpServlet {
             homestay.setHs_long(display_homestay.getString("homestay_longitude"));
         }
         
-        PreparedStatement select_room = connection.prepareStatement("select * from test_base.room where homestay_id = '" + request.getParameter("id") + "';");
+        PreparedStatement select_room = connection.prepareStatement("select * from test_base.room where homestay_id = '" + request.getParameter("homestay_id") + "';");
         ResultSet display_room = select_room.executeQuery();
         
         Room room = new Room();
@@ -67,8 +69,8 @@ public class ViewHomestay extends HttpServlet {
         ArrayList<Comment> allComment = new ArrayList<>();
         Comment comment;
         
-        PreparedStatement select_comment = connection.prepareStatement("");
-        
+        PreparedStatement select_comment = connection.prepareStatement("select * from test_base.review join test_base.customer using(username) where homestay_id = ?");
+        select_comment.setString(1, request.getParameter("homestay_id"));
         ResultSet display_comment = select_comment.executeQuery();
         while (display_comment.next()) {
             comment = new Comment();
@@ -83,7 +85,7 @@ public class ViewHomestay extends HttpServlet {
         
         request.setAttribute("homestay_id", homestay.getHs_id());
         request.setAttribute("room_id", room.getRoom_id());
-
+        
         request.setAttribute("allComment", allComment);
         request.setAttribute("homestay", homestay);
         request.setAttribute("room", room);
