@@ -55,8 +55,8 @@ public class AddRoom extends HttpServlet {
         
         Room room_f = new Room(connection, room_name);
         room_id = room_f.getRoom_id();
-        for(int i=0;i<room_fac.length;i++){
-            int fac_id = Integer.parseInt(room_fac[i]);
+        for (String room_fac1 : room_fac) {
+            int fac_id = Integer.parseInt(room_fac1);
             room_f.addRoom_facilities(connection, room_id, fac_id);
         }
            
