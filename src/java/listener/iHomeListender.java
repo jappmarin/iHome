@@ -34,4 +34,10 @@ public class iHomeListender implements ServletContextListener {
         return (DataSource) c.lookup("java:comp/env/ihome");
     }
 
+//    private DataSource getIhomee() throws NamingException {
+//        Context c = new InitialContext();
+//        return (DataSource) c.lookup("java:comp/env/ihomee");
+//    }
+
+    
 }

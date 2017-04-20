@@ -19,6 +19,10 @@
                             <label for="guest">จำนวนผู้เข้าพักสูงสุด</label>
                             <input type="text" class="form-control" name="room_limit" id="limitIn" placeholder="" required>
                         </div>
+                        <div class="form-group has-feedback" id="guestInDiv">
+                            <label for="guest">Homestay ID</label>
+                            <input type="text" class="form-control" name="homestay_id" id="limitIn" placeholder="" required>
+                        </div>
                         <label for="facilities"> สิ่งอำนวยความสะดวก </label>
                         <div class="row">
                             <div class="col">
