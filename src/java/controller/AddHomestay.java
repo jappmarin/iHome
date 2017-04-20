@@ -51,6 +51,7 @@ public class AddHomestay extends HttpServlet {
             homestay.setHs_district(hs_district);
             homestay.setHs_lat(hs_lat);
             homestay.setHs_long(hs_long);
+            homestay.setHs_pic(hs_lat);
             homestay.addHomestay(connection);
             
         } catch (SQLException ex) {
@@ -64,6 +65,7 @@ public class AddHomestay extends HttpServlet {
 
         session.setAttribute("hs_name", display_homestay.getString("hs_name"));
         session.setAttribute("hs_desc", display_homestay.getString("hs_desc"));
+        session.setAttribute("hs_pic", display_homestay.getString("hs_pic"));
         session.setAttribute("hs_price", display_homestay.getFloat("hs_price"));
         session.setAttribute("hs_guest", display_homestay.getInt("hs_guest"));
         session.setAttribute("hs_address", display_homestay.getString("hs_address"));
