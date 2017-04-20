@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package controller;
 
 import java.io.IOException;
@@ -18,9 +23,22 @@ import javax.servlet.http.HttpSession;
 import model.Homestay;
 import model.Room;
 
-@WebServlet(name = "View", urlPatterns = {"/View/"})
-public class View extends HttpServlet {
+/**
+ *
+ * @author tkitb
+ */
+@WebServlet(name = "ViewRoom", urlPatterns = {"/ViewRoom"})
+public class ViewRoom extends HttpServlet {
 
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
@@ -37,7 +55,7 @@ public class View extends HttpServlet {
 
         if (display_homestay.next()) {
             homestay.setHs_id(display_homestay.getString("homestay_id"));
-            
+
             homestay.setHs_name(display_homestay.getString("homestay_name"));
             homestay.setHs_desc(display_homestay.getString("homestay_desc"));
             homestay.setHs_address(display_homestay.getString("homestay_address"));
@@ -48,20 +66,19 @@ public class View extends HttpServlet {
             homestay.setHs_lat(display_homestay.getString("homestay_latitude"));
             homestay.setHs_long(display_homestay.getString("homestay_longitude"));
         }
-        
+
         PreparedStatement select_room = connection.prepareStatement("select * from test_base.room where homestay_id = '" + request.getParameter("id") + "';");
         ResultSet display_room = select_room.executeQuery();
-        
+
         Room room = new Room();
-        
-        if (display_room.next()){
+
+        if (display_room.next()) {
             room.setRoom_id(display_room.getInt("room_id"));
             room.setRoom_name(display_room.getString("room_name"));
             room.setRoom_price(display_room.getFloat("room_price"));
             room.setRoom_limit(display_room.getInt("room_limit"));
             room.setRoom_picture(display_room.getString("room_picture"));
         }
-        
 
         HttpSession session = request.getSession();
         session.setAttribute("homestay_id", homestay.getHs_id());
@@ -88,7 +105,7 @@ public class View extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ViewRoom.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -106,7 +123,7 @@ public class View extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ViewRoom.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

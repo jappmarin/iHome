@@ -30,7 +30,7 @@ public class ViewProfile extends HttpServlet {
 
         Customer profile = new Customer(connection, request.getParameter("username"));
 
-        if (session.getAttribute("customer_type").equals("Host")) {
+        if (session.getAttribute("type").equals("HOST")) {
             request.setAttribute("customer", profile);
             RequestDispatcher obj = request.getRequestDispatcher("../profile_host.jsp");
             obj.forward(request, response);

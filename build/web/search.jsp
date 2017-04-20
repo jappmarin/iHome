@@ -112,7 +112,7 @@
                                             <p class="card-text"><%=home.getHs_desc()%></p>
                                         </div>
                                         <div class="card-footer">
-                                            <a class="btn btn-primary" href="${SITE_URL}/View/?id=<%=home.getHs_id()%>">See more</a>
+                                            <a class="btn btn-primary" href="${SITE_URL}/ViewHomestay/?id=<%=home.getHs_id()%>">See more</a>
                                         </div>
                                     </div>
                                 </div>
