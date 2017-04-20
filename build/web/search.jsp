@@ -104,7 +104,7 @@
                     <% ArrayList<Homestay> allHome = (ArrayList<Homestay>) request.getAttribute("allHome");
                         if (allHome != null) {
                             for (Homestay home : allHome) {%>
-                                <div class="col-sm-6">
+                                <div class="col-sm-4">
                                     <div class="card text-center mt-2">
                                         <img class="card-img-top" src="${SITE_URL}/asset/img/logo.png">
                                         <div class="card-block">
