@@ -31,17 +31,19 @@ public class Review extends HttpServlet {
             Connection conn = (Connection) ctx.getAttribute("connection");
             
             HttpSession session = request.getSession();
-            Homestay homestay = (Homestay) session.getAttribute("homestay");
             Customer customer = (Customer) session.getAttribute("customer");
+            
+            String room_id = request.getParameter("id");
+            
             try {
-                PreparedStatement pstmt = conn.prepareStatement("insert into test_base.comment values(?,?,?,?)");
+                PreparedStatement pstmt = conn.prepareStatement("insert into test_base.review (username, room_id, comment, review_date) values(?,?,?,?)");
                 pstmt.setString(1, customer.getUsername());
-                pstmt.setString(2, homestay.getHs_id());
+                pstmt.setString(2, room_id);
                 pstmt.setString(3, text);
                 pstmt.setTimestamp(4, new Timestamp(calendar.getTime().getTime()));
                 pstmt.executeUpdate();
                 
-                response.sendRedirect("../View/?id="+homestay.getHs_id());    
+                response.sendRedirect("../ViewHomestay/?id=" + room_id);    
                 
             } catch (SQLException ex) {
             }

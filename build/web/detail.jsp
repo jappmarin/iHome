@@ -1,4 +1,5 @@
-<%--@page import="controller.Comment"--%>
+<%@page import="controller.Review"%>
+<%@page import="model.Comment"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="model.Homestay"%>
 <%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
@@ -114,22 +115,23 @@
             </div>
         </div>
     </div>
+    <div class="row">
         <div class="card mt-3 mb-3">
             <h3 class="card-header">Comment</h3>
             <div class="card-block">
                 <ul class="list-unstyled">
-                    <%-- if (request.getAttribute("allComment") != null) { --%>
-                    <%-- ArrayList<Comment> allComment = (ArrayList<Comment>) request.getAttribute("allComment");
-                    for (model.Comment comment: allComment) {--%>
+                    <% if (request.getAttribute("allComment") != null) { %>
+                    <% ArrayList<Comment> allComment = (ArrayList<Comment>) request.getAttribute("allComment");
+                    for (model.Comment comment: allComment) {%>
                     <li class="media">
                         <div class="media-body">
-                            <h5 class="mt-0 mb-1"><%--=comment.getFirstname()%> <%=comment.getLastname()--%></h5>
-                            <p><%--=comment.getText()--%></p>
+                            <h5 class="mt-0 mb-1"><%=comment.getFirstname()%> <%=comment.getLastname()%></h5>
+                            <p><%=comment.getText()%></p>
                         </div>
                     </li>
                     <hr>
-                    <%-- }
-    } --%>
+                    <% }
+    } %>
                     <li class="media">
                         <div class="media-body">
                             <form action="${SITE_URL}/Review/?&id=<%=homestay.getHs_id()%>" method="POST">
@@ -142,4 +144,5 @@
             </div>
         </div>
     </div>
+</div>
 <jsp:include page="templates/footer.jsp" />

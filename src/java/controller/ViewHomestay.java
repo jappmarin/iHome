@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
@@ -15,6 +16,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.Comment;
 import model.Homestay;
 import model.Room;
 
@@ -62,11 +64,27 @@ public class ViewHomestay extends HttpServlet {
             room.setRoom_picture(display_room.getString("room_picture"));
         }
         
+        ArrayList<Comment> allComment = new ArrayList<>();
+        Comment comment;
+        
+        PreparedStatement select_comment = connection.prepareStatement("");
+        
+        ResultSet display_comment = select_comment.executeQuery();
+        while (display_comment.next()) {
+            comment = new Comment();
+            comment.setUsername(display_comment.getString("username"));
+            comment.setRoom_id(display_comment.getString("room_id"));
+            comment.setFirstname(display_comment.getString("f_name"));
+            comment.setLastname(display_comment.getString("l_name"));
+            comment.setComment_date(display_comment.getString("review_date"));
+            comment.setText(display_comment.getString("comment"));
+            allComment.add(comment);
+        }
+        
+        request.setAttribute("homestay_id", homestay.getHs_id());
+        request.setAttribute("room_id", room.getRoom_id());
 
-        HttpSession session = request.getSession();
-        session.setAttribute("homestay_id", homestay.getHs_id());
-        session.setAttribute("room_id", room.getRoom_id());
-
+        request.setAttribute("allComment", allComment);
         request.setAttribute("homestay", homestay);
         request.setAttribute("room", room);
         RequestDispatcher obj = request.getRequestDispatcher("/detail.jsp");
