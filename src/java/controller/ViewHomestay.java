@@ -34,14 +34,13 @@ public class ViewHomestay extends HttpServlet {
         ServletContext context = request.getServletContext();
         Connection connection = (Connection) context.getAttribute("connection");
 
-        PreparedStatement select_homestay = connection.prepareStatement("select * from test_base.homestay where homestay_id = '" + request.getParameter("homestay_id") + "';");
+        PreparedStatement select_homestay = connection.prepareStatement("select * from test_base.homestay where homestay_id = '" + request.getParameter("id") + "';");
         ResultSet display_homestay = select_homestay.executeQuery();
 
         Homestay homestay = new Homestay();
 
         if (display_homestay.next()) {
             homestay.setHs_id(display_homestay.getString("homestay_id"));
-            
             homestay.setHs_name(display_homestay.getString("homestay_name"));
             homestay.setHs_desc(display_homestay.getString("homestay_desc"));
             homestay.setHs_address(display_homestay.getString("homestay_address"));
@@ -53,7 +52,7 @@ public class ViewHomestay extends HttpServlet {
             homestay.setHs_long(display_homestay.getString("homestay_longitude"));
         }
         
-        PreparedStatement select_room = connection.prepareStatement("select * from test_base.room where homestay_id = '" + request.getParameter("homestay_id") + "';");
+        PreparedStatement select_room = connection.prepareStatement("select * from test_base.room where homestay_id = '" + request.getParameter("id") + "';");
         ResultSet display_room = select_room.executeQuery();
         
         Room room = new Room();
@@ -69,13 +68,13 @@ public class ViewHomestay extends HttpServlet {
         ArrayList<Comment> allComment = new ArrayList<>();
         Comment comment;
         
-        PreparedStatement select_comment = connection.prepareStatement("select * from test_base.review join test_base.customer using(username) where homestay_id = ?");
-        select_comment.setString(1, request.getParameter("homestay_id"));
+        PreparedStatement select_comment = connection.prepareStatement("select * from test_base.review rew join test_base.customer cus using (username) join test_base.homestay home using(homestay_id) where homestay_id = ?;");
+        select_comment.setString(1, request.getParameter("id"));
         ResultSet display_comment = select_comment.executeQuery();
         while (display_comment.next()) {
             comment = new Comment();
             comment.setUsername(display_comment.getString("username"));
-            comment.setRoom_id(display_comment.getString("room_id"));
+            //comment.setRoom_id(display_comment.getString("room_id"));
             comment.setFirstname(display_comment.getString("f_name"));
             comment.setLastname(display_comment.getString("l_name"));
             comment.setComment_date(display_comment.getString("review_date"));
