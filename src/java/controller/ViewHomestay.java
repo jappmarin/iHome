@@ -52,18 +52,22 @@ public class ViewHomestay extends HttpServlet {
             homestay.setHs_long(display_homestay.getString("homestay_longitude"));
         }
         
+        ArrayList<Room> allRoom = new ArrayList<>();
+        Room room;
+        
         PreparedStatement select_room = connection.prepareStatement("select * from test_base.room where homestay_id = '" + request.getParameter("id") + "';");
         ResultSet display_room = select_room.executeQuery();
         
-        Room room = new Room();
-        
-        if (display_room.next()){
+        while (display_room.next()){
+            room = new Room();
             room.setRoom_id(display_room.getInt("room_id"));
             room.setRoom_name(display_room.getString("room_name"));
             room.setRoom_price(display_room.getFloat("room_price"));
             room.setRoom_limit(display_room.getInt("room_limit"));
             room.setRoom_picture(display_room.getString("room_picture"));
+            allRoom.add(room);
         }
+        
         
         ArrayList<Comment> allComment = new ArrayList<>();
         Comment comment;
@@ -83,11 +87,12 @@ public class ViewHomestay extends HttpServlet {
         }
         
         request.setAttribute("homestay_id", homestay.getHs_id());
-        request.setAttribute("room_id", room.getRoom_id());
+//        request.setAttribute("room_id", room.getRoom_id());
         
         request.setAttribute("allComment", allComment);
+        request.setAttribute("allRoom", allRoom);
         request.setAttribute("homestay", homestay);
-        request.setAttribute("room", room);
+//        request.setAttribute("room", room);
         RequestDispatcher obj = request.getRequestDispatcher("/detail.jsp");
         obj.forward(request, response);
     }

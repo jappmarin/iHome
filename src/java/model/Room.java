@@ -21,7 +21,6 @@ public class Room {
     private Connection connection;
     
     public Room(){
-        
     }
 
     public Room(int room_id) {
@@ -181,6 +180,20 @@ public class Room {
      */
     public void setRoom_id(int room_id) {
         this.room_id = room_id;
+    }
+
+    /**
+     * @return the connection
+     */
+    public Connection getConnection() {
+        return connection;
+    }
+
+    /**
+     * @param connection the connection to set
+     */
+    public void setConnection(Connection connection) {
+        this.connection = connection;
     }
 
 }
