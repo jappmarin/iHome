@@ -11,8 +11,9 @@
                                     <tr>
                                         <th class="text-center">#</th>
                                         <th class="text-center">Homestay Name</th>
-                                        <th class="text-center">License Number</th>
+                                        <th class="text-center">Homestay License</th>
                                         <th class="text-center">Status</th>
+                                        <th class="text-center">Control</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -21,24 +22,65 @@
                                         <td>Example 1</td>
                                         <td></td>
                                         <td><button type="button" class="btn btn-success">Success</button></td>
+                                        <td>
+                                            <div class="form-check">
+                                                <label class="form-check-label">
+                                                    <input type="checkbox" class="form-check-input">
+                                                </label>
+                                            </div>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <th scope="row" class="text-center">2</th>
                                         <td>Example 2</td>
                                         <td></td>
                                         <td><button type="button" class="btn btn-warning">Warning</button></td>
+                                        <td>
+                                            <div class="form-check">
+                                                <label class="form-check-label">
+                                                    <input type="checkbox" class="form-check-input">
+                                                </label>
+                                            </div>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <th scope="row" class="text-center">3</th>
                                         <td>Example 3</td>
                                         <td></td>
                                         <td><button type="button" class="btn btn-warning">Warning</button></td>
+                                        <td>
+                                            <div class="form-check">
+                                                <label class="form-check-label">
+                                                    <input type="checkbox" class="form-check-input">
+                                                </label>
+                                            </div>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <th scope="row" class="text-center">4</th>
                                         <td>Example 4</td>
                                         <td></td>
                                         <td><button type="button" class="btn btn-warning">Warning</button></td>
+                                        <td>
+                                            <div class="form-check">
+                                                <label class="form-check-label">
+                                                    <input type="checkbox" class="form-check-input">
+                                                </label>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" class="text-center">2</th>
+                                        <td>Example 2</td>
+                                        <td></td>
+                                        <td><button type="button" class="btn btn-warning">Warning</button></td>
+                                        <td>
+                                            <div class="form-check">
+                                                <label class="form-check-label">
+                                                    <input type="checkbox" class="form-check-input">
+                                                </label>
+                                            </div>
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>

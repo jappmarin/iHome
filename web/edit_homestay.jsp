@@ -8,29 +8,81 @@
                         <div class="card-block">
                             <form action="EditHomestay" method="POST">
                                 <div class="form-group has-feedback" id="homestayNameInDiv">
-                                    <label for="homestayname">Homestay Name</label>
+                                    <label for="homestayname">ชื่อโฮมสเตย์</label>
                                     <input type="text" class="form-control" name="homestayname" id="homestayNameIn" placeholder="" required>
                                 </div>
-                                <div class="form-group has-feedback" id="detailInDiv">
-                                    <label for="detail">Homestay Detail</label>
-                                    <textarea class="form-control" name="detail" id="detailIn" rows="3"></textarea>
+                                <div class="form-group has-feedback" id="describeInDiv">
+                                    <label for="describe">รายละเอียดโฮมสเตย์</label>
+                                    <textarea class="form-control" id="describeIn" rows="2"></textarea>
                                 </div>
-                                <div class="form-group has-feedback" id="priceInDiv">
-                                    <label for="price">Price</label>
-                                    <input type="text" class="form-control" name="price" id="priceIn" placeholder="" required>
-                                </div>
-                                <div class="form-group has-feedback" id="guestInDiv">
-                                    <label for="guest">Guest</label>
-                                    <input type="text" class="form-control" name="guest" id="guestIn" placeholder="" required>
+                                <div class="form-group has-feedback" id="licenseInDiv">
+                                    <label for="license">เลขที่ใบอนุญาตของโฮมสเตย์</label>
+                                    <input class="form-control" id="licenseIn">
                                 </div>
                                 <div class="form-group has-feedback" id="addressInDiv">
-                                    <label for="address">Homestay Address</label>
-                                    <textarea class="form-control" name="address" id="addressIn" rows="3"></textarea>
+                                    <label for="addresse">ที่อยู่</label>
+                                    <textarea class="form-control" id="addressIn" rows="2"></textarea>
                                 </div>
-                                <div class="form-group has-feedback" id="addressInDiv">
-                                    <label for="art-file">Upload Picture</label>
-                                    <input type="file" id="art-file" name="picture">
-                                    <p class="help-block">Upload .jpg, .png extensions only.</p>
+                                <div class="form-group has-feedback" id="districtInDiv">
+                                    <label for="district">อำเภอ</label>
+                                    <input type="text" class="form-control" name="district" id="districtIn" placeholder="" required>
+                                </div>
+                                <div class="form-group has-feedback" id="provinceInDiv">
+                                    <label for="province">จังหวัด</label>
+                                    <input type="text" class="form-control" name="province" id="provinceIn" placeholder="" required>
+                                </div>
+                                <div class="form-group has-feedback" id="zipInDiv">
+                                    <label for="zip">รหัสไปรษณีย์</label>
+                                    <input type="text" class="form-control" name="zip" id="zipIn" placeholder="" required>
+                                </div>
+                                <fieldset class="form-group">
+                                    <div class="form-group">
+                                        <label>ภูมิภาค</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label">
+                                            <input type="radio" class="form-check-input" name="optionsRadios" id="northIn" value="North" checked>
+                                            ภาคเหนือ
+                                        </label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label">
+                                            <input type="radio" class="form-check-input" name="optionsRadios" id="nothEastIn" value="NorthEast">
+                                            ภาคตะวันออกเฉียงเหนือ
+                                        </label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label">
+                                            <input type="radio" class="form-check-input" name="optionsRadios" id="westIn" value="West">
+                                            ภาคตะวันตก
+                                        </label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label">
+                                            <input type="radio" class="form-check-input" name="optionsRadios" id="centralIn" value="Central">
+                                            ภาคกลาง
+                                        </label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label">
+                                            <input type="radio" class="form-check-input" name="optionsRadios" id="eastIn" value="East">
+                                            ภาคตะวันออก
+                                        </label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label">
+                                            <input type="radio" class="form-check-input" name="optionsRadios" id="southIn" value="South">
+                                            ภาคใต้
+                                        </label>
+                                    </div>
+                                </fieldset>
+                                <label for="guest">อัพโหลดรูปภาพ</label>
+                                <div class="form-group has-feedback">
+                                    <label class="custom-file">
+                                        <input type="file" id="file" class="custom-file-input">
+                                        <span class="custom-file-control"></span>
+                                    </label>
+                                    <small id="fileHelp" class="form-text text-muted">Upload .jpg, .png extensions only.</small>
                                 </div>
                                 <div class="form-group has-feedback" id="latitudeInDiv">
                                     <label for="latitude">Latitude</label>
@@ -42,7 +94,7 @@
                                 </div>
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-primary btn-block" id="addHomestayButton">Add Homestay</button>
-                                    <button class="btn btn-secondary btn-block" id="cancelAddHomestayButton">Cancel</button>
+                                    <button class="btn btn-secondary btn-block" id="addHomestayButton">Cancel</button>
                                 </div>
                             </form>
                         </div>

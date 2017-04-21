@@ -40,7 +40,11 @@
                                     <div class="col">
                                         <div class="form-group has-feedback" id="homestayNameInDivInDiv">
                                             <label for="homestayName">Homestay Name</label>
-                                            <input type="text" class="form-control" name="homestayname" id="homestayNameIn" placeholder="" value="<%=homestay.getHs_name()%>" required>
+                                            <input type="text" class="form-control" name="homestayname" id="homestayNameIn" placeholder="" value="<%=homestay.getHs_name()%>" disabled>
+                                        </div>
+                                        <div class="form-group has-feedback" id="roomNameInDivInDiv">
+                                            <label for="roomName">Room Name</label>
+                                            <input type="text" class="form-control" name="homestayname" id="roomNameIn" placeholder="" value="" disabled>
                                         </div>
                                         <div class="form-group has-feedback" id="checkinInDiv">
                                             <label for="checkin">Check-in</label>

@@ -1,12 +1,16 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <% if (session.getAttribute("customer") != null) {  %><jsp:include page="templates/headerauth.jsp" /><% } else { %><jsp:include page="templates/header.jsp" /><% }%>
 <div class="container">
-    <div class="row justify-content-center mt-5">
+    <div class="row justify-content-center my-3">
         <div class="col-sm-12 col-md-8" id="homestay">
             <div class="card">
                 <h3 class="card-header">My Room</h3>
                 <div class="card-block">
                     <form action="AddRoom" method="get">
+                        <div class="form-group has-feedback" id="homestayIdDiv">
+                            <label for="homestayId">Homestay ID</label>
+                            <input type="text" class="form-control" name="homestay_id" id="homestayIdIn" value="123" disabled>
+                        </div>
                         <div class="form-group has-feedback" id="homestayNameInDiv">
                             <label for="homestayname">ชื่อห้อง</label>
                             <input type="text" class="form-control" name="room_name" id="roomNameIn" placeholder="" required>
@@ -18,10 +22,6 @@
                         <div class="form-group has-feedback" id="guestInDiv">
                             <label for="guest">จำนวนผู้เข้าพักสูงสุด</label>
                             <input type="text" class="form-control" name="room_limit" id="limitIn" placeholder="" required>
-                        </div>
-                        <div class="form-group has-feedback" id="guestInDiv">
-                            <label for="guest">Homestay ID</label>
-                            <input type="text" class="form-control" name="homestay_id" id="limitIn" placeholder="" required>
                         </div>
                         <label for="facilities"> สิ่งอำนวยความสะดวก </label>
                         <div class="row">
@@ -155,7 +155,7 @@
                         </div>
                         <div class="form-check form-check-inline">
                             <label class="form-check-label">
-                                <input class="form-check-input" type="checkbox" name="facilities" id="inlineCheckbox3" value="31" > ฝูกนอน
+                                <input class="form-check-input" type="checkbox" name="facilities" id="inlineCheckbox3" value="31" > ฟูกนอน
                             </label>
                         </div>
                         <div class="form-check form-check-inline">
