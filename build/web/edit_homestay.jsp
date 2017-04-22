@@ -84,14 +84,6 @@
                                     </label>
                                     <small id="fileHelp" class="form-text text-muted">Upload .jpg, .png extensions only.</small>
                                 </div>
-                                <div class="form-group has-feedback" id="latitudeInDiv">
-                                    <label for="latitude">Latitude</label>
-                                    <input type="text" class="form-control" name="latitude" id="latitudeIn" placeholder="" required>
-                                </div>
-                                <div class="form-group has-feedback" id="longtitudeInDiv">
-                                    <label for="longtitude">Longtitude</label>
-                                    <input type="text" class="form-control" name="longtitude" id="longtitudeIn" placeholder="" required>
-                                </div>
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-primary btn-block" id="addHomestayButton">Add Homestay</button>
                                     <button class="btn btn-secondary btn-block" id="addHomestayButton">Cancel</button>

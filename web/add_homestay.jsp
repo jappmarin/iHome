@@ -78,19 +78,9 @@
                                 </fieldset>
                                 <label for="guest">อัพโหลดรูปภาพ</label>
                                 <div class="form-group has-feedback">
-                                    <label class="custom-file">
-                                        <input type="file" id="file" class="custom-file-input" name="file">
-                                        <span class="custom-file-control"></span>
+                                    <input type="file" name="file"/>
                                     </label>
                                     <small id="fileHelp" class="form-text text-muted">Upload .jpg, .png extensions only.</small>
-                                </div>
-                                <div class="form-group has-feedback" id="latitudeInDiv">
-                                    <label for="latitude">Latitude</label>
-                                    <input type="text" class="form-control" name="latitude" id="latitudeIn" placeholder="" required>
-                                </div>
-                                <div class="form-group has-feedback" id="longtitudeInDiv">
-                                    <label for="longtitude">Longtitude</label>
-                                    <input type="text" class="form-control" name="longtitude" id="longtitudeIn" placeholder="" required>
                                 </div>
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-primary btn-block" id="addHomestayButton">Add Homestay</button>

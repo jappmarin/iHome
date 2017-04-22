@@ -1,7 +1,5 @@
 package controller;
 
-import java.awt.Color;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.sql.Connection;
@@ -9,13 +7,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.imageio.ImageIO;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -26,6 +23,9 @@ import model.Customer;
 import model.Homestay;
 
 @WebServlet(name = "AddHomestay", urlPatterns = {"/AddHomestay"})
+@MultipartConfig(fileSizeThreshold = 1024 * 1024 * 2, // 2MB
+        maxFileSize = 1024 * 1024 * 10, // 10MB
+        maxRequestSize = 1024 * 1024 * 50)   // 50MB
 public class AddHomestay extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -59,15 +59,9 @@ public class AddHomestay extends HttpServlet {
             fileSaveDir.mkdir();
         }
 
-        Part part = request.getPart("homestay");
-        String fileName = customer.getUsername() + "_" + extractFileName(part);
-
-        ArrayList<String> acceptedFile = new ArrayList<String>();
-        acceptedFile.add(".jpg");
-        acceptedFile.add(".png");
-
-        fileName = new File(fileName).getName();
-        part.write(savePath + File.separator + fileName);
+        Part part = request.getPart("file");
+        part.write(savePath + File.separator + hs_pic + ".jpg");
+        part.delete();
 
         try {
             Homestay homestay = new Homestay();
@@ -78,14 +72,13 @@ public class AddHomestay extends HttpServlet {
             homestay.setHs_region(hs_region);
             homestay.setHs_province(hs_province);
             homestay.setHs_district(hs_district);
-            homestay.setHs_lat(hs_lat);
-            homestay.setHs_long(hs_long);
             homestay.setHs_pic(hs_pic + ".jpg");
             homestay.addHomestay(connection);
 
         } catch (SQLException ex) {
 
         }
+        
         PreparedStatement select_homestay = connection.prepareStatement("select * from test_base.homestay where hs_name = ?");
         select_homestay.setString(1, request.getParameter("homestayname"));
         ResultSet display_homestay = select_homestay.executeQuery();
@@ -98,21 +91,8 @@ public class AddHomestay extends HttpServlet {
         session.setAttribute("hs_guest", display_homestay.getInt("hs_guest"));
         session.setAttribute("hs_address", display_homestay.getString("hs_address"));
         session.setAttribute("hs_province", display_homestay.getString("hs_province"));
-        session.setAttribute("hs_lat", display_homestay.getString("hs_lat"));
-        session.setAttribute("hs_long", display_homestay.getString("hs_long"));
 
-        response.sendRedirect("profile_host.jsp");
-    }
-
-    private String extractFileName(Part part) {
-        String contentDisp = part.getHeader("content-disposition");
-        String[] items = contentDisp.split(";");
-        for (String s : items) {
-            if (s.trim().startsWith("filename")) {
-                return s.substring(s.indexOf("=") + 2, s.length() - 1);
-            }
-        }
-        return "";
+        response.sendRedirect("profile.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
