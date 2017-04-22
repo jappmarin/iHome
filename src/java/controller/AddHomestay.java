@@ -1,10 +1,12 @@
 package controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletContext;
@@ -14,7 +16,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import model.Customer;
+import javax.servlet.http.Part;
 import model.Homestay;
 
 @WebServlet(name = "AddHomestay", urlPatterns = {"/AddHomestay"})
@@ -51,13 +53,27 @@ public class AddHomestay extends HttpServlet {
             homestay.setHs_district(hs_district);
             homestay.setHs_lat(hs_lat);
             homestay.setHs_long(hs_long);
-            homestay.setHs_pic(hs_lat);
+
+            String appPath = request.getServletContext().getRealPath("");
+            String savePath = appPath + "/asset/img/homestay";
+
+            File fileSaveDir = new File(savePath);
+            if (!fileSaveDir.exists()) {
+                fileSaveDir.mkdir();
+            }
+
+            Part part = request.getPart("homestay");
+            String fileName = extractFileName(part);
+
+            fileName = new File(fileName).getName();
+            part.write(savePath + File.separator + fileName);
+            homestay.setHs_pic(fileName + ".jpg");
+
             homestay.addHomestay(connection);
-            
+
         } catch (SQLException ex) {
 
         }
-
         PreparedStatement select_homestay = connection.prepareStatement("select * from test_base.homestay where hs_name = ?");
         select_homestay.setString(1, request.getParameter("homestayname"));
         ResultSet display_homestay = select_homestay.executeQuery();
@@ -74,6 +90,17 @@ public class AddHomestay extends HttpServlet {
         session.setAttribute("hs_long", display_homestay.getString("hs_long"));
 
         response.sendRedirect("profile_host.jsp");
+    }
+
+    private String extractFileName(Part part) {
+        String contentDisp = part.getHeader("content-disposition");
+        String[] items = contentDisp.split(";");
+        for (String s : items) {
+            if (s.trim().startsWith("filename")) {
+                return s.substring(s.indexOf("=") + 2, s.length() - 1);
+            }
+        }
+        return "";
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
