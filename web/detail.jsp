@@ -47,7 +47,8 @@
                                      <%}%>
                                     <h4 class="card-title">ราคาต่อคืน</h4>
                                     <p class="card-text"><%=room.getRoom_price()%></p>
-                                    <h4 class="card-title">จำนวนผู้เข้าพัก</h4>
+                                    <h4 class="card-title">จำนวนผู้เข้าพักสูงสุด</h4>
+                                    <p class="card-text"><%=room.getRoom_limit()%> คน</p>
                                     <a href="${SITE_URL}/Booking/?id=<%=room.getRoom_id()%>" class="btn btn-primary btn-lg">Booking</a>
                                 </div>
                             </div>

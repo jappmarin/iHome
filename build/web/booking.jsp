@@ -46,7 +46,7 @@
                                 </div>
                                 <div class="form-group has-feedback" id="roomNameInDivInDiv">
                                     <label for="roomName">Room Name</label>
-                                    <input type="text" class="form-control" name="homestayname" id="roomNameIn" placeholder="" value="" disabled>
+                                    <input type="text" class="form-control" name="homestayname" id="roomNameIn" placeholder="" value="<%=room.getRoom_name()%>" disabled>
                                 </div>
                                 <div class="form-group has-feedback" id="checkinInDiv">
                                     <label for="checkin">Check-in</label>
@@ -56,10 +56,11 @@
                                     <label for="checkout">Check-out</label>
                                     <input type="date" class="form-control" name="checkout" id="checkoutIn" placeholder="" onchange="totalDate();" required>
                                 </div>
+                                <label>จำนวนผู้เข้าพัก</label>
                                 <div class="form-inline">
-                                    <button class="btn btn-primary btn-sm mr-2 ml-2 mb-3" onclick="removeGuest<%=room.getRoom_id()%>();">-</button>
+                                    <button class="btn btn-primary btn-sm mr-2 ml-2 mb-3" onclick="removeGuest<%=room.getRoom_id()%>(); totalDate();">-</button>
                                     <input class="form-control mr-2 ml-2 mb-3" style="width: 45px;" type="text" id="guest<%=room.getRoom_id()%>" name="guest" value="1">
-                                    <button class="btn btn-primary btn-sm mr-2 ml-2 mb-3    " onclick="addGuest<%=room.getRoom_id()%>();">+</button>
+                                    <button class="btn btn-primary btn-sm mr-2 ml-2 mb-3    " onclick="addGuest<%=room.getRoom_id()%>(); totalDate();">+</button>
                                 </div>
                                 <script>
                                         var i<%=room.getRoom_id()%> = 1;
@@ -82,7 +83,7 @@
                                 </div>
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-primary btn-block" id="confirmButton">Confirm Booking</button>
-                                    <a class="btn btn-secondary btn-block" href="${SITE_URL}/Booking/?id=<%=homestay.getHs_id()%>" id="cancelButton">Cancel</a>
+                                    <a class="btn btn-secondary btn-block" href="${SITE_URL}/BookingConfirm/?id=<%=room.getRoom_id()%>" id="cancelButton">Cancel</a>
                                 </div>
                             </div>
                         </div>
@@ -95,7 +96,7 @@
 <script>
     function totalDate() {
         var diff = (Math.ceil((new Date(document.getElementById("checkoutIn").value) - new Date(document.getElementById("checkinIn").value)) / (1000 * 3600 * 24)));
-        document.getElementById("priceIn").value = diff;
+        document.getElementById("priceIn").value = (diff * <%=room.getRoom_price()%>)* document.getElementById("guest<%=room.getRoom_id()%>").value;
     }
 </script>
 <jsp:include page="templates/footer.jsp" />

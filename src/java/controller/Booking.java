@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.Homestay;
+import model.Room;
 
 @WebServlet(name = "Booking", urlPatterns = {"/Booking/"})
 public class Booking extends HttpServlet {
@@ -26,11 +27,13 @@ public class Booking extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
 
-        HttpSession session = request.getSession();
         ServletContext context = getServletContext();
         Connection connection = (Connection) context.getAttribute("connection");
 
-        PreparedStatement select_homestay = connection.prepareStatement("select * from test_base.homestay where homestay_id = '" + request.getParameter("id") + "';");
+        HttpSession session = request.getSession();
+        String homestay_id = (String) session.getAttribute("homestay_id");
+        
+        PreparedStatement select_homestay = connection.prepareStatement("select * from test_base.room join test_base.homestay using ('" + homestay_id + "') where room_id = '" + request.getParameter("id") + "';");
         ResultSet display_homestay = select_homestay.executeQuery();
 
         Homestay homestay = new Homestay();
@@ -47,10 +50,22 @@ public class Booking extends HttpServlet {
             homestay.setHs_lat(display_homestay.getString("homestay_latitude"));
             homestay.setHs_long(display_homestay.getString("homestay_longitude"));
         }
+        
+        PreparedStatement select_room = connection.prepareStatement("select * from test_base.room where room_id = '" + request.getParameter("id") + "';");
+        ResultSet display_room = select_room.executeQuery();
 
-        session.setAttribute("homestay_id", homestay.getHs_id());
+        Room room = new Room();
 
+        if (display_room.next()) {
+            room.setRoom_id(display_room.getInt("room_id"));
+            room.setRoom_name(display_room.getString("room_name"));
+            room.setRoom_price(display_room.getFloat("room_price"));
+        }
+
+        request.setAttribute("homestay_id", homestay.getHs_id());
         request.setAttribute("homestay", homestay);
+        request.setAttribute("room_id", room.getRoom_id());
+        request.setAttribute("room", room);
         RequestDispatcher obj = request.getRequestDispatcher("/booking.jsp");
         obj.forward(request, response);
     }
