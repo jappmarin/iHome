@@ -9,6 +9,7 @@
         <title>Vacation Rentals, Homes, Experiences & Places - iHome</title>
         <link rel="stylesheet" href="${SITE_URL}/asset/css/bootstrap.min.css">
         <link rel="stylesheet" href="${SITE_URL}/asset/css/style.css">
+        <link href="https://fonts.googleapis.com/css?family=Kanit" rel="stylesheet">
         <script src="${SITE_URL}/asset/js/jquery-3.2.1.min.js"></script>
         <script src="${SITE_URL}/asset/js/bootstrap.min.js"></script>
     </head>
