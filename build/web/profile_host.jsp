@@ -10,7 +10,7 @@
                             <p>Name : ${sessionScope.customer.firstname} ${sessionScope.customer.lastname}</p>
                             <p>Email : ${sessionScope.customer.email}</p>
                             <p>Phone Number : ${sessionScope.customer.phone}</p>
-                            <button type="submit" class="btn btn-primary btn-block">Edit Profile</button>
+                            <a href="edit_profile.jsp" class="btn btn-primary btn-block">Edit Profile</a>
                         </div>
                     </div>
                 </div>
