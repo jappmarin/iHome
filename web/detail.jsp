@@ -46,7 +46,9 @@
                             <div class="card">
                                 <div class="card-block">
                                     <h4 class="card-title">รายละเอียดห้องพัก</h4>
-                                    <p class="card-text"></p>
+                                    <%for(String fac : room.getFacilities()){%>
+                                     <p class="card-text">- <%=fac%> <br> </p> 
+                                     <%}%>
                                     <h4 class="card-title">ราคาต่อคืน</h4>
                                     <p class="card-text"><%=room.getRoom_price()%></p>
                                     <h4 class="card-title">จำนวนผู้เข้าพัก</h4>

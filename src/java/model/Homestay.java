@@ -33,7 +33,7 @@ public class Homestay {
         select_homestay.setString(1, username);
         ResultSet display_homestay = select_homestay.executeQuery();
 
-        if (display_homestay.next()) {
+        if (display_homestay.next()){
             this.setHost(username);
             this.setHs_name(display_homestay.getString("homestay_name"));
             this.setHs_pic(display_homestay.getString("homestay_picture"));

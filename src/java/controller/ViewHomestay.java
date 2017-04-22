@@ -65,6 +65,8 @@ public class ViewHomestay extends HttpServlet {
             room.setRoom_price(display_room.getFloat("room_price"));
             room.setRoom_limit(display_room.getInt("room_limit"));
             room.setRoom_picture(display_room.getString("room_picture"));
+            room.setFacilities(connection, room.getRoom_id());
+            System.out.println(room.getFacilities());
             allRoom.add(room);
         }
         
