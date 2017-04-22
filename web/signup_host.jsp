@@ -7,7 +7,7 @@
                         <h3 class="card-header">Sign Up</h3>
                         <div class="card-block">
                             <form action="Signup" method="POST">
-                                <% session.setAttribute("customer_type", "HOST"); %>
+                                <% session.setAttribute("cus_type", "HOST"); %>
                                 <div class="form-group has-feedback" id="firstNameInDiv">
                                     <label for="firstname">First Name</label>
                                     <input type="text" class="form-control" name="firstname" id="firstNameIn" placeholder="John" required="">

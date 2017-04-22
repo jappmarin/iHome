@@ -29,7 +29,7 @@
                                 </div>
                                 <div class="form-group has-feedback" id="passwordInDiv">
                                     <label for="password">Re-enter your Password</label>
-                                    <input type="password" class="form-control" name="password" id="passwordIn" placeholder="" value="" required>
+                                    <input type="password" class="form-control" name="re_enPass" id="passwordIn" placeholder="" value="" required>
                                 </div>
                                 <button type="submit" class="btn btn-primary btn-block">Save changes</button>
                                 <a href="profile.jsp" class="btn btn-secondary btn-block">Cancel</a>

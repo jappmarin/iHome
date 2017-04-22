@@ -1,6 +1,8 @@
 package controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import static java.lang.System.out;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,6 +16,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.Customer;
 
 @WebServlet(name = "EditProfile", urlPatterns = {"/EditProfile"})
 public class EditProfile extends HttpServlet {
@@ -27,9 +30,25 @@ public class EditProfile extends HttpServlet {
         ServletContext context = getServletContext();
         Connection connection = (Connection) context.getAttribute("connection");
         HttpSession session = request.getSession();
-
+        
         String password = (String) session.getAttribute("password");
-        String confirmPassword = request.getParameter("password");
+        String confirmPassword = request.getParameter("re_enPass");
+
+        String username = (String) session.getAttribute("username");
+        String firstname = request.getParameter("firstname");
+        String lastname = request.getParameter("lastname");
+        String email = request.getParameter("email");
+        String phone = request.getParameter("phone");
+        String type = (String) session.getAttribute("type");
+        
+        out.println(username);
+        out.println(lastname);
+        out.println(firstname);
+        out.println(email);
+        out.println(phone);
+        out.println(confirmPassword);
+        out.println(password);
+        out.println(type);
 
         if (password.equals(confirmPassword)) {
             PreparedStatement update_customer = connection.prepareStatement("update test_base.customer set f_name = ?, l_name = ?, email = ?, phone = ? where username = ? and password = ?");
@@ -47,20 +66,28 @@ public class EditProfile extends HttpServlet {
             ResultSet display_customer = select_customer.executeQuery();
             display_customer.next();
 
-            session.setAttribute("username", display_customer.getString("username"));
-            session.setAttribute("firstname", display_customer.getString("f_name"));
-            session.setAttribute("lastname", display_customer.getString("l_name"));
-            session.setAttribute("email", display_customer.getString("email"));
-            session.setAttribute("phone", display_customer.getString("phone"));
-
-            if (session.getAttribute("customer_type").equals("Guest")) {
+//            session.setAttribute("username", display_customer.getString("username"));
+//            session.setAttribute("firstname", display_customer.getString("f_name"));
+//            session.setAttribute("lastname", display_customer.getString("l_name"));
+//            session.setAttribute("email", display_customer.getString("email"));
+//            session.setAttribute("phone", display_customer.getString("phone"));
+            Customer customer = new Customer(connection, username);
+            session.setAttribute("customer", customer);
+            
+            if (session.getAttribute("type").equals("GUEST")) {
                 response.sendRedirect("profile.jsp");
             } else {
                 response.sendRedirect("profile_host.jsp");
             }
 
         } else {
-            response.sendRedirect("error.jsp");
+            PrintWriter out = response.getWriter();
+            response.setContentType("text/html");
+            out.println("<script type=\"text/javascript\">");
+            out.println("alert('Password Wrong!');");
+            out.println("location='edit_profile.jsp';");
+            out.println("</script>");
+//            response.sendRedirect("error.jsp");
         }
 
     }

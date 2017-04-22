@@ -1,8 +1,14 @@
 package controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import static java.lang.System.out;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,7 +22,7 @@ import model.Customer;
 public class Signup extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
@@ -27,26 +33,56 @@ public class Signup extends HttpServlet {
 
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        String firstname = request.getParameter("f_name");
-        String lastname = request.getParameter("l_name");
+        String confirmPass = request.getParameter("confirmPass");
+        String firstname = request.getParameter("firstname");
+        String lastname = request.getParameter("lastname");
         String email = request.getParameter("email");
         String birthdate = request.getParameter("birthdate");
         String phone = request.getParameter("phone");
-        String type = (String) session.getAttribute("type");
+        String type = (String) session.getAttribute("cus_type");
 
-        try {
-            Customer customer = new Customer(username);
-            customer.setPassword(password);
-            customer.setFirstname(firstname);
-            customer.setLastname(lastname);
-            customer.setEmail(email);
-            customer.setBirthdate(birthdate);
-            customer.setPhone(phone);
-            customer.setType(type);
-            customer.addNewCustomer(connection);
+        PreparedStatement select_customer = connection.prepareStatement("select * from test_base.customer where username = ? ");
+        select_customer.setString(1, username);
+        ResultSet display_customer = select_customer.executeQuery();
+        
+        out.println(type);
 
-            response.sendRedirect("signin.jsp");
-        } catch (SQLException ex) {
+        if (display_customer.next()) {
+            //servlet code
+            PrintWriter out = response.getWriter();
+            response.setContentType("text/html");
+            out.println("<script type=\"text/javascript\">");
+            out.println("alert('Username not available');");
+            out.println("location='signup.jsp';");
+            out.println("</script>");
+            
+//            RequestDispatcher rd = request.getRequestDispatcher("signin.jsp");
+//            rd.forward(request, response);
+            //response.sendRedirect("signup.jsp");
+        }
+        else if (!password.equals(confirmPass)){
+            PrintWriter out = response.getWriter();
+            response.setContentType("text/html");
+            out.println("<script type=\"text/javascript\">");
+            out.println("alert('ConfirmPassword not match');");
+            out.println("location='signup.jsp';");
+            out.println("</script>");
+        }
+        else {
+            try {
+                Customer customer = new Customer(username);
+                customer.setPassword(password);
+                customer.setFirstname(firstname);
+                customer.setLastname(lastname);
+                customer.setEmail(email);
+                customer.setBirthdate(birthdate);
+                customer.setPhone(phone);
+                customer.setType(type);
+                customer.addNewCustomer(connection);
+                response.sendRedirect("signin.jsp");
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
         }
     }
 
@@ -62,7 +98,11 @@ public class Signup extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(Signup.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -76,7 +116,11 @@ public class Signup extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(Signup.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -36,11 +37,18 @@ public class Signin extends HttpServlet {
         HttpSession session = request.getSession();
 
         if (!display_customer.next()) {
-            response.sendRedirect("error.jsp");
+            PrintWriter out = response.getWriter();
+            response.setContentType("text/html");
+            out.println("<script type=\"text/javascript\">");
+            out.println("alert('Username or Password Wrong!');");
+            out.println("location='signin.jsp';");
+            out.println("</script>");
         } else {
             
             Customer customer = new Customer(connection, request.getParameter("username"));
             session.setAttribute("customer", customer);
+            session.setAttribute("username", customer.getUsername());
+            session.setAttribute("password", customer.getPassword());
             session.setAttribute("type" , customer.getType());
             response.sendRedirect("index.jsp");
         }
