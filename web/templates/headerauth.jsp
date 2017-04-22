@@ -31,7 +31,7 @@
                            <% } else if (session.getAttribute("type").equals("HOST")) {%>
                            ${SITE_URL}/profile_host.jsp
                            <% } else if (session.getAttribute("type").equals("ADMIN")) {%>
-                           ${SITE_URL}/cp.jsp
+                           ${SITE_URL}/PublishHomestay
                            <% } %>
                            ">
                             <% if (session.getAttribute("type").equals("ADMIN")) { %>

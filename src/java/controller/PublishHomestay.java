@@ -33,7 +33,7 @@ public class PublishHomestay extends HttpServlet {
         Connection connection = (Connection) context.getAttribute("connection");
 
         ArrayList<Homestay> checkHome = new ArrayList<>();
-        String sql = "select * from test_base.homestay where homestay_id = ? and homestay_agree = 0;";
+        String sql = "select * from test_base.homestay where homestay_agree = '" + "YES" +"';";
         Statement select_homestay_name = connection.createStatement();
         ResultSet display_homestay_name = select_homestay_name.executeQuery(sql);
         while (display_homestay_name.next()) {
