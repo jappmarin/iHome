@@ -29,7 +29,7 @@
                            <% if (session.getAttribute("type").equals("GUEST") || session.getAttribute("type").equals("HOST")) { %>
                            ${SITE_URL}/profile.jsp
                            <% } else if (session.getAttribute("type").equals("ADMIN")) {%>
-                           ${SITE_URL}/ViewControlPanel
+                           ${SITE_URL}/PublishHomestay
                            <% } %>
                            ">
                             <% if (session.getAttribute("type").equals("ADMIN")) { %>
