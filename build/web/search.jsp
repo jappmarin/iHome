@@ -105,13 +105,24 @@
                     if (allHome != null) {
                         for (Homestay home : allHome) {
                             request.setAttribute("homestay_id", home.getHs_id());%>
-                <div class="col-sm-4">
+                <div class="col-sm-6">
                     <div class="card text-center mt-2">
                         <img class="card-img-top" src="${SITE_URL}/asset/img/logo.png">
-                        <div class="card-block">
-                            <h4 class="card-title"><%=home.getHs_name()%></h4>
+                        <br>
+                        <style>
+                            #cut{
+                                display: -webkit-box;
+                                -webkit-line-clamp: 2;
+                                -webkit-box-orient: vertical;
+                                overflow: hidden;
+                                height: 4.2em;
+                            }
+                        </style>
+                        <h4 class="card-title"><%=home.getHs_name()%></h4>
+                        <div id="cut" class="card-block">
                             <p class="card-text"><%=home.getHs_desc()%></p>
                         </div>
+                        <br>
                         <div class="card-footer">
                             <a class="btn btn-primary" href="${SITE_URL}/ViewHomestay/?id=<%=home.getHs_id()%>" >See more</a>
                         </div>
