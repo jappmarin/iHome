@@ -28,6 +28,8 @@ public class ViewControlPanel extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
         
+        String[] checkbox = request.getParameterValues("checkbox");
+        
         HttpSession session = request.getSession();
         ServletContext context = getServletContext();
         Connection connection = (Connection) context.getAttribute("connection");
@@ -50,6 +52,16 @@ public class ViewControlPanel extends HttpServlet {
             homestay.setHs_long(display_homestay_name.getString("homestay_longitude"));
             checkHome.add(homestay);
         }
+        
+//        if(!checkbox.equals(null)){
+//            for(String homestay_id : checkbox){
+//            PreparedStatement select_homestay = connection.prepareStatement("update tase_base.homestay set homestay_agree = 'NO' where homestay_id = ?");
+//            select_homestay.setString(1, homestay_id);
+//            select_homestay.executeUpdate();
+//            
+//        }
+//        }
+        
         
         request.setAttribute("checkHome", checkHome);
         RequestDispatcher obj = request.getRequestDispatcher("/cp.jsp");

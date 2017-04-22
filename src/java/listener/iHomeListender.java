@@ -1,6 +1,7 @@
 package listener;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -15,9 +16,9 @@ public class iHomeListender implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent sce) {
         try {
-            connection = getIhome().getConnection();
+            connection = getIhomee().getConnection();
             sce.getServletContext().setAttribute("connection", connection);
-        } catch (Exception e) {
+        } catch (SQLException | NamingException e) {
         }
     }
 
@@ -28,16 +29,16 @@ public class iHomeListender implements ServletContextListener {
         } catch (Exception ex) {
         }
     }
-
-    private DataSource getIhome() throws NamingException {
-        Context c = new InitialContext();
-        return (DataSource) c.lookup("java:comp/env/ihome");
-    }
-
-//    private DataSource getIhomee() throws NamingException {
+//
+//    private DataSource getIhome() throws NamingException {
 //        Context c = new InitialContext();
-//        return (DataSource) c.lookup("java:comp/env/ihomee");
+//        return (DataSource) c.lookup("java:comp/env/ihome");
 //    }
+
+    private DataSource getIhomee() throws NamingException {
+        Context c = new InitialContext();
+        return (DataSource) c.lookup("java:comp/env/ihomee");
+    }
 
     
 }
