@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class Room {
 
@@ -18,9 +19,10 @@ public class Room {
     private float room_price;
     private String room_picture;
     private int homestay_id;
+    private ArrayList<String> facilities;
     private Connection connection;
-    
-    public Room(){
+
+    public Room() {
     }
 
     public Room(int room_id) {
@@ -30,7 +32,7 @@ public class Room {
     public Room(Connection connection, String room_name) throws SQLException {
         this.room_name = room_name;
         this.connection = connection;
-        
+
         PreparedStatement select_room = connection.prepareStatement("select * from test_base.room where room_name = ?");
         select_room.setString(1, room_name);
         ResultSet display_room = select_room.executeQuery();
@@ -50,7 +52,7 @@ public class Room {
         insert_room.setString(1, this.getRoom_name());
         insert_room.setInt(2, this.getRoom_limit());
         insert_room.setFloat(3, this.getRoom_price());
-        insert_room.setString(4,"pic.jpg");
+        insert_room.setString(4, "pic.jpg");
         insert_room.setInt(5, this.getHomestay_id());
         insert_room.executeUpdate();
     }
@@ -89,13 +91,37 @@ public class Room {
         update_room.setInt(2, this.getRoom_id());
         update_room.executeUpdate();
     }
-    
-    public void addRoom_facilities(Connection connection, int room_id, int fac_id) throws SQLException{
+
+    public void addRoom_facilities(Connection connection, int room_id, int fac_id) throws SQLException {
         PreparedStatement insert_fac = connection.prepareStatement("insert into test_base.room_fac(room_id, fac_id, unit) value(?, ?, ?)");
         insert_fac.setInt(1, room_id);
         insert_fac.setInt(2, fac_id);
         insert_fac.setInt(3, 0);
         insert_fac.executeUpdate();
+    }
+
+    /**
+     * @param connection
+     * @param room_id
+     * @return the facilities
+     */
+    public ArrayList<String> getFacilities() {
+        return facilities;
+    }
+
+    /**
+     * @param connection
+     * @param room_id
+     * @throws java.sql.SQLException
+     */
+    public void setFacilities(Connection connection, int room_id) throws SQLException {
+        PreparedStatement select_fac = connection.prepareStatement("select fac_name from test_base.room_fac join test_base.facilities using(fac_id) where room_id = ?");
+        select_fac.setInt(1, room_id);
+        ResultSet display_fac = select_fac.executeQuery();
+        facilities = new ArrayList<>();
+        while(display_fac.next()) {                            
+            this.facilities.add(display_fac.getString("fac_name"));            
+        } 
     }
 
     /**
