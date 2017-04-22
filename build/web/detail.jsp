@@ -26,11 +26,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <% if (request.getAttribute("allRoom") != null) { %>
+                                <% if (request.getAttribute("allRoom") != null) { %>
     <% ArrayList<Room> allRoom = (ArrayList<Room>) request.getAttribute("allRoom");
         for (model.Room room : allRoom) {%>
     <div class="row justify-content-center my-2">
@@ -63,6 +59,11 @@
     </div>
     <% }
         }%>
+                </div>
+            </div>
+        </div>
+    </div>
+    
     <div class="row justify-content-center my-2">
         <div class="col-sm-12">
             <div class="card">
