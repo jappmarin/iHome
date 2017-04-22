@@ -79,7 +79,7 @@
                                 <label for="guest">อัพโหลดรูปภาพ</label>
                                 <div class="form-group has-feedback">
                                     <label class="custom-file">
-                                        <input type="file" id="file" class="custom-file-input">
+                                        <input type="file" id="file" class="custom-file-input" name="file">
                                         <span class="custom-file-control"></span>
                                     </label>
                                     <small id="fileHelp" class="form-text text-muted">Upload .jpg, .png extensions only.</small>

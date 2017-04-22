@@ -1,3 +1,4 @@
+<%@page import="model.Homestay"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <% if (session.getAttribute("customer") != null) {  %><jsp:include page="templates/headerauth.jsp" /><% } else { %><jsp:include page="templates/header.jsp" /><% }%>
         <div class="container">
@@ -6,7 +7,7 @@
                     <div class="card">
                         <h3 class="card-header">My Homestay</h3>
                         <div class="card-block">
-                            <p>ชื่อโฮมสเตย์ : ${sessionScope.hs_name}</p>
+                            <p>ชื่อโฮมสเตย์ : ${request.getAttribute("homestay")}</p>
                             <p>รายละเอียดโฮมสเตย์ : </p>
                             <a href="edit_homestay.jsp" class="btn btn-primary btn-block mt-3">Edit Homestay</a>
                             <div class="row justify-content-center my-2">

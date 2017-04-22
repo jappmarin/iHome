@@ -27,7 +27,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="
                            <% if (session.getAttribute("type").equals("GUEST") || session.getAttribute("type").equals("HOST")) { %>
-                           ${SITE_URL}/profile.jsp
+                           ${SITE_URL}/ViewProfile
                            <% } else if (session.getAttribute("type").equals("ADMIN")) {%>
                            ${SITE_URL}/PublishHomestay
                            <% } %>

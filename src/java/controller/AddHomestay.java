@@ -1,14 +1,19 @@
 package controller;
 
+import java.awt.Color;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,6 +22,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
+import model.Customer;
 import model.Homestay;
 
 @WebServlet(name = "AddHomestay", urlPatterns = {"/AddHomestay"})
@@ -31,7 +37,12 @@ public class AddHomestay extends HttpServlet {
         ServletContext context = getServletContext();
         Connection connection = (Connection) context.getAttribute("connection");
         HttpSession session = request.getSession();
+        Customer customer = (Customer) session.getAttribute("customer");
 
+        Calendar calendar = Calendar.getInstance();
+
+        String appPath = request.getServletContext().getRealPath("");
+        String savePath = appPath + "/asset/img/homestay";
         String hs_name = request.getParameter("homestayname");
         String hs_desc = request.getParameter("detail");
         String hs_address = request.getParameter("address");
@@ -41,6 +52,22 @@ public class AddHomestay extends HttpServlet {
         String hs_district = request.getParameter("district");
         String hs_lat = request.getParameter("latitude");
         String hs_long = request.getParameter("longitude");
+        String hs_pic = (customer.getUsername() + new Timestamp(calendar.getTime().getTime()).toString()).hashCode() + "";
+
+        File fileSaveDir = new File(savePath);
+        if (!fileSaveDir.exists()) {
+            fileSaveDir.mkdir();
+        }
+
+        Part part = request.getPart("homestay");
+        String fileName = customer.getUsername() + "_" + extractFileName(part);
+
+        ArrayList<String> acceptedFile = new ArrayList<String>();
+        acceptedFile.add(".jpg");
+        acceptedFile.add(".png");
+
+        fileName = new File(fileName).getName();
+        part.write(savePath + File.separator + fileName);
 
         try {
             Homestay homestay = new Homestay();
@@ -53,22 +80,7 @@ public class AddHomestay extends HttpServlet {
             homestay.setHs_district(hs_district);
             homestay.setHs_lat(hs_lat);
             homestay.setHs_long(hs_long);
-
-            String appPath = request.getServletContext().getRealPath("");
-            String savePath = appPath + "/asset/img/homestay";
-
-            File fileSaveDir = new File(savePath);
-            if (!fileSaveDir.exists()) {
-                fileSaveDir.mkdir();
-            }
-
-            Part part = request.getPart("homestay");
-            String fileName = extractFileName(part);
-
-            fileName = new File(fileName).getName();
-            part.write(savePath + File.separator + fileName);
-            homestay.setHs_pic(fileName + ".jpg");
-
+            homestay.setHs_pic(hs_pic + ".jpg");
             homestay.addHomestay(connection);
 
         } catch (SQLException ex) {
