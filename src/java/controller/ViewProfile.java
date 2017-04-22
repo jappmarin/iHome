@@ -2,6 +2,8 @@ package controller;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -14,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.Customer;
+import model.Homestay;
 
 @WebServlet(name = "ViewProfile", urlPatterns = {"/ViewProfile"})
 public class ViewProfile extends HttpServlet {
@@ -28,15 +31,33 @@ public class ViewProfile extends HttpServlet {
         Connection connection = (Connection) context.getAttribute("connection");
         HttpSession session = request.getSession();
 
-        Customer profile = new Customer(connection, request.getParameter("username"));
+        Customer customer = new Customer(connection, request.getParameter("username"));
 
         if (session.getAttribute("type").equals("HOST")) {
-            request.setAttribute("customer", profile);
-            RequestDispatcher obj = request.getRequestDispatcher("../profile_host.jsp");
+
+            PreparedStatement select_homestay = connection.prepareStatement("select * from test_base.homestay where username = '" + request.getParameter("username") + "';");
+            ResultSet display_homestay = select_homestay.executeQuery();
+
+            Homestay homestay = new Homestay();
+
+            if (display_homestay.next()) {
+                homestay.setHs_id(display_homestay.getString("homestay_id"));
+                homestay.setHs_name(display_homestay.getString("homestay_name"));
+                homestay.setHs_desc(display_homestay.getString("homestay_desc"));
+                homestay.setHs_address(display_homestay.getString("homestay_address"));
+                homestay.setHs_license(display_homestay.getString("homestay_license"));
+                homestay.setHs_region(display_homestay.getString("homestay_region"));
+                homestay.setHs_province(display_homestay.getString("homestay_province"));
+                homestay.setHs_district(display_homestay.getString("homestay_district"));
+            }
+
+            request.setAttribute("homestay", homestay);
+            request.setAttribute("customer", customer);
+            RequestDispatcher obj = request.getRequestDispatcher("profile.jsp");
             obj.forward(request, response);
         } else {
-            request.setAttribute("customer", profile);
-            RequestDispatcher obj = request.getRequestDispatcher("../profile.jsp");
+            request.setAttribute("customer", customer);
+            RequestDispatcher obj = request.getRequestDispatcher("profile.jsp");
             obj.forward(request, response);
         }
     }

@@ -28,8 +28,6 @@ public class ViewHomestay extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
-        
-//        int Homestay_id = Integer.parseInt(request.getParameter("id"));
 
         ServletContext context = request.getServletContext();
         Connection connection = (Connection) context.getAttribute("connection");
@@ -70,7 +68,6 @@ public class ViewHomestay extends HttpServlet {
             allRoom.add(room);
         }
         
-        
         ArrayList<Comment> allComment = new ArrayList<>();
         Comment comment;
         
@@ -80,7 +77,6 @@ public class ViewHomestay extends HttpServlet {
         while (display_comment.next()) {
             comment = new Comment();
             comment.setUsername(display_comment.getString("username"));
-            //comment.setRoom_id(display_comment.getString("room_id"));
             comment.setFirstname(display_comment.getString("f_name"));
             comment.setLastname(display_comment.getString("l_name"));
             comment.setComment_date(display_comment.getString("review_date"));
