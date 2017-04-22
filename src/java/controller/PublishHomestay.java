@@ -1,20 +1,59 @@
 package controller;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import model.Homestay;
 
 @WebServlet(name = "PublishHomestay", urlPatterns = {"/PublishHomestay"})
 public class PublishHomestay extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
+        
+        HttpSession session = request.getSession();
+        ServletContext context = getServletContext();
+        Connection connection = (Connection) context.getAttribute("connection");
+
+        ArrayList<Homestay> checkHome = new ArrayList<>();
+        String sql = "select * from test_base.homestay where homestay_id = ? and homestay_agree = 0;";
+        Statement select_homestay_name = connection.createStatement();
+        ResultSet display_homestay_name = select_homestay_name.executeQuery(sql);
+        while (display_homestay_name.next()) {
+            Homestay homestay = new Homestay();
+            homestay.setHs_id(display_homestay_name.getString("homestay_id"));
+            homestay.setHs_name(display_homestay_name.getString("homestay_name"));
+            homestay.setHs_desc(display_homestay_name.getString("homestay_desc"));
+            homestay.setHs_address(display_homestay_name.getString("homestay_address"));
+            homestay.setHs_license(display_homestay_name.getString("homestay_license"));
+            homestay.setHs_region(display_homestay_name.getString("homestay_region"));
+            homestay.setHs_province(display_homestay_name.getString("homestay_province"));
+            homestay.setHs_district(display_homestay_name.getString("homestay_district"));
+            homestay.setHs_lat(display_homestay_name.getString("homestay_latitude"));
+            homestay.setHs_long(display_homestay_name.getString("homestay_longitude"));
+            checkHome.add(homestay);
+        }
+        
+        request.setAttribute("checkHome", checkHome);
+        RequestDispatcher obj = request.getRequestDispatcher("/cp.jsp");
+        obj.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -29,7 +68,11 @@ public class PublishHomestay extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(PublishHomestay.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -43,7 +86,11 @@ public class PublishHomestay extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(PublishHomestay.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
