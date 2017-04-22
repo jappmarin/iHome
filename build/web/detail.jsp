@@ -52,26 +52,6 @@
                                     <h4 class="card-title">ราคาต่อคืน</h4>
                                     <p class="card-text"><%=room.getRoom_price()%></p>
                                     <h4 class="card-title">จำนวนผู้เข้าพัก</h4>
-                                    <div class="form-inline">
-                                        <button class="btn btn-primary btn-sm mr-2 ml-2 mb-3" onclick="removeGuest<%=room.getRoom_id()%>();">-</button>
-                                        <input class="form-control mr-2 ml-2 mb-3" style="width: 45px;" type="text" id="guest<%=room.getRoom_id()%>" name="guest" value="1">
-                                        <button class="btn btn-primary btn-sm mr-2 ml-2 mb-3    " onclick="addGuest<%=room.getRoom_id()%>();">+</button>
-                                    </div>
-                                    <script>
-                                    var i<%=room.getRoom_id()%> = 1;
-                                    function addGuest<%=room.getRoom_id()%>() {
-                                        if (i<%=room.getRoom_id()%> >= 1 & i<%=room.getRoom_id()%> < 10) {
-                                            i<%=room.getRoom_id()%>++;
-                                            document.getElementById("guest<%=room.getRoom_id()%>").value = i<%=room.getRoom_id()%>;
-                                        }
-                                    }
-                                    function removeGuest<%=room.getRoom_id()%>() {
-                                        if (i<%=room.getRoom_id()%> > 1 & i<%=room.getRoom_id()%> <= 10) {
-                                            i<%=room.getRoom_id()%>--;
-                                            document.getElementById("guest<%=room.getRoom_id()%>").value = i<%=room.getRoom_id()%>;
-                                        }
-                                    }
-                                    </script>
                                     <a href="${SITE_URL}/Booking/?id=<%=room.getRoom_id()%>" class="btn btn-primary btn-lg">Booking</a>
                                 </div>
                             </div>
