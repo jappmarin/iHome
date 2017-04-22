@@ -95,7 +95,7 @@ public class Search extends HttpServlet {
         }
         if (low_price != null || max_price != null) {
             
-                PreparedStatement select_room_price = connection.prepareStatement("select * from test_base.homestay JOIN test_base.room USING (homestay_id) HAVING (room_price >= ? and room_price <= ? ..and homestay_agree = 'YES')");
+                PreparedStatement select_room_price = connection.prepareStatement("select * from test_base.homestay JOIN test_base.room USING (homestay_id) HAVING (room_price >= ? and room_price <= ? and homestay_agree = 'YES')");
                 select_room_price.setString(1, low_price);
                 select_room_price.setString(2, max_price);
                 ResultSet display_room_price = select_room_price.executeQuery();
