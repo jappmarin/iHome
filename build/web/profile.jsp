@@ -18,7 +18,7 @@
             <% if (session.getAttribute("type").equals("HOST")) { %>
             <div class="row justify-content-center">
                 <div class="col-sm-12 col-md-6">
-                    <button href="myhomestay.jsp" class="btn btn-warning btn-block" id="signUpButton">My Owned Homestay</button>
+                    <a href="myhomestay.jsp" class="btn btn-warning btn-block" id="signUpButton">My Owned Homestay</a>
                 </div>
             </div>
             <% }%>

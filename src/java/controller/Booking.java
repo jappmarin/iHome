@@ -31,9 +31,8 @@ public class Booking extends HttpServlet {
         Connection connection = (Connection) context.getAttribute("connection");
 
         HttpSession session = request.getSession();
-        String homestay_id = (String) session.getAttribute("homestay_id");
         
-        PreparedStatement select_homestay = connection.prepareStatement("select * from test_base.room join test_base.homestay using ('" + homestay_id + "') where room_id = '" + request.getParameter("id") + "';");
+        PreparedStatement select_homestay = connection.prepareStatement("select * from test_base.room join test_base.homestay using (homestay_id) where room_id = '" + request.getParameter("id") + "';");
         ResultSet display_homestay = select_homestay.executeQuery();
 
         Homestay homestay = new Homestay();

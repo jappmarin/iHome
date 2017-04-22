@@ -26,45 +26,45 @@
                             </div>
                         </div>
                     </div>
-                                <% if (request.getAttribute("allRoom") != null) { %>
-    <% ArrayList<Room> allRoom = (ArrayList<Room>) request.getAttribute("allRoom");
+                    <% if (request.getAttribute("allRoom") != null) { %>
+                    <% ArrayList<Room> allRoom = (ArrayList<Room>) request.getAttribute("allRoom");
         for (model.Room room : allRoom) {%>
-    <div class="row justify-content-center my-2">
-        <div class="col-sm-12">
-            <div class="card">
-                <h3 class="card-header">ห้อง <%=room.getRoom_name()%> ของ <%=homestay.getHs_name()%></h3>
-                <div class="card-block">
-                    <div class="row justify-content-center">
-                        <div class="col-sm-6">
-                            <img class="d-block" style="height: 100%; width: 100%;" src="https://www.ownerdirect.com/images/blind-bay-home-rental-kw-1112293-full.jpg" alt="">
-                        </div>
-                        <div class="col-sm-6">
+                    <div class="row justify-content-center my-2">
+                        <div class="col-sm-12">
                             <div class="card">
+                                <h3 class="card-header">ห้อง <%=room.getRoom_name()%> ของ <%=homestay.getHs_name()%></h3>
                                 <div class="card-block">
-                                    <h4 class="card-title">รายละเอียดห้องพัก</h4>
-                                    <%for(String fac : room.getFacilities()){%>
-                                     <p class="card-text">- <%=fac%> <br> </p> 
-                                     <%}%>
-                                    <h4 class="card-title">ราคาต่อคืน</h4>
-                                    <p class="card-text"><%=room.getRoom_price()%></p>
-                                    <h4 class="card-title">จำนวนผู้เข้าพักสูงสุด</h4>
-                                    <p class="card-text"><%=room.getRoom_limit()%> คน</p>
-                                    <a href="${SITE_URL}/Booking/?id=<%=room.getRoom_id()%>" class="btn btn-primary btn-lg">Booking</a>
+                                    <div class="row justify-content-center">
+                                        <div class="col-sm-6">
+                                            <img class="d-block" style="height: 100%; width: 100%;" src="https://www.ownerdirect.com/images/blind-bay-home-rental-kw-1112293-full.jpg" alt="">
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="card">
+                                                <div class="card-block">
+                                                    <h4 class="card-title">รายละเอียดห้องพัก</h4>
+                                                    <%for (String fac : room.getFacilities()) {%>
+                                                    <p class="card-text">- <%=fac%> <br> </p> 
+                                                        <%}%>
+                                                    <h4 class="card-title">ราคาต่อคืน</h4>
+                                                    <p class="card-text"><%=room.getRoom_price()%></p>
+                                                    <h4 class="card-title">จำนวนผู้เข้าพักสูงสุด</h4>
+                                                    <p class="card-text"><%=room.getRoom_limit()%> คน</p>
+                                                    <a href="${SITE_URL}/Booking/?id=<%=room.getRoom_id()%>" class="btn btn-primary btn-lg">Booking</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <% }
+                    <% }
         }%>
                 </div>
             </div>
         </div>
     </div>
-    
+
     <div class="row justify-content-center my-2">
         <div class="col-sm-12">
             <div class="card">

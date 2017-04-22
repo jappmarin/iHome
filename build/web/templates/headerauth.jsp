@@ -26,10 +26,8 @@
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="
-                           <% if (session.getAttribute("type").equals("GUEST")) { %>
+                           <% if (session.getAttribute("type").equals("GUEST") || session.getAttribute("type").equals("HOST")) { %>
                            ${SITE_URL}/profile.jsp
-                           <% } else if (session.getAttribute("type").equals("HOST")) {%>
-                           ${SITE_URL}/profile_host.jsp
                            <% } else if (session.getAttribute("type").equals("ADMIN")) {%>
                            ${SITE_URL}/ViewControlPanel
                            <% } %>

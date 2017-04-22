@@ -10,22 +10,23 @@
                     <p>Homestay Detail : </p>
                     <a href="edit_homestay.jsp" class="btn btn-primary btn-block mt-3">Edit Homestay</a>
                 </div>
-            </div>
-        </div>
-    </div>
-    <div class="row justify-content-center my-2">
-        <div class="col-sm-8">
-            <div class="card">
-                <h3 class="card-header">My Room</h3>
-                <div class="card-block">
-                    <p>Room Name : ${sessionScope.hs_name}</p>
-                    <p>Price : </p>
-                    <p>Guest : </p>
-                    <a href="edit_room.jsp" class="btn btn-primary btn-block mt-3">Edit Room</a>
+                <div class="row justify-content-center my-2">
+                    <div class="col-sm-10">
+                        <div class="card">
+                            <h3 class="card-header">My Room</h3>
+                            <div class="card-block">
+                                <p>Room Name : ${sessionScope.hs_name}</p>
+                                <p>Price : </p>
+                                <p>Guest : </p>
+                                <a href="edit_room.jsp" class="btn btn-primary btn-block mt-3">Edit Room</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
     <div class="row justify-content-center my-2">
         <div class="col-sm-8">
             <a href="add_homestay.jsp" class="btn btn-success btn-block mt-3">Add Homestay</a>
