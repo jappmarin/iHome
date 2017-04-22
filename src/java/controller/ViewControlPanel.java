@@ -20,7 +20,7 @@ import javax.servlet.http.HttpSession;
 import model.Homestay;
 
 @WebServlet(name = "PublishHomestay", urlPatterns = {"/PublishHomestay"})
-public class PublishHomestay extends HttpServlet {
+public class ViewControlPanel extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException {
@@ -71,7 +71,7 @@ public class PublishHomestay extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(PublishHomestay.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ViewControlPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -89,7 +89,7 @@ public class PublishHomestay extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(PublishHomestay.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ViewControlPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
