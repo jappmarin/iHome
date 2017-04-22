@@ -33,9 +33,18 @@ public class ViewControlPanel extends HttpServlet {
         HttpSession session = request.getSession();
         ServletContext context = getServletContext();
         Connection connection = (Connection) context.getAttribute("connection");
+       
+         if (checkbox != null) {
+            for (String homestay_id : checkbox) {
+                PreparedStatement select_homestay = connection.prepareStatement("update test_base.homestay set homestay_agree = 'YES' where homestay_id = ?");
+                select_homestay.setString(1, homestay_id);
+                select_homestay.executeUpdate();
 
+            }
+        }
+         
         ArrayList<Homestay> checkHome = new ArrayList<>();
-        String sql = "select * from test_base.homestay where homestay_agree = '" + "YES" +"';";
+        String sql = "select * from test_base.homestay where homestay_agree = 'NO';";
         Statement select_homestay_name = connection.createStatement();
         ResultSet display_homestay_name = select_homestay_name.executeQuery(sql);
         while (display_homestay_name.next()) {
@@ -52,16 +61,7 @@ public class ViewControlPanel extends HttpServlet {
             homestay.setHs_long(display_homestay_name.getString("homestay_longitude"));
             checkHome.add(homestay);
         }
-        
-//        if(!checkbox.equals(null)){
-//            for(String homestay_id : checkbox){
-//            PreparedStatement select_homestay = connection.prepareStatement("update tase_base.homestay set homestay_agree = 'NO' where homestay_id = ?");
-//            select_homestay.setString(1, homestay_id);
-//            select_homestay.executeUpdate();
-//            
-//        }
-//        }
-        
+               
         
         request.setAttribute("checkHome", checkHome);
         RequestDispatcher obj = request.getRequestDispatcher("/cp.jsp");

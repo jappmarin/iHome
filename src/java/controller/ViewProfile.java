@@ -50,6 +50,9 @@ public class ViewProfile extends HttpServlet {
                 homestay.setHs_province(display_homestay.getString("homestay_province"));
                 homestay.setHs_district(display_homestay.getString("homestay_district"));
             }
+            
+//            session.setAttribute("homestay", homestay);
+//            session.setAttribute("customer", customer);
 
             request.setAttribute("homestay", homestay);
             request.setAttribute("customer", customer);
