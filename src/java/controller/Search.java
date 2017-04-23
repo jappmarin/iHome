@@ -40,9 +40,9 @@ public class Search extends HttpServlet {
 
         ArrayList<Homestay> allHome = new ArrayList<>();
         
-        String sql = "select * from test_base.homestay join test_base.room using(homestay_id) where homestay_agree like 'YES' and room_name like'%" + search +"'";
+        String sql_home = "select * from test_base.homestay where homestay_agree like 'YES' and homestay_name like'%" + search + "%'";
         Statement select_homestay_name = connection.createStatement();
-        ResultSet display_homestay_name = select_homestay_name.executeQuery(sql);
+        ResultSet display_homestay_name = select_homestay_name.executeQuery(sql_home);
         while (display_homestay_name.next()) {
             Homestay homestay = new Homestay();
             homestay.setHs_id(display_homestay_name.getString("homestay_id"));
@@ -57,6 +57,25 @@ public class Search extends HttpServlet {
            
             allHome.add(homestay);
         }
+        
+        String sql_room = "select * from test_base.homestay join test_base.room using(homestay_id) where homestay_agree like 'YES' and room_name like'%" + search + "%'";
+        Statement select_room_name = connection.createStatement();
+        ResultSet display_room_name = select_room_name.executeQuery(sql_room);
+        while (display_room_name.next()) {
+            Homestay homestay = new Homestay();
+            homestay.setHs_id(display_room_name.getString("homestay_id"));
+            homestay.setHs_name(display_room_name.getString("homestay_name"));
+            homestay.setHs_desc(display_room_name.getString("homestay_desc"));
+            homestay.setHs_address(display_room_name.getString("homestay_address"));
+            homestay.setHs_license(display_room_name.getString("homestay_license"));
+            homestay.setHs_region(display_room_name.getString("homestay_region"));
+            homestay.setHs_province(display_room_name.getString("homestay_province"));
+            homestay.setHs_district(display_room_name.getString("homestay_district"));
+            homestay.setHs_pic(display_room_name.getString("homestay_picture"));
+           
+            allHome.add(homestay);
+        }
+        
 
         PreparedStatement select_homestay_provinc = connection.prepareStatement("select * from test_base.homestay where homestay_province = ? and homestay_agree = 'YES'");
         select_homestay_provinc.setString(1, search);

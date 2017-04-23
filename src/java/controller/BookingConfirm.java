@@ -37,6 +37,7 @@ public class BookingConfirm extends HttpServlet {
         Connection connection = (Connection) context.getAttribute("connection");
         HttpSession session = request.getSession();
         Customer customer = (Customer) session.getAttribute("customer");
+
         PreparedStatement select_info = connection.prepareStatement("select * from test_base.room join test_base.homestay using (homestay_id) where room_id = '" + request.getParameter("id") + "';");
         ResultSet display_info = select_info.executeQuery();
 
@@ -62,30 +63,61 @@ public class BookingConfirm extends HttpServlet {
         Float total = Float.parseFloat(request.getParameter("total"));
         Float price = room.getRoom_price();
         int night = (int) (total / price);
+        String guest = request.getParameter("guest");
 
-        PreparedStatement insert_booking = connection.prepareStatement("insert into test_base.booking (check_in, check_out, night, booking_date, total , username, room_id) values (?,?,?,?,?,?,?)");
-        insert_booking.setString(1, request.getParameter("checkin"));
-        insert_booking.setString(2, request.getParameter("checkout"));
-        insert_booking.setInt(3, night);
-        insert_booking.setTimestamp(4, new Timestamp(calendar.getTime().getTime()));
-        insert_booking.setString(5, total + "");
-        insert_booking.setString(6, homestay.getHost());
-        insert_booking.setString(7, room.getRoom_id() + "");
-        insert_booking.executeUpdate();
+        if (session.getAttribute("customer") != null) {
 
-        PreparedStatement select_booking = connection.prepareStatement("select * from test_base.booking join test_base.customer using(username) join test_base.room using(room_id) where room_id = '" + request.getParameter("id") + "';");
-        ResultSet display_booking = select_booking.executeQuery();
-        if (display_booking.next()) {
-            request.setAttribute("booking_id", display_booking.getString("booking_id"));
-            request.setAttribute("check_in", display_booking.getString("check_in"));
-            request.setAttribute("check_out", display_booking.getString("check_out"));
-            request.setAttribute("total", display_booking.getString("total"));
-            request.setAttribute("firstname", display_booking.getString("f_name"));
-            request.setAttribute("lastname", display_booking.getString("l_name"));
-            request.setAttribute("phone", display_booking.getString("phone"));
-            request.setAttribute("email", display_booking.getString("email"));
+            PreparedStatement insert_booking = connection.prepareStatement("insert into test_base.booking (check_in, check_out, night, booking_date, total , username, room_id) values (?,?,?,?,?,?,?)");
+            insert_booking.setString(1, request.getParameter("checkin"));
+            insert_booking.setString(2, request.getParameter("checkout"));
+            insert_booking.setInt(3, night);
+            insert_booking.setTimestamp(4, new Timestamp(calendar.getTime().getTime()));
+            insert_booking.setString(5, total + "");
+            insert_booking.setString(6, customer.getUsername());
+            insert_booking.setString(7, room.getRoom_id() + "");
+            insert_booking.executeUpdate();
+
+            PreparedStatement select_booking = connection.prepareStatement("select * from test_base.booking join test_base.customer using(username) join test_base.room using(room_id) where booking_id >= (select max(booking_id) from test_base.booking);");
+            ResultSet display_booking = select_booking.executeQuery();
+            if (display_booking.next()) {
+                request.setAttribute("booking_id", display_booking.getString("booking_id"));
+                request.setAttribute("check_in", display_booking.getString("check_in"));
+                request.setAttribute("check_out", display_booking.getString("check_out"));
+                request.setAttribute("total", display_booking.getString("total"));
+                request.setAttribute("firstname", display_booking.getString("f_name"));
+                request.setAttribute("lastname", display_booking.getString("l_name"));
+                request.setAttribute("phone", display_booking.getString("phone"));
+                request.setAttribute("email", display_booking.getString("email"));
+                request.setAttribute("night", display_booking.getString("night"));
+                request.setAttribute("guest", guest);
+            }
+
+        } else {
+            PreparedStatement insert_booking = connection.prepareStatement("insert into test_base.booking (check_in, check_out, night, booking_date, total , username, room_id) values (?,?,?,?,?,?,?)");
+            insert_booking.setString(1, request.getParameter("checkin"));
+            insert_booking.setString(2, request.getParameter("checkout"));
+            insert_booking.setInt(3, night);
+            insert_booking.setTimestamp(4, new Timestamp(calendar.getTime().getTime()));
+            insert_booking.setString(5, total + "");
+            insert_booking.setString(6, "xxxx");
+            insert_booking.setString(7, room.getRoom_id() + "");
+            insert_booking.executeUpdate();
+
+            PreparedStatement select_booking = connection.prepareStatement("select * from test_base.booking join test_base.customer using(username) join test_base.room using(room_id) where booking_id >= (select max(booking_id) from test_base.booking);");
+            ResultSet display_booking = select_booking.executeQuery();
+            if (display_booking.next()) {
+                request.setAttribute("booking_id", display_booking.getString("booking_id"));
+                request.setAttribute("check_in", request.getParameter("checkin"));
+                request.setAttribute("check_out", request.getParameter("checkout"));
+                request.setAttribute("total", total);
+                request.setAttribute("firstname", request.getParameter("firstname"));
+                request.setAttribute("lastname", request.getParameter("lastname"));
+                request.setAttribute("phone", request.getParameter("phone"));
+                request.setAttribute("email", request.getParameter("email"));
+                request.setAttribute("night", night);
+                request.setAttribute("guest", guest);
+            }
         }
-        
 
         request.setAttribute("homestay", homestay);
         request.setAttribute("room", room);

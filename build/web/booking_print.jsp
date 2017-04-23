@@ -9,7 +9,7 @@
             <div class="row">
                 <div class="col-5">
                     <div class="card">
-                        <h3 class="card-header">Booking Number - #<%=request.getParameter("booking_id")%></h3>
+                        <h3 class="card-header">Booking Number - #<%=request.getAttribute("booking_id")%></h3>
                         <div class="card-block">
                             <p class="card-text">Name : <small class="text-muted"><%=request.getAttribute("firstname")%> <%=request.getAttribute("lastname")%></small></p>
                             <p class="card-text">Phone Number : <small class="text-muted"><%=request.getAttribute("phone")%></small></p>
@@ -23,7 +23,7 @@
                         <div class="card-block">
                             <p class="card-text">Homestay Name : <small class="text-muted"><%=homestay.getHs_name()%></small></p>
                             <p class="card-text">Room Name : <small class="text-muted"><%=room.getRoom_name()%></small></p>
-                            <p class="card-text">Room Detail : <small class="text-muted">2 nights, 1 Room, 2 People</small></p>
+                            <p class="card-text">Room Detail : <small class="text-muted"><%=request.getAttribute("night")%> nights, 1 Room, <%=request.getAttribute("guest")%> People</small></p>
                             <p class="card-text">Checkin : <small class="text-muted"><%=request.getAttribute("check_in")%></small></p>
                             <p class="card-text">Checkout : <small class="text-muted"><%=request.getAttribute("check_out")%></small></p>
                             <p class="card-text">Total Price : <small class="text-muted"><%=request.getAttribute("total")%></small></p>
