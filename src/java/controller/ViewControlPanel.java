@@ -34,7 +34,7 @@ public class ViewControlPanel extends HttpServlet {
         ServletContext context = getServletContext();
         Connection connection = (Connection) context.getAttribute("connection");
        
-         if (checkbox != null) {
+        if (checkbox != null) {
             for (String homestay_id : checkbox) {
                 PreparedStatement select_homestay = connection.prepareStatement("update test_base.homestay set homestay_agree = 'YES' where homestay_id = ?");
                 select_homestay.setString(1, homestay_id);
@@ -43,7 +43,7 @@ public class ViewControlPanel extends HttpServlet {
             }
         }
          
-        ArrayList<Homestay> checkHome = new ArrayList<>();
+        ArrayList<Homestay> noHome = new ArrayList<>();
         String sql = "select * from test_base.homestay where homestay_agree = 'NO';";
         Statement select_homestay_name = connection.createStatement();
         ResultSet display_homestay_name = select_homestay_name.executeQuery(sql);
@@ -57,11 +57,28 @@ public class ViewControlPanel extends HttpServlet {
             homestay.setHs_region(display_homestay_name.getString("homestay_region"));
             homestay.setHs_province(display_homestay_name.getString("homestay_province"));
             homestay.setHs_district(display_homestay_name.getString("homestay_district"));
-            checkHome.add(homestay);
+            noHome.add(homestay);
+        }
+        
+         ArrayList<Homestay> yesHome = new ArrayList<>();
+        String sql2 = "select * from test_base.homestay where homestay_agree = 'YES';";
+        Statement select_homestay_name_yes = connection.createStatement();
+        ResultSet display_homestay_name_yes = select_homestay_name_yes.executeQuery(sql2);
+        while (display_homestay_name_yes.next()) {
+            Homestay homestay = new Homestay();
+            homestay.setHs_id(display_homestay_name_yes.getString("homestay_id"));
+            homestay.setHs_name(display_homestay_name_yes.getString("homestay_name"));
+            homestay.setHs_desc(display_homestay_name_yes.getString("homestay_desc"));
+            homestay.setHs_address(display_homestay_name_yes.getString("homestay_address"));
+            homestay.setHs_license(display_homestay_name_yes.getString("homestay_license"));
+            homestay.setHs_region(display_homestay_name_yes.getString("homestay_region"));
+            homestay.setHs_province(display_homestay_name_yes.getString("homestay_province"));
+            homestay.setHs_district(display_homestay_name_yes.getString("homestay_district"));
+            yesHome.add(homestay);
         }
                
-        
-        request.setAttribute("checkHome", checkHome);
+        request.setAttribute("yesHome", yesHome);
+        request.setAttribute("noHome", noHome);
         RequestDispatcher obj = request.getRequestDispatcher("/cp.jsp");
         obj.forward(request, response);
     }
