@@ -7,16 +7,22 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.Homestay;
 
 /**
  *
@@ -32,15 +38,40 @@ public class MyHomestay extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
         
+        ServletContext context = request.getServletContext();
+        Connection connection = (Connection) context.getAttribute("connection");
+
+        
         HttpSession session = request.getSession();
       
-        String username = (String) session.getAttribute("username");
-        String name = request.getParameter("name");
-        System.out.println(username);
-        System.out.print(name);
+        String username = (String) session.getAttribute("username");       
         
-//        RequestDispatcher obj = request.getRequestDispatcher("myhomestay.jsp");
-//        obj.forward(request, response);
+        Homestay homestay;
+        ArrayList<Homestay> myHomestay = new ArrayList<>();
+        
+        PreparedStatement select_myHomestay = connection.prepareStatement("select * from test_base.homestay where username = '"+ username +"'");
+        ResultSet display_myHomestay = select_myHomestay.executeQuery();
+        while(display_myHomestay.next()){
+            homestay = new Homestay();
+            homestay.setHs_id(display_myHomestay.getString("homestay_id"));
+            homestay.setHs_name(display_myHomestay.getString("homestay_name"));
+            homestay.setHs_desc(display_myHomestay.getString("homestay_desc"));
+            homestay.setHs_address(display_myHomestay.getString("homestay_address"));
+            homestay.setHs_license(display_myHomestay.getString("homestay_license"));
+            homestay.setHs_region(display_myHomestay.getString("homestay_region"));
+            homestay.setHs_province(display_myHomestay.getString("homestay_province"));
+            homestay.setHs_district(display_myHomestay.getString("homestay_district"));
+            homestay.setMyRoom(connection, display_myHomestay.getString("homestay_id"));
+            myHomestay.add(homestay);
+            
+            System.out.println(display_myHomestay.getString("homestay_name"));
+            
+        }
+               
+        request.setAttribute("myHomestay", myHomestay);
+        
+        RequestDispatcher obj = request.getRequestDispatcher("/myhomestay.jsp");
+        obj.forward(request, response);
         
     }
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

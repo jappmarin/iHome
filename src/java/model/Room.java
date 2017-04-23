@@ -41,7 +41,7 @@ public class Room {
             this.room_name = display_room.getString("room_name");
             this.room_limit = display_room.getInt("room_limit");
             this.room_price = display_room.getFloat("room_price");
-            this.room_picture = display_room.getString("room_picture");
+//            this.room_picture = display_room.getString("room_picture");
             this.homestay_id = display_room.getInt("homestay_id");
         }
 

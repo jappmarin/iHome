@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class Homestay {
 
@@ -19,6 +20,7 @@ public class Homestay {
     private String hs_lat;
     private String hs_long;
     private String host;
+    private ArrayList<Room> myRoom;
     private Connection connection;
 
     public Homestay() {
@@ -33,7 +35,7 @@ public class Homestay {
         select_homestay.setString(1, username);
         ResultSet display_homestay = select_homestay.executeQuery();
 
-        if (display_homestay.next()){
+        if (display_homestay.next()) {
             this.setHost(username);
             this.setHs_name(display_homestay.getString("homestay_name"));
             this.setHs_pic(display_homestay.getString("homestay_picture"));
@@ -200,6 +202,30 @@ public class Homestay {
      */
     public void setConnection(Connection connection) {
         this.connection = connection;
+    }
+
+    /**
+     * @return the myRoom
+     */
+    public ArrayList<Room> getMyRoom() {
+        return myRoom;
+    }
+
+    /**
+     * @param connection
+     * @param homestay_id
+     * @throws java.sql.SQLException
+     */
+    public void setMyRoom(Connection connection, String homestay_id) throws SQLException {
+        PreparedStatement select_myRoom = connection.prepareStatement("select * from test_base.room where homestay_id =" + homestay_id);
+        ResultSet display_myRoom = select_myRoom.executeQuery();
+        myRoom = new ArrayList<>();
+        while (display_myRoom.next()) {           
+            Room room = new Room(connection, display_myRoom.getString("room_name")); 
+            myRoom.add(room);
+        }
+
+        this.myRoom = myRoom;
     }
 
 }
