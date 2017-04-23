@@ -16,7 +16,7 @@
                                     <input type="text" class="form-control" id="describeIn" rows="2" name="homestay_desc" value="">
                                 </div>
                                 <div class="form-group has-feedback" id="licenseInDiv">
-;                                    <label for="license">เลขที่ใบอนุญาตของโฮมสเตย์</label>
+                                    <label for="license">เลขที่ใบอนุญาตของโฮมสเตย์</label>
                                     <input class="form-control" id="licenseIn" name="homestay_license">
                                 </div>
                                 <div class="form-group has-feedback" id="addressInDiv">
@@ -76,12 +76,6 @@
                                         </label>
                                     </div>
                                 </fieldset>
-                                <label for="guest">อัพโหลดรูปภาพ</label>
-                                <div class="form-group has-feedback">
-                                    <input type="file" name="file"/>
-                                    </label>
-                                    <small id="fileHelp" class="form-text text-muted">Upload .jpg, .png extensions only.</small>
-                                </div>
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-primary btn-block" id="addHomestayButton">Add Homestay</button>
                                     <button class="btn btn-secondary btn-block" id="addHomestayButton">Cancel</button>

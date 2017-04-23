@@ -46,6 +46,7 @@ public class ViewHomestay extends HttpServlet {
             homestay.setHs_region(display_homestay.getString("homestay_region"));
             homestay.setHs_province(display_homestay.getString("homestay_province"));
             homestay.setHs_district(display_homestay.getString("homestay_district"));
+            homestay.setHs_pic(display_homestay.getString("homestay_picture"));
            
         }
         

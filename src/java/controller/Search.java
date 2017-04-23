@@ -53,6 +53,7 @@ public class Search extends HttpServlet {
             homestay.setHs_region(display_homestay_name.getString("homestay_region"));
             homestay.setHs_province(display_homestay_name.getString("homestay_province"));
             homestay.setHs_district(display_homestay_name.getString("homestay_district"));
+            homestay.setHs_pic(display_homestay_name.getString("homestay_picture"));
            
             allHome.add(homestay);
         }

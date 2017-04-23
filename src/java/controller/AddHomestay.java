@@ -78,7 +78,7 @@ public class AddHomestay extends HttpServlet {
 
         
         PreparedStatement select_homestay = connection.prepareStatement("select * from test_base.homestay where homestay_name = ?");
-        select_homestay.setString(1, request.getParameter("homestayname"));
+        select_homestay.setString(1, request.getParameter("homestay_name"));
         ResultSet display_homestay = select_homestay.executeQuery();
         if (display_homestay.next()) {
             session.setAttribute("hs_id", display_homestay.getString("homestay_id"));

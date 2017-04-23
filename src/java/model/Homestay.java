@@ -59,7 +59,7 @@ public class Homestay {
         insert_homestay.setString(5, this.getHs_region());
         insert_homestay.setString(6, this.getHs_province());
         insert_homestay.setString(7, this.getHs_district());
-        insert_homestay.setString(8, "wait");
+        insert_homestay.setString(8, this.getHs_pic());
         insert_homestay.setString(9, this.getHost());
         insert_homestay.executeUpdate();
     }
