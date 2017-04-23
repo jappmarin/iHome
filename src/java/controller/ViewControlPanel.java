@@ -27,22 +27,31 @@ public class ViewControlPanel extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
-        
-        String[] checkbox = request.getParameterValues("checkbox");
-        
+
+        String[] checkbox_no = request.getParameterValues("checkbox_no");
+        String[] checkbox_yes = request.getParameterValues("checkbox_yes");
+
         HttpSession session = request.getSession();
         ServletContext context = getServletContext();
         Connection connection = (Connection) context.getAttribute("connection");
-       
-        if (checkbox != null) {
-            for (String homestay_id : checkbox) {
+
+        if (checkbox_no != null) {
+            for (String homestay_id : checkbox_no) {
                 PreparedStatement select_homestay = connection.prepareStatement("update test_base.homestay set homestay_agree = 'YES' where homestay_id = ?");
                 select_homestay.setString(1, homestay_id);
                 select_homestay.executeUpdate();
 
             }
         }
-         
+        
+        if(checkbox_yes != null){
+            for(String homestay_id : checkbox_yes){
+                PreparedStatement select_homestay = connection.prepareStatement("update test_base.homestay set homestay_agree = 'NO' where homestay_id = ?");
+                select_homestay.setString(1, homestay_id);
+                select_homestay.executeUpdate();
+            }
+        }
+
         ArrayList<Homestay> noHome = new ArrayList<>();
         String sql = "select * from test_base.homestay where homestay_agree = 'NO';";
         Statement select_homestay_name = connection.createStatement();
@@ -59,8 +68,8 @@ public class ViewControlPanel extends HttpServlet {
             homestay.setHs_district(display_homestay_name.getString("homestay_district"));
             noHome.add(homestay);
         }
-        
-         ArrayList<Homestay> yesHome = new ArrayList<>();
+
+        ArrayList<Homestay> yesHome = new ArrayList<>();
         String sql2 = "select * from test_base.homestay where homestay_agree = 'YES';";
         Statement select_homestay_name_yes = connection.createStatement();
         ResultSet display_homestay_name_yes = select_homestay_name_yes.executeQuery(sql2);
@@ -76,7 +85,7 @@ public class ViewControlPanel extends HttpServlet {
             homestay.setHs_district(display_homestay_name_yes.getString("homestay_district"));
             yesHome.add(homestay);
         }
-               
+
         request.setAttribute("yesHome", yesHome);
         request.setAttribute("noHome", noHome);
         RequestDispatcher obj = request.getRequestDispatcher("/cp.jsp");

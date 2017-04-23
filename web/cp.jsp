@@ -32,7 +32,7 @@
                                     <td>
                                         <div class="form-check">
                                             <label class="form-check-label">
-                                                <input type="checkbox" class="form-check-input" name="checkbox" value="<%=home.getHs_id()%>">
+                                                <input type="checkbox" class="form-check-input" name="checkbox_no" value="<%=home.getHs_id()%>">
                                             </label>
                                         </div>
                                     </td>
@@ -51,7 +51,7 @@
                                     <td>
                                         <div class="form-check">
                                             <label class="form-check-label">
-                                                <input type="checkbox" class="form-check-input" name="checkbox" value="<%=home.getHs_id()%>">
+                                                <input type="checkbox" class="form-check-input" name="checkbox_yes" value="<%=home.getHs_id()%>">
                                             </label>
                                         </div>
                                     </td>
