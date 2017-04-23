@@ -16,8 +16,7 @@
     <%--= if () --%>
     <% ArrayList<Homestay> myHomestay = (ArrayList<Homestay>) request.getAttribute("myHomestay");
         for (Homestay home : myHomestay) {
-            request.setAttribute("homestay_id", home.getHs_id());%>
-            <%=request.getAttribute("homestay_id")%>
+            request.setAttribute("homestay_id", home.getHs_id());%>           
     <div class="row justify-content-center my-2">
         <div class="col-sm-12" id="profile">
             <div class="card">
@@ -32,7 +31,7 @@
                     <div class="card-block">                           
                         <p> ราคาที่พักต่อคืน : <%=room.getRoom_price()%></p>
                         <p> จำนวนผู้เข้าพักสูงสุด : <%=room.getRoom_limit()%></p>
-                        <a href="${SITE_URL}/edit_room.jsp?homestay_id=<%=home.getHs_id()%>&homestay_name=<%=home.getHs_name()%>" class="btn btn-primary btn-block mt-3">Edit Room</a>
+                        <a href="${SITE_URL}/edit_room.jsp?homestay_id=<%=home.getHs_id()%>&homestay_name=<%=home.getHs_name()%>&room=<%=room%>" class="btn btn-primary btn-block mt-3">Edit Room</a>
                     </div>
                     <%}%>                                       
                 </div>

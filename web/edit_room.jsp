@@ -7,7 +7,7 @@
             <div class="row justify-content-center mt-5">
                 <div class="col-sm-12 col-md-8" id="homestay">
                     <div class="card">
-                        <h3 class="card-header">My Homestay</h3>
+                        <h3 class="card-header">Edit my Homestay</h3>
                         <div class="card-block">
                             <!--<form action="EditHomestay" method="POST">-->
                                <div class="form-group has-feedback form-inline" id="homestayIdDiv">

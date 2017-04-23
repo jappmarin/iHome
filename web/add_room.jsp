@@ -10,9 +10,9 @@
                     <form action="AddRoom" method="get">
                         <div class="form-group has-feedback form-inline" id="homestayIdDiv">
                             <label for="homestayId">ชื่อโฮมสเตย์</label>
-                            <input type="text" class="form-control mx-2" name="homestay_name" id="homestayIdIn" value="<%=request.getParameter("homestay_name")%>" size="40" disabled>
+                            <input type="text" class="form-control mx-2" name="homestay_name" id="homestayIdIn" value="<%=request.getParameter("homestay_name")%>" size="40">
                             <label for="homestayId">รหัสโฮมสเตย์</label>
-                            <input type="text" class="form-control mx-2" name="homestay_id" id="homestayIdIn" value="<%=request.getParameter("homestay_id")%>" size="1" disabled>
+                            <input type="text" class="form-control mx-2" name="homestay_id" id="homestayIdIn" value="<%=request.getParameter("homestay_id")%>" size="1">
                         </div>
                         <div class="form-group has-feedback" id="homestayNameInDiv">
                             <label for="homestayname">ชื่อห้อง</label>

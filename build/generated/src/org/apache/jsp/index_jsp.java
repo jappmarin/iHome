@@ -41,45 +41,46 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       _jspx_out = out;
       _jspx_resourceInjector = (org.glassfish.jsp.api.ResourceInjector) application.getAttribute("com.sun.appserv.jsp.resource.injector");
 
+      out.write('\r');
       out.write('\n');
  if (session.getAttribute("customer") != null) {  
       org.apache.jasper.runtime.JspRuntimeLibrary.include(request, response, "templates/headerauth.jsp", out, false);
  } else { 
       org.apache.jasper.runtime.JspRuntimeLibrary.include(request, response, "templates/header.jsp", out, false);
  }
-      out.write("\n");
-      out.write("<div class=\"container\">\n");
-      out.write("    <div class=\"row justify-content-center mt-5\">\n");
-      out.write("        <div class=\"col-sm-12\">\n");
-      out.write("            <div class=\"card\">\n");
-      out.write("                <div class=\"card-block\">\n");
-      out.write("                    <div class=\"row justify-content-center mt-5 mb-4\">\n");
-      out.write("                        <div class=\"col-sm-12 col-md-12\">\n");
-      out.write("                            <h2 class=\"text-center\">Where would you like to stay?</h2>\n");
-      out.write("                        </div>\n");
-      out.write("                    </div>\n");
-      out.write("                    <form action=\"Search\" method=\"GET\">\n");
-      out.write("                        <div class=\"row justify-content-center\">\n");
-      out.write("                            <div class=\"col-sm-6 col-md-6\">\n");
-      out.write("                                <div class=\"form-group\">\n");
-      out.write("                                    <input type=\"text\" class=\"form-control\" id=\"search\" name=\"search\" placeholder=\"eg. Samut Prakan, Bangkok, Chaingmai\">\n");
-      out.write("                                    \n");
-      out.write("                                </div>\n");
-      out.write("                            </div>\n");
-      out.write("                        </div>\n");
-      out.write("                        <div class=\"row justify-content-center mt-2 mb-4\">\n");
-      out.write("                            <div class=\"col-sm-2 col-md-2 text-center\">\n");
+      out.write("\r\n");
+      out.write("<div class=\"container\">\r\n");
+      out.write("    <div class=\"row justify-content-center mt-5\">\r\n");
+      out.write("        <div class=\"col-sm-12\">\r\n");
+      out.write("            <div class=\"card\">\r\n");
+      out.write("                <div class=\"card-block\">\r\n");
+      out.write("                    <div class=\"row justify-content-center mt-5 mb-4\">\r\n");
+      out.write("                        <div class=\"col-sm-12 col-md-12\">\r\n");
+      out.write("                            <h2 class=\"text-center\">Where would you like to stay?</h2>\r\n");
+      out.write("                        </div>\r\n");
+      out.write("                    </div>\r\n");
+      out.write("                    <form action=\"Search\" method=\"GET\">\r\n");
+      out.write("                        <div class=\"row justify-content-center\">\r\n");
+      out.write("                            <div class=\"col-sm-6 col-md-6\">\r\n");
+      out.write("                                <div class=\"form-group\">\r\n");
+      out.write("                                    <input type=\"text\" class=\"form-control\" id=\"search\" name=\"search\" placeholder=\"eg. Samut Prakan, Bangkok, Chaingmai\">\r\n");
+      out.write("                                    \r\n");
+      out.write("                                </div>\r\n");
+      out.write("                            </div>\r\n");
+      out.write("                        </div>\r\n");
+      out.write("                        <div class=\"row justify-content-center mt-2 mb-4\">\r\n");
+      out.write("                            <div class=\"col-sm-2 col-md-2 text-center\">\r\n");
       out.write("                                <a class=\"btn btn-primary btn-lg\" href=\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${SITE_URL}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("/Search\">Search</a>\n");
-      out.write("                            </div>\n");
-      out.write("                        </div>\n");
-      out.write("                    </form>  \n");
-      out.write("                </div>\n");
-      out.write("            </div>\n");
-      out.write("        </div>\n");
-      out.write("    </div>\n");
-      out.write("</div>\n");
+      out.write("/Search\">Search</a>\r\n");
+      out.write("                            </div>\r\n");
+      out.write("                        </div>\r\n");
+      out.write("                    </form>  \r\n");
+      out.write("                </div>\r\n");
+      out.write("            </div>\r\n");
+      out.write("        </div>\r\n");
+      out.write("    </div>\r\n");
+      out.write("</div>\r\n");
       org.apache.jasper.runtime.JspRuntimeLibrary.include(request, response, "templates/footer.jsp", out, false);
     } catch (Throwable t) {
       if (!(t instanceof SkipPageException)){
