@@ -9,11 +9,11 @@
             <div class="row">
                 <div class="col-5">
                     <div class="card">
-                        <h3 class="card-header">Booking Number - #00001</h3>
+                        <h3 class="card-header">Booking Number - #<%=request.getParameter("booking_id")%></h3>
                         <div class="card-block">
-                            <p class="card-text">Name : <small class="text-muted">Teerawut Kitbunjerdjarud</small></p>
-                            <p class="card-text">Phone Number : <small class="text-muted">055-555-555</small></p>
-                            <p class="card-text">Email : <small class="text-muted">example@example.com</small></p>
+                            <p class="card-text">Name : <small class="text-muted"><%=request.getAttribute("firstname")%> <%=request.getAttribute("lastname")%></small></p>
+                            <p class="card-text">Phone Number : <small class="text-muted"><%=request.getAttribute("phone")%></small></p>
+                            <p class="card-text">Email : <small class="text-muted"><%=request.getAttribute("email")%></small></p>
                         </div>
                     </div>
                 </div>

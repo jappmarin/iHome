@@ -78,8 +78,8 @@
                                         }
                                 </script>
                                 <div class="form-group has-feedback" id="priceInDiv">
-                                    <label for="price">Total</label>
-                                    <input type="text" class="form-control" name="price" id="priceIn" placeholder="" value="" disabled>
+                                    <label for="total">Total</label>
+                                    <input type="text" class="form-control" name="total" id="priceIn" placeholder="" value="" >
                                 </div>
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-primary btn-block" id="confirmButton">Confirm Booking</button>

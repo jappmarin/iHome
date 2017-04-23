@@ -40,7 +40,7 @@ public class Search extends HttpServlet {
 
         ArrayList<Homestay> allHome = new ArrayList<>();
         
-        String sql = "select * from test_base.homestay where homestay_name like '%" + search + "%' and homestay_agree = 'YES'";
+        String sql = "select * from test_base.homestay join test_base.room using(homestay_id) where homestay_agree like 'YES' and room_name like'%" + search +"'";
         Statement select_homestay_name = connection.createStatement();
         ResultSet display_homestay_name = select_homestay_name.executeQuery(sql);
         while (display_homestay_name.next()) {

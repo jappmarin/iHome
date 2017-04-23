@@ -7,7 +7,7 @@
             <div class="row justify-content-center mt-5">
                 <div class="col-sm-12 col-md-8" id="homestay">
                     <div class="card">
-                        <h3 class="card-header">Edit my Homestay</h3>
+                        <h3 class="card-header">Edit My Room</h3>
                         <div class="card-block">
                             <!--<form action="EditHomestay" method="POST">-->
                                <div class="form-group has-feedback form-inline" id="homestayIdDiv">
@@ -18,7 +18,7 @@
                         </div>
                         <div class="form-group has-feedback" id="homestayNameInDiv">
                             <label for="homestayname">ชื่อห้อง</label>
-                            <input type="text" class="form-control" name="room_name" value=<%=%>id="roomNameIn" placeholder="" required>
+                            <input type="text" class="form-control" name="room_name" value="<%=request.getParameter("room_name")%>"id="roomNameIn" placeholder="" required>
                         </div>
                         <div class="form-group has-feedback" id="priceInDiv">
                             <label for="price">ราคาต่อคืน</label>
@@ -173,19 +173,9 @@
                                 <input class="form-check-input" type="checkbox" name="facilities" id="inlineCheckbox3" value=""> อื่นๆ
                             </label>
                         </div>
-                        
-                        <div class="col text-center">
-                            <label for="guest">อัพโหลดรูปภาพ</label>
-                            <div class="form-group has-feedback">
-                                <label class="custom-file">
-                                    <input type="file" id="file" class="custom-file-input">
-                                    <span class="custom-file-control"></span>
-                                </label>
-                                <small id="fileHelp" class="form-text text-muted">Upload .jpg, .png extensions only.</small>
-                            </div>
-                        </div>
+                                               
                         <div class="text-center">
-                            <button type="submit" class="btn btn-primary btn-block" id="addHomestayButton">Add Room</button>
+                            <button type="submit" class="btn btn-primary btn-block" id="addHomestayButton">Save Change</button>
                             <button class="btn btn-secondary btn-block" id="addHomestayButton">Cancel</button>
                         </div>
                             <!--</form>-->

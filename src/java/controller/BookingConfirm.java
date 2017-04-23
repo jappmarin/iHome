@@ -5,7 +5,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.text.ParseException;
+import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
@@ -16,6 +18,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.Customer;
 import model.Homestay;
 import model.Room;
 
@@ -27,10 +30,13 @@ public class BookingConfirm extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
-        
+
+        Calendar calendar = Calendar.getInstance();
+
         ServletContext context = getServletContext();
         Connection connection = (Connection) context.getAttribute("connection");
-        
+        HttpSession session = request.getSession();
+        Customer customer = (Customer) session.getAttribute("customer");
         PreparedStatement select_info = connection.prepareStatement("select * from test_base.room join test_base.homestay using (homestay_id) where room_id = '" + request.getParameter("id") + "';");
         ResultSet display_info = select_info.executeQuery();
 
@@ -46,31 +52,44 @@ public class BookingConfirm extends HttpServlet {
             homestay.setHs_region(display_info.getString("homestay_region"));
             homestay.setHs_province(display_info.getString("homestay_province"));
             homestay.setHs_district(display_info.getString("homestay_district"));
-            
+            homestay.setHost(display_info.getString("username"));
+
             room.setRoom_id(display_info.getInt("room_id"));
             room.setRoom_name(display_info.getString("room_name"));
             room.setRoom_price(display_info.getInt("room_limit"));
             room.setRoom_price(display_info.getFloat("room_price"));
         }
+        Float total = Float.parseFloat(request.getParameter("total"));
+        Float price = room.getRoom_price();
+        int night = (int) (total / price);
 
-        PreparedStatement insert_booking = connection.prepareStatement("insert into test_base.booking (check_in, check_out, total , room_id) values (?,?,?,?)");
+        PreparedStatement insert_booking = connection.prepareStatement("insert into test_base.booking (check_in, check_out, night, booking_date, total , username, room_id) values (?,?,?,?,?,?,?)");
         insert_booking.setString(1, request.getParameter("checkin"));
         insert_booking.setString(2, request.getParameter("checkout"));
-        insert_booking.setString(3, request.getParameter("price"));
-        insert_booking.setString(4, room.getRoom_id()+"");
+        insert_booking.setInt(3, night);
+        insert_booking.setTimestamp(4, new Timestamp(calendar.getTime().getTime()));
+        insert_booking.setString(5, total + "");
+        insert_booking.setString(6, homestay.getHost());
+        insert_booking.setString(7, room.getRoom_id() + "");
         insert_booking.executeUpdate();
-        
-        PreparedStatement select_booking = connection.prepareStatement("select * from test_base.booking where hs_id = '" + request.getParameter("id") + "';" );
+
+        PreparedStatement select_booking = connection.prepareStatement("select * from test_base.booking join test_base.customer using(username) join test_base.room using(room_id) where room_id = '" + request.getParameter("id") + "';");
         ResultSet display_booking = select_booking.executeQuery();
-        display_booking.next();
+        if (display_booking.next()) {
+            request.setAttribute("booking_id", display_booking.getString("booking_id"));
+            request.setAttribute("check_in", display_booking.getString("check_in"));
+            request.setAttribute("check_out", display_booking.getString("check_out"));
+            request.setAttribute("total", display_booking.getString("total"));
+            request.setAttribute("firstname", display_booking.getString("f_name"));
+            request.setAttribute("lastname", display_booking.getString("l_name"));
+            request.setAttribute("phone", display_booking.getString("phone"));
+            request.setAttribute("email", display_booking.getString("email"));
+        }
         
-        request.setAttribute("booking_id", display_booking.getString("booking_id"));
-        request.setAttribute("check_in", display_booking.getString("check_in"));
-        request.setAttribute("check_out", display_booking.getString("check_out"));
-        request.setAttribute("total", display_booking.getString("total"));
+
         request.setAttribute("homestay", homestay);
         request.setAttribute("room", room);
-        
+
         RequestDispatcher obj = request.getRequestDispatcher("../booking_print.jsp");
         obj.forward(request, response);
     }
