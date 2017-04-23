@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.Homestay;
+import model.Room;
 
 @WebServlet(name = "BookingConfirm", urlPatterns = {"/BookingConfirm/"})
 public class BookingConfirm extends HttpServlet {
@@ -29,29 +30,32 @@ public class BookingConfirm extends HttpServlet {
         
         ServletContext context = getServletContext();
         Connection connection = (Connection) context.getAttribute("connection");
-        HttpSession session = request.getSession();
         
-        PreparedStatement select_homestay = connection.prepareStatement("select * from test_base.homestay where homestay_id = '" + request.getParameter("id") + "';");
-        ResultSet display_homestay = select_homestay.executeQuery();
+        PreparedStatement select_info = connection.prepareStatement("select * from test_base.room join test_base.homestay using (homestay_id) where room_id = '" + request.getParameter("id") + "';");
+        ResultSet display_info = select_info.executeQuery();
 
         Homestay homestay = new Homestay();
+        Room room = new Room();
 
-        if (display_homestay.next()) {
-            homestay.setHs_id(display_homestay.getString("homestay_id"));
-            homestay.setHs_name(display_homestay.getString("homestay_name"));
-            homestay.setHs_desc(display_homestay.getString("homestay_desc"));
-            homestay.setHs_address(display_homestay.getString("homestay_address"));
-            homestay.setHs_license(display_homestay.getString("homestay_license"));
-            homestay.setHs_region(display_homestay.getString("homestay_region"));
-            homestay.setHs_province(display_homestay.getString("homestay_province"));
-            homestay.setHs_district(display_homestay.getString("homestay_district"));
-            homestay.setHs_lat(display_homestay.getString("homestay_latitude"));
-            homestay.setHs_long(display_homestay.getString("homestay_longtitude"));
+        if (display_info.next()) {
+            homestay.setHs_id(display_info.getString("homestay_id"));
+            homestay.setHs_name(display_info.getString("homestay_name"));
+            homestay.setHs_desc(display_info.getString("homestay_desc"));
+            homestay.setHs_address(display_info.getString("homestay_address"));
+            homestay.setHs_license(display_info.getString("homestay_license"));
+            homestay.setHs_region(display_info.getString("homestay_region"));
+            homestay.setHs_province(display_info.getString("homestay_province"));
+            homestay.setHs_district(display_info.getString("homestay_district"));
+            homestay.setHs_lat(display_info.getString("homestay_latitude"));
+            homestay.setHs_long(display_info.getString("homestay_longtitude"));
+            
+            room.setRoom_id(display_info.getInt("room_id"));
+            room.setRoom_name(display_info.getString("room_name"));
+            room.setRoom_price(display_info.getInt("room_limit"));
+            room.setRoom_price(display_info.getFloat("room_price"));
         }
-        
-        session.setAttribute("homestay_id", homestay.getHs_id());
-        
-        PreparedStatement insert_booking = connection.prepareStatement("insert into test_base.booking (check_in, check_out, hs_id) values (?,?,?)");
+
+        PreparedStatement insert_booking = connection.prepareStatement("insert into test_base.booking (check_in, check_out, room_id) values (?,?,?)");
         insert_booking.setString(1, request.getParameter("checkin"));
         insert_booking.setString(2, request.getParameter("checkout"));
         insert_booking.setFloat(3, (Float.parseFloat(request.getParameter("price"))));
@@ -67,6 +71,7 @@ public class BookingConfirm extends HttpServlet {
         request.setAttribute("check_out", display_booking.getString("check_out"));
         request.setAttribute("total", display_booking.getString("total"));
         request.setAttribute("homestay", homestay);
+        request.setAttribute("room", room);
         
         RequestDispatcher obj = request.getRequestDispatcher("../booking_print.jsp");
         obj.forward(request, response);
