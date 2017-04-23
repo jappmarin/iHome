@@ -57,8 +57,9 @@ public class AddRoom extends HttpServlet {
             int fac_id = Integer.parseInt(room_fac1);
             room_f.addRoom_facilities(connection, room_id, fac_id);
         }
-           
-        RequestDispatcher obj = request.getRequestDispatcher("/myhomestay.jsp");
+          
+        
+        RequestDispatcher obj = request.getRequestDispatcher("/MyHomestay");
         obj.forward(request, response);
         
     }
