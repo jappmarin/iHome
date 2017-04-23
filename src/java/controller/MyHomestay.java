@@ -28,7 +28,7 @@ import model.Homestay;
  *
  * @author JAPP
  */
-@WebServlet(name = "MyHomestay", urlPatterns = {"/MyHomestay/"})
+@WebServlet(name = "MyHomestay", urlPatterns = {"/MyHomestay"})
 public class MyHomestay extends HttpServlet {
 
    

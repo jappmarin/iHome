@@ -51,7 +51,7 @@ public class Homestay {
     }
 
     public void addHomestay(Connection connection) throws SQLException {
-        PreparedStatement insert_homestay = connection.prepareStatement("insert into test_base.homestay (homestay_name, homestay_desc, homestay_address, homestay_license, homestay_region, homestay_province, homestay_district, homestay_latitude, homestay_longitude, homestay_picture, username) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        PreparedStatement insert_homestay = connection.prepareStatement("insert into test_base.homestay (homestay_name, homestay_desc, homestay_address, homestay_license, homestay_region, homestay_province, homestay_district, homestay_picture, username) values (?, ?, ?, ?, ?, ?, ?, ?, ?)");
         insert_homestay.setString(1, this.getHs_name());
         insert_homestay.setString(2, this.getHs_desc());
         insert_homestay.setString(3, this.getHs_address());
@@ -59,10 +59,10 @@ public class Homestay {
         insert_homestay.setString(5, this.getHs_region());
         insert_homestay.setString(6, this.getHs_province());
         insert_homestay.setString(7, this.getHs_district());
-        insert_homestay.setString(8, this.getHs_lat());
-        insert_homestay.setString(9, this.getHs_long());
-        insert_homestay.setString(10, this.getHs_pic());
-        insert_homestay.setString(11, this.getHost());
+//        insert_homestay.setString(8, this.getHs_lat());
+//        insert_homestay.setString(9, this.getHs_long());
+        insert_homestay.setString(8, this.getHs_pic());
+        insert_homestay.setString(9, this.getHost());
         insert_homestay.executeUpdate();
     }
 

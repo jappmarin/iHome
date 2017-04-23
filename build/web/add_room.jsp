@@ -1,3 +1,4 @@
+<%@page import="model.Homestay"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <% if (session.getAttribute("customer") != null) {  %><jsp:include page="templates/headerauth.jsp" /><% } else { %><jsp:include page="templates/header.jsp" /><% }%>
 <div class="container">
@@ -9,7 +10,7 @@
                     <form action="AddRoom" method="get">
                         <div class="form-group has-feedback" id="homestayIdDiv">
                             <label for="homestayId">Homestay ID</label>
-                            <input type="text" class="form-control" name="homestay_id" id="homestayIdIn" value="123" disabled>
+                            <input type="text" class="form-control" name="homestay_id" id="homestayIdIn" value="<%=(String)request.getAttribute("homestay_id")%>" disabled>
                         </div>
                         <div class="form-group has-feedback" id="homestayNameInDiv">
                             <label for="homestayname">ชื่อห้อง</label>

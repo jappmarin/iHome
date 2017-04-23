@@ -15,7 +15,9 @@
                     <a href="edit_homestay.jsp" class="btn btn-primary btn-block mt-3">Edit Homestay</a>
     <%--= if () --%>
     <% ArrayList<Homestay> myHomestay = (ArrayList<Homestay>) request.getAttribute("myHomestay");
-        for (Homestay home : myHomestay) {%>
+        for (Homestay home : myHomestay) {
+            request.setAttribute("homestay_id", home.getHs_id());%>
+            <%=request.getAttribute("homestay_id")%>
     <div class="row justify-content-center my-2">
         <div class="col-sm-12" id="profile">
             <div class="card">
@@ -34,11 +36,12 @@
                     </div>
                     <%}%>                                       
                 </div>
-            </div>
-        </div>
-    </div>
+                <a href="${SITE_URL}/add_room.jsp" class="btn btn-info btn-block mt-3">Add Room</a>
+            </div>        
+        </div>      
+    </div> 
     <%}%>
-    <a href="add_room.jsp" class="btn btn-info btn-block mt-3">Add Room</a>
+
 
     <div class="row justify-content-center my-2">
         <div class="col-sm-8">

@@ -43,6 +43,7 @@ public class AddHomestay extends HttpServlet {
 
         String appPath = request.getServletContext().getRealPath("");
         String savePath = appPath + "/asset/img/homestay";
+        String username = customer.getUsername();
         String hs_name = request.getParameter("homestayname");
         String hs_desc = request.getParameter("detail");
         String hs_address = request.getParameter("address");
@@ -52,17 +53,17 @@ public class AddHomestay extends HttpServlet {
         String hs_district = request.getParameter("district");
         String hs_lat = request.getParameter("latitude");
         String hs_long = request.getParameter("longitude");
-        String hs_pic = (customer.getUsername() + new Timestamp(calendar.getTime().getTime()).toString()).hashCode() + "";
+        String hs_pic = "hello";
+//                (customer.getUsername() + new Timestamp(calendar.getTime().getTime()).toString()).hashCode() + "";
 
-        File fileSaveDir = new File(savePath);
-        if (!fileSaveDir.exists()) {
-            fileSaveDir.mkdir();
-        }
-
-        Part part = request.getPart("file");
-        part.write(savePath + File.separator + hs_pic + ".jpg");
-        part.delete();
-
+//        File fileSaveDir = new File(savePath);
+//        if (!fileSaveDir.exists()) {
+//            fileSaveDir.mkdir();
+//        }
+//
+//        Part part = request.getPart("file");
+//        part.write(savePath + File.separator + hs_pic + ".jpg");
+//        part.delete();
         try {
             Homestay homestay = new Homestay();
             homestay.setHs_name(hs_name);
@@ -73,25 +74,23 @@ public class AddHomestay extends HttpServlet {
             homestay.setHs_province(hs_province);
             homestay.setHs_district(hs_district);
             homestay.setHs_pic(hs_pic + ".jpg");
+            homestay.setHost(username);
             homestay.addHomestay(connection);
 
         } catch (SQLException ex) {
 
         }
-        
-        PreparedStatement select_homestay = connection.prepareStatement("select * from test_base.homestay where hs_name = ?");
+
+        PreparedStatement select_homestay = connection.prepareStatement("select * from test_base.homestay where homestay_name = ?");
         select_homestay.setString(1, request.getParameter("homestayname"));
         ResultSet display_homestay = select_homestay.executeQuery();
-        display_homestay.next();
-
-        session.setAttribute("hs_name", display_homestay.getString("hs_name"));
-        session.setAttribute("hs_desc", display_homestay.getString("hs_desc"));
-        session.setAttribute("hs_pic", display_homestay.getString("hs_pic"));
-        session.setAttribute("hs_price", display_homestay.getFloat("hs_price"));
-        session.setAttribute("hs_guest", display_homestay.getInt("hs_guest"));
-        session.setAttribute("hs_address", display_homestay.getString("hs_address"));
-        session.setAttribute("hs_province", display_homestay.getString("hs_province"));
-
+        if (display_homestay.next()) {
+            session.setAttribute("hs_name", display_homestay.getString("homestay_name"));
+            session.setAttribute("hs_desc", display_homestay.getString("homestay_desc"));
+            session.setAttribute("hs_pic", display_homestay.getString("homestay_pic"));
+            session.setAttribute("hs_address", display_homestay.getString("homestay_address"));
+            session.setAttribute("hs_province", display_homestay.getString("homestay_province"));
+        }
         response.sendRedirect("profile.jsp");
     }
 
