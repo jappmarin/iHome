@@ -46,8 +46,6 @@ public class BookingConfirm extends HttpServlet {
             homestay.setHs_region(display_info.getString("homestay_region"));
             homestay.setHs_province(display_info.getString("homestay_province"));
             homestay.setHs_district(display_info.getString("homestay_district"));
-            homestay.setHs_lat(display_info.getString("homestay_latitude"));
-            homestay.setHs_long(display_info.getString("homestay_longtitude"));
             
             room.setRoom_id(display_info.getInt("room_id"));
             room.setRoom_name(display_info.getString("room_name"));
@@ -55,11 +53,11 @@ public class BookingConfirm extends HttpServlet {
             room.setRoom_price(display_info.getFloat("room_price"));
         }
 
-        PreparedStatement insert_booking = connection.prepareStatement("insert into test_base.booking (check_in, check_out, room_id) values (?,?,?)");
+        PreparedStatement insert_booking = connection.prepareStatement("insert into test_base.booking (check_in, check_out, total , room_id) values (?,?,?,?)");
         insert_booking.setString(1, request.getParameter("checkin"));
         insert_booking.setString(2, request.getParameter("checkout"));
-        insert_booking.setFloat(3, (Float.parseFloat(request.getParameter("price"))));
-        insert_booking.setString(3, homestay.getHs_id());
+        insert_booking.setString(3, request.getParameter("price"));
+        insert_booking.setString(4, room.getRoom_id()+"");
         insert_booking.executeUpdate();
         
         PreparedStatement select_booking = connection.prepareStatement("select * from test_base.booking where hs_id = '" + request.getParameter("id") + "';" );
