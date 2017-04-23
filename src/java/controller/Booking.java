@@ -46,8 +46,7 @@ public class Booking extends HttpServlet {
             homestay.setHs_region(display_homestay.getString("homestay_region"));
             homestay.setHs_province(display_homestay.getString("homestay_province"));
             homestay.setHs_district(display_homestay.getString("homestay_district"));
-            homestay.setHs_lat(display_homestay.getString("homestay_latitude"));
-            homestay.setHs_long(display_homestay.getString("homestay_longitude"));
+           
         }
         
         PreparedStatement select_room = connection.prepareStatement("select * from test_base.room where room_id = '" + request.getParameter("id") + "';");

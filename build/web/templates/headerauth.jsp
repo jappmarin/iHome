@@ -40,7 +40,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="Logout">Logout</a>
+                        <a class="nav-link" href="../Logout">Logout</a>
                     </li>
                 </ul>
             </div>

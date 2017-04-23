@@ -6,6 +6,9 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.Calendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,16 +17,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.Customer;
-import model.Homestay;
 
-@WebServlet(name = "Review", urlPatterns = {"/Review"})
+@WebServlet(name = "Review", urlPatterns = {"/Review/"})
 public class Review extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
 
         String text = request.getParameter("comment");
+        String homestay_id = request.getParameter("id");
+        String score = request.getParameter("score");
         Calendar calendar = Calendar.getInstance();
 
         ServletContext ctx = getServletContext();
@@ -31,21 +37,20 @@ public class Review extends HttpServlet {
 
         HttpSession session = request.getSession();
         Customer customer = (Customer) session.getAttribute("customer");
+        System.out.println(customer.getUsername());
 
-        String room_id = request.getParameter("id");
+        PreparedStatement pstmt = conn.prepareStatement("insert into test_base.review (review_date, comment, score, username, homestay_id) values(?,?,?,?,?)");
+        pstmt.setTimestamp(1, new Timestamp(calendar.getTime().getTime()));
+        pstmt.setString(2, text);
+        pstmt.setString(3, score);
+        pstmt.setString(4, customer.getUsername());
+        pstmt.setString(5, homestay_id);
+        pstmt.executeUpdate();
+//
+//        RequestDispatcher obj = request.getRequestDispatcher("/ViewHomestay/?id=" + homestay_id);
+//        obj.forward(request, response);
+            response.sendRedirect("../ViewHomestay/?id=" + homestay_id);
 
-        try {
-            PreparedStatement pstmt = conn.prepareStatement("insert into test_base.review (username, room_id, comment, review_date) values(?,?,?,?)");
-            pstmt.setString(1, customer.getUsername());
-            pstmt.setString(2, room_id);
-            pstmt.setString(3, text);
-            pstmt.setTimestamp(4, new Timestamp(calendar.getTime().getTime()));
-            pstmt.executeUpdate();
-
-            response.sendRedirect("../ViewHomestay/?id=" + room_id);
-
-        } catch (SQLException ex) {
-        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -60,7 +65,11 @@ public class Review extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(Review.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -74,7 +83,11 @@ public class Review extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(Review.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

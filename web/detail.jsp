@@ -20,8 +20,8 @@
                         <div class="col-sm-6">
                             <div class="card">
                                 <div class="card-block">
-                                    <h4 class="card-title">Homestay Detail</h4>
-                                    <p> คะแนนเฉลี่ย : 5 คะแนน</p>
+                                    <h4 class="card-title">รายละเอียดบ้านพัก</h4>
+                                    <p> คะแนนเฉลี่ย : <%=request.getAttribute("score")%> คะแนน</p>
                                     <p class="card-text"><%=homestay.getHs_desc()%></p>
                                 </div>
                             </div>
