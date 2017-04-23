@@ -73,7 +73,7 @@ public class AddHomestay extends HttpServlet {
             homestay.setHs_region(hs_region);
             homestay.setHs_province(hs_province);
             homestay.setHs_district(hs_district);
-            homestay.setHs_pic(hs_pic + ".jpg");
+//            homestay.setHs_pic(hs_pic + ".jpg");
             homestay.setHost(username);
             homestay.addHomestay(connection);
 
@@ -87,11 +87,11 @@ public class AddHomestay extends HttpServlet {
         if (display_homestay.next()) {
             session.setAttribute("hs_name", display_homestay.getString("homestay_name"));
             session.setAttribute("hs_desc", display_homestay.getString("homestay_desc"));
-            session.setAttribute("hs_pic", display_homestay.getString("homestay_pic"));
+//            session.setAttribute("hs_pic", display_homestay.getString("homestay_pic"));
             session.setAttribute("hs_address", display_homestay.getString("homestay_address"));
             session.setAttribute("hs_province", display_homestay.getString("homestay_province"));
         }
-        response.sendRedirect("profile.jsp");
+        response.sendRedirect("upload.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
