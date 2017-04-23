@@ -8,9 +8,11 @@
                 <h3 class="card-header">My Room</h3>
                 <div class="card-block">
                     <form action="AddRoom" method="get">
-                        <div class="form-group has-feedback" id="homestayIdDiv">
-                            <label for="homestayId">Homestay ID</label>
-                            <input type="text" class="form-control" name="homestay_id" id="homestayIdIn" value="<%=(String)request.getAttribute("homestay_id")%>" disabled>
+                        <div class="form-group has-feedback form-inline" id="homestayIdDiv">
+                            <label for="homestayId">ชื่อโฮมสเตย์</label>
+                            <input type="text" class="form-control mx-2" name="homestay_name" id="homestayIdIn" value="<%=request.getParameter("homestay_name")%>" size="40" disabled>
+                            <label for="homestayId">รหัสโฮมสเตย์</label>
+                            <input type="text" class="form-control mx-2" name="homestay_id" id="homestayIdIn" value="<%=request.getParameter("homestay_id")%>" size="1" disabled>
                         </div>
                         <div class="form-group has-feedback" id="homestayNameInDiv">
                             <label for="homestayname">ชื่อห้อง</label>

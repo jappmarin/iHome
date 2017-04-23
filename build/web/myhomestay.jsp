@@ -32,11 +32,11 @@
                     <div class="card-block">                           
                         <p> ราคาที่พักต่อคืน : <%=room.getRoom_price()%></p>
                         <p> จำนวนผู้เข้าพักสูงสุด : <%=room.getRoom_limit()%></p>
-                        <a href="${SITE_URL}/edit_room.jsp" class="btn btn-primary btn-block mt-3">Edit Room</a>
+                        <a href="${SITE_URL}/edit_room.jsp?homestay_id=<%=home.getHs_id()%>&homestay_name=<%=home.getHs_name()%>" class="btn btn-primary btn-block mt-3">Edit Room</a>
                     </div>
                     <%}%>                                       
                 </div>
-                <a href="${SITE_URL}/add_room.jsp" class="btn btn-info btn-block mt-3">Add Room</a>
+                <a href="${SITE_URL}/add_room.jsp?homestay_id=<%=home.getHs_id()%>&homestay_name=<%=home.getHs_name()%>" class="btn btn-info btn-block mt-3">Add Room</a>
             </div>        
         </div>      
     </div> 
