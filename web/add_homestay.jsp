@@ -6,30 +6,30 @@
                     <div class="card">
                         <h3 class="card-header">My Homestay</h3>
                         <div class="card-block">
-                            <form action="AddHomestay" method="POST">
+                            <form action="AddHomestay" method="GET">
                                 <div class="form-group has-feedback" id="homestayNameInDiv">
                                     <label for="homestayname">ชื่อโฮมสเตย์</label>
-                                    <input type="text" class="form-control" name="homestayname" id="homestayNameIn" placeholder="" required>
+                                    <input type="text" class="form-control" name="homestay_name" value="" id="homestayNameIn" placeholder="" required>
                                 </div>
                                 <div class="form-group has-feedback" id="describeInDiv">
                                     <label for="describe">รายละเอียดโฮมสเตย์</label>
-                                    <textarea class="form-control" id="describeIn" rows="2"></textarea>
+                                    <input type="text" class="form-control" id="describeIn" rows="2" name="homestay_desc" value="">
                                 </div>
                                 <div class="form-group has-feedback" id="licenseInDiv">
-                                    <label for="license">เลขที่ใบอนุญาตของโฮมสเตย์</label>
-                                    <input class="form-control" id="licenseIn">
+;                                    <label for="license">เลขที่ใบอนุญาตของโฮมสเตย์</label>
+                                    <input class="form-control" id="licenseIn" name="homestay_license">
                                 </div>
                                 <div class="form-group has-feedback" id="addressInDiv">
                                     <label for="addresse">ที่อยู่</label>
-                                    <textarea class="form-control" id="addressIn" rows="2"></textarea>
+                                    <input type="text" class="form-control" id="addressIn" rows="2" name="homestay_address" value="">
                                 </div>
                                 <div class="form-group has-feedback" id="districtInDiv">
                                     <label for="district">อำเภอ</label>
-                                    <input type="text" class="form-control" name="district" id="districtIn" placeholder="" required>
+                                    <input type="text" class="form-control" name="homestay_district" value="" id="districtIn" placeholder="" required>
                                 </div>
                                 <div class="form-group has-feedback" id="provinceInDiv">
                                     <label for="province">จังหวัด</label>
-                                    <input type="text" class="form-control" name="province" id="provinceIn" placeholder="" required>
+                                    <input type="text" class="form-control" name="homestay_province" id="provinceIn" placeholder="" required>
                                 </div>
                                 <div class="form-group has-feedback" id="zipInDiv">
                                     <label for="zip">รหัสไปรษณีย์</label>
@@ -41,37 +41,37 @@
                                     </div>
                                     <div class="form-check form-check-inline">
                                         <label class="form-check-label">
-                                            <input type="radio" class="form-check-input" name="optionsRadios" id="northIn" value="North" checked>
+                                            <input type="radio" class="form-check-input" name="homestay_region" id="northIn" value="N" checked>
                                             ภาคเหนือ
                                         </label>
                                     </div>
                                     <div class="form-check form-check-inline">
                                         <label class="form-check-label">
-                                            <input type="radio" class="form-check-input" name="optionsRadios" id="nothEastIn" value="NorthEast">
+                                            <input type="radio" class="form-check-input" name="homestay_region" id="nothEastIn" value="NE">
                                             ภาคตะวันออกเฉียงเหนือ
                                         </label>
                                     </div>
                                     <div class="form-check form-check-inline">
                                         <label class="form-check-label">
-                                            <input type="radio" class="form-check-input" name="optionsRadios" id="westIn" value="West">
+                                            <input type="radio" class="form-check-input" name="homestay_region" id="westIn" value="W">
                                             ภาคตะวันตก
                                         </label>
                                     </div>
                                     <div class="form-check form-check-inline">
                                         <label class="form-check-label">
-                                            <input type="radio" class="form-check-input" name="optionsRadios" id="centralIn" value="Central">
+                                            <input type="radio" class="form-check-input" name="homestay_region" id="centralIn" value="C">
                                             ภาคกลาง
                                         </label>
                                     </div>
                                     <div class="form-check form-check-inline">
                                         <label class="form-check-label">
-                                            <input type="radio" class="form-check-input" name="optionsRadios" id="eastIn" value="East">
+                                            <input type="radio" class="form-check-input" name="homestay_region" id="eastIn" value="E">
                                             ภาคตะวันออก
                                         </label>
                                     </div>
                                     <div class="form-check form-check-inline">
                                         <label class="form-check-label">
-                                            <input type="radio" class="form-check-input" name="optionsRadios" id="southIn" value="South">
+                                            <input type="radio" class="form-check-input" name="homestay_region" id="southIn" value="S">
                                             ภาคใต้
                                         </label>
                                     </div>

@@ -35,8 +35,9 @@ public class UploadPicture extends HttpServlet {
         Calendar calendar = Calendar.getInstance();
         HttpSession session = request.getSession();
         Customer customer = (Customer) session.getAttribute("customer");
-        String Id = (customer.getUsername() + new Timestamp(calendar.getTime().getTime()).toString()).hashCode() + "";
-
+        String username = (String) session.getAttribute("username");
+        String Id = (username + new Timestamp(calendar.getTime().getTime()).toString()).hashCode() + "";
+        System.out.println(Id);
         // creates the save directory if it does not exists
         File fileSaveDir = new File(savePath);
         if (!fileSaveDir.exists()) {
@@ -44,24 +45,25 @@ public class UploadPicture extends HttpServlet {
         }
 
         Part part = request.getPart("file");
-        
+
         part.write(savePath + File.separator + Id + ".jpg");
-        
+
         ServletContext context = getServletContext();
         Connection connection = (Connection) context.getAttribute("connection");
-        
+
         try {
-            PreparedStatement upload_picture = connection.prepareStatement("insert into test_base.homestay (homestay_picture) values (?)");
+            PreparedStatement upload_picture = connection.prepareStatement("update test_base.homestay set homestay_picture = ? where homestay_id = ?");
             upload_picture.setString(1, Id + ".jpg");
+            upload_picture.setString(2, (String) session.getAttribute("hs_id"));
             upload_picture.executeUpdate();
         } catch (SQLException ex) {
-            
+
         }
-        
+
         RequestDispatcher obj = request.getRequestDispatcher("/MyHomestay");
         obj.forward(request, response);
     }
-
+                                
     /**
      * Extracts file name from HTTP header content-disposition
      */

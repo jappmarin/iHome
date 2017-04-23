@@ -7,7 +7,7 @@
             <div class="card">
                 <h3 class="card-header">My Room</h3>
                 <div class="card-block">
-                    <form action="AddRoom" method="get">
+                    <form action="AddRoom" method="POST">
                         <div class="form-group has-feedback form-inline" id="homestayIdDiv">
                             <label for="homestayId">ชื่อโฮมสเตย์</label>
                             <input type="text" class="form-control mx-2" name="homestay_name" id="homestayIdIn" value="<%=request.getParameter("homestay_name")%>" size="40">

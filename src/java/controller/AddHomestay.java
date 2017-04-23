@@ -37,23 +37,21 @@ public class AddHomestay extends HttpServlet {
         ServletContext context = getServletContext();
         Connection connection = (Connection) context.getAttribute("connection");
         HttpSession session = request.getSession();
-        Customer customer = (Customer) session.getAttribute("customer");
+        String username = (String) session.getAttribute("username");
 
         Calendar calendar = Calendar.getInstance();
 
         String appPath = request.getServletContext().getRealPath("");
         String savePath = appPath + "/asset/img/homestay";
-        String username = customer.getUsername();
-        String hs_name = request.getParameter("homestayname");
-        String hs_desc = request.getParameter("detail");
-        String hs_address = request.getParameter("address");
-        String hs_license = request.getParameter("license");
-        String hs_region = request.getParameter("region");
-        String hs_province = request.getParameter("province");
-        String hs_district = request.getParameter("district");
-        String hs_lat = request.getParameter("latitude");
-        String hs_long = request.getParameter("longitude");
-        String hs_pic = "hello";
+
+//        String username = customer.getUsername();
+        String homestay_name = request.getParameter("homestay_name");
+        String homestay_desc = request.getParameter("homestay_desc");
+        String homestay_license = request.getParameter("homestay_license");
+        String homestay_address = request.getParameter("homestay_address");
+        String homestay_district = request.getParameter("homestay_district");
+        String homestay_province = request.getParameter("homestay_province");
+        String homestay_region = request.getParameter("homestay_region");
 //                (customer.getUsername() + new Timestamp(calendar.getTime().getTime()).toString()).hashCode() + "";
 
 //        File fileSaveDir = new File(savePath);
@@ -64,33 +62,35 @@ public class AddHomestay extends HttpServlet {
 //        Part part = request.getPart("file");
 //        part.write(savePath + File.separator + hs_pic + ".jpg");
 //        part.delete();
-        try {
-            Homestay homestay = new Homestay();
-            homestay.setHs_name(hs_name);
-            homestay.setHs_desc(hs_desc);
-            homestay.setHs_address(hs_address);
-            homestay.setHs_license(hs_license);
-            homestay.setHs_region(hs_region);
-            homestay.setHs_province(hs_province);
-            homestay.setHs_district(hs_district);
+        Homestay homestay = new Homestay();
+        homestay.setHs_name(homestay_name);
+        homestay.setHs_desc(homestay_desc);
+        homestay.setHs_address(homestay_address);
+        homestay.setHs_license(homestay_license);
+        homestay.setHs_region(homestay_region);
+        homestay.setHs_province(homestay_province);
+        homestay.setHs_district(homestay_district);
 //            homestay.setHs_pic(hs_pic + ".jpg");
-            homestay.setHost(username);
-            homestay.addHomestay(connection);
+        homestay.setHost(username);
+        homestay.addHomestay(connection);
+        
+        
 
-        } catch (SQLException ex) {
-
-        }
-
+        
         PreparedStatement select_homestay = connection.prepareStatement("select * from test_base.homestay where homestay_name = ?");
         select_homestay.setString(1, request.getParameter("homestayname"));
         ResultSet display_homestay = select_homestay.executeQuery();
         if (display_homestay.next()) {
+            session.setAttribute("hs_id", display_homestay.getString("homestay_id"));
             session.setAttribute("hs_name", display_homestay.getString("homestay_name"));
             session.setAttribute("hs_desc", display_homestay.getString("homestay_desc"));
 //            session.setAttribute("hs_pic", display_homestay.getString("homestay_pic"));
             session.setAttribute("hs_address", display_homestay.getString("homestay_address"));
             session.setAttribute("hs_province", display_homestay.getString("homestay_province"));
+            session.setAttribute("hs_district", display_homestay.getString("homestay_district"));
+            System.out.println((String)session.getAttribute("hs_id"));
         }
+
         response.sendRedirect("upload.jsp");
     }
 

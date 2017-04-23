@@ -2,7 +2,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <% if (session.getAttribute("customer") != null) {  %><jsp:include page="templates/headerauth.jsp" /><% } else { %><jsp:include page="templates/header.jsp" /><% }%>
         
-<%Room room = (Room) request.getAttribute("edit_room");%>
+<%String room = request.getParameter("room");%>
 <div class="container">
             <div class="row justify-content-center mt-5">
                 <div class="col-sm-12 col-md-8" id="homestay">
@@ -12,13 +12,13 @@
                             <!--<form action="EditHomestay" method="POST">-->
                                <div class="form-group has-feedback form-inline" id="homestayIdDiv">
                             <label for="homestayId">ชื่อโฮมสเตย์</label>
-                            <input type="text" class="form-control mx-2" name="homestay_name" id="homestayIdIn" value="<%=request.getParameter("homestay_name")%>" size="40" disabled>
+                            <input type="text" class="form-control mx-2" name="homestay_name" id="homestayIdIn" value="<%=request.getParameter("homestay_name")%>" size="40" >
                             <label for="homestayId">รหัสโฮมสเตย์</label>
-                            <input type="text" class="form-control mx-2" name="homestay_id" id="homestayIdIn" value="<%=request.getParameter("homestay_id")%>" size="1" disabled>
+                            <input type="text" class="form-control mx-2" name="homestay_id" id="homestayIdIn" value="<%=request.getParameter("homestay_id")%>" size="1">
                         </div>
                         <div class="form-group has-feedback" id="homestayNameInDiv">
                             <label for="homestayname">ชื่อห้อง</label>
-                            <input type="text" class="form-control" name="room_name" id="roomNameIn" placeholder="" required>
+                            <input type="text" class="form-control" name="room_name" value=<%=%>id="roomNameIn" placeholder="" required>
                         </div>
                         <div class="form-group has-feedback" id="priceInDiv">
                             <label for="price">ราคาต่อคืน</label>
