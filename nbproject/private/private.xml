@@ -4,13 +4,8 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/D:/project-homestay/iHome/src/java/controller/Search.java</file>
-            <file>file:/D:/project-homestay/iHome/src/java/model/Homestay.java</file>
-            <file>file:/D:/project-homestay/iHome/src/java/controller/AddHomestay.java</file>
             <file>file:/D:/project-homestay/iHome/web/search.jsp</file>
-            <file>file:/D:/project-homestay/iHome/src/java/controller/UploadPicture.java</file>
-            <file>file:/D:/project-homestay/iHome/web/myhomestay.jsp</file>
             <file>file:/D:/project-homestay/iHome/web/detail.jsp</file>
-            <file>file:/D:/project-homestay/iHome/web/add_homestay.jsp</file>
             <file>file:/D:/project-homestay/iHome/src/java/controller/ViewHomestay.java</file>
         </group>
     </open-files>

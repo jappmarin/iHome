@@ -21,6 +21,7 @@
                             <div class="card">
                                 <div class="card-block">
                                     <h4 class="card-title">Homestay Detail</h4>
+                                    <p> คะแนนเฉลี่ย : 5 คะแนน</p>
                                     <p class="card-text"><%=homestay.getHs_desc()%></p>
                                 </div>
                             </div>
@@ -28,7 +29,7 @@
                     </div>
                     <% if (request.getAttribute("allRoom") != null) { %>
                     <% ArrayList<Room> allRoom = (ArrayList<Room>) request.getAttribute("allRoom");
-        for (model.Room room : allRoom) {%>
+                        for (model.Room room : allRoom) {%>
                     <div class="row justify-content-center my-2">
                         <div class="col-sm-12">
                             <div class="card">
@@ -59,7 +60,7 @@
                         </div>
                     </div>
                     <% }
-        }%>
+                        }%>
                 </div>
             </div>
         </div>
@@ -86,6 +87,39 @@
                         <li class="media">
                             <div class="media-body">
                                 <form action="${SITE_URL}/Review/?id=<%=homestay.getHs_id()%>" method="POST">
+                                    <fieldset class="form-group">
+                                        <legend>ให้คะแนนโฮมสเตย์</legend>
+                                        <div class="form-check form-check-inline">
+                                            <label class="form-check-label">
+                                                <input type="radio" class="form-check-input" name="score" id="score1" value="1">
+                                                1 คะแนน
+                                            </label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <label class="form-check-label">
+                                                <input type="radio" class="form-check-input" name="score" id="score2" value="2">
+                                                2 คะแนน
+                                            </label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <label class="form-check-label">
+                                                <input type="radio" class="form-check-input" name="score" id="score3" value="3">
+                                                3 คะแนน
+                                            </label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <label class="form-check-label">
+                                                <input type="radio" class="form-check-input" name="score" id="score4" value="4">
+                                                4 คะแนน
+                                            </label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <label class="form-check-label">
+                                                <input type="radio" class="form-check-input" name="score" id="score5" value="5">
+                                                5 คะแนน
+                                            </label>
+                                        </div>
+                                    </fieldset>
                                     <textarea name="comment" rows="3" style="width: 100%; margin-top: 10px; margin-bottom: 10px;"></textarea>
                                     <button type="submit" class="btn btn-success btn-lg">Comment</button>
                                 </form>
