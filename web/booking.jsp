@@ -5,7 +5,7 @@
 <% Homestay homestay = (Homestay) request.getAttribute("homestay");%>
 <% Room room = (Room) request.getAttribute("room");%>
 <div class="container mt-5">
-    <form action="${SITE_URL}/BookingConfirm/?id=<%=homestay.getHs_id()%>" method="POST">
+    <form action="${SITE_URL}/BookingConfirm/?id=<%=room.getRoom_id()%>" method="POST">
         <div class="row justify-content-center mt-3 mb-3">
             <div class="col-sm-12 col-md-6">
                 <div class="card">
@@ -58,9 +58,9 @@
                                 </div>
                                 <label>จำนวนผู้เข้าพัก</label>
                                 <div class="form-inline">
-                                    <button class="btn btn-primary btn-sm mr-2 ml-2 mb-3" onclick="removeGuest<%=room.getRoom_id()%>(); totalDate();">-</button>
+                                    <input class="btn btn-primary btn-sm mr-2 ml-2 mb-3" type="button" onclick="removeGuest<%=room.getRoom_id()%>(); totalDate();" value="-">
                                     <input class="form-control mr-2 ml-2 mb-3" style="width: 45px;" type="text" id="guest<%=room.getRoom_id()%>" name="guest" value="1">
-                                    <button class="btn btn-primary btn-sm mr-2 ml-2 mb-3    " onclick="addGuest<%=room.getRoom_id()%>(); totalDate();">+</button>
+                                    <input class="btn btn-primary btn-sm mr-2 ml-2 mb-3" type="button" onclick="addGuest<%=room.getRoom_id()%>(); totalDate();" value="+">
                                 </div>
                                 <script>
                                         var i<%=room.getRoom_id()%> = 1;
@@ -78,7 +78,7 @@
                                         }
                                 </script>
                                 <div class="form-group has-feedback" id="priceInDiv">
-                                    <label for="price">Price Total</label>
+                                    <label for="price">Total</label>
                                     <input type="text" class="form-control" name="price" id="priceIn" placeholder="" value="" disabled>
                                 </div>
                                 <div class="text-center">
@@ -96,7 +96,7 @@
 <script>
     function totalDate() {
         var diff = (Math.ceil((new Date(document.getElementById("checkoutIn").value) - new Date(document.getElementById("checkinIn").value)) / (1000 * 3600 * 24)));
-        document.getElementById("priceIn").value = (diff * <%=room.getRoom_price()%>)* document.getElementById("guest<%=room.getRoom_id()%>").value;
+        document.getElementById("priceIn").value = (diff * <%=room.getRoom_price()%>);
     }
 </script>
 <jsp:include page="templates/footer.jsp" />
