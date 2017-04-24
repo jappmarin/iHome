@@ -23,6 +23,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.Customer;
 import model.ViewBookClass;
 
 /**
@@ -50,9 +51,10 @@ public class ViewBookServ extends HttpServlet {
         HttpSession session = request.getSession();
         ServletContext context = getServletContext();
         Connection connection = (Connection) context.getAttribute("connection");
+        Customer customer = (Customer)session.getAttribute("customer");
         
         ArrayList<ViewBookClass> showBook = new ArrayList<>();
-        String sql = "SELECT b.booking_id, b.check_in, b.check_out, b.night, b.total, r.room_name, h.homestay_name FROM test_base.booking b JOIN test_base.room r USING (room_id) JOIN test_base.homestay h USING (homestay_id) WHERE h.username = 'ja';";
+        String sql = "SELECT b.booking_id, b.check_in, b.check_out, b.night, b.total, r.room_name, h.homestay_name FROM test_base.booking b JOIN test_base.room r USING (room_id) JOIN test_base.homestay h USING (homestay_id) WHERE h.username ='" + customer.getUsername() +"';";     
         Statement select_show_book = connection.createStatement();
         ResultSet display_show_book = select_show_book.executeQuery(sql);
         while (display_show_book.next()) {
@@ -70,8 +72,7 @@ public class ViewBookServ extends HttpServlet {
             
             
             request.setAttribute("showBook", showBook);
-            out.println("eiei");
-            out.println(showBook.get(0).getBooking_id());
+            
             RequestDispatcher obj = request.getRequestDispatcher("/view_booking.jsp");
             obj.forward(request, response);
         }
