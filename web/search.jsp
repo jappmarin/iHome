@@ -107,7 +107,7 @@
                             request.setAttribute("homestay_id", home.getHs_id());%>
                 <div class="col-sm-6">
                     <div class="card text-center mt-2">
-                        <img class="card-img-top" src="${SITE_URL}/asset/img/homestay/<%=home.getHs_pic()%>">
+                        <img class="card-img-top" style="height: 300px;" src="${SITE_URL}/asset/img/homestay/<%=home.getHs_pic()%>">
                         <br>
                         <style>
                             #cut{
