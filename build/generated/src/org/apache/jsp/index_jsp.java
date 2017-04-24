@@ -63,13 +63,13 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("            <img src=\"https://www.ownerdirect.com/images/1069506-full.jpg\" alt=\"...\" class=\"w-100 rounded-0 mt-2 mb-2\">\n");
       out.write("        </div>\n");
       out.write("    </div>\n");
-      out.write("    <div class=\"row justify-content-center mt\">\n");
+      out.write("    <div class=\"row justify-content-center\">\n");
       out.write("        <div class=\"col-2 hidden-sm-down\">\n");
       out.write("            <img src=\"https://www.ownerdirect.com/images/1069503-full.jpg\" alt=\"...\" class=\"w-100 rounded-0 mt-2 mb-2\">\n");
       out.write("            <img src=\"https://www.ownerdirect.com/images/1104979-full.jpg\" alt=\"...\" class=\"w-100 rounded-0 mt-2 mb-2\">\n");
       out.write("        </div>\n");
-      out.write("        <div class=\"col-sm-8\" style=\"height: 100%\">\n");
-      out.write("            <div class=\"card\">\n");
+      out.write("        <div class=\"col-sm-8 mt-1\" >\n");
+      out.write("            <div class=\"card\" style=\"height: 100%\">\n");
       out.write("                <div class=\"card-block\">\n");
       out.write("                    <div class=\"row justify-content-center mt-5 mb-4\">\n");
       out.write("                        <div class=\"col-sm-12 col-md-12\">\n");
