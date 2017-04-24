@@ -1,3 +1,4 @@
+<%@page import="model.ViewBookClass"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="model.Homestay"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
@@ -21,6 +22,7 @@
                             </tr>
                         </thead>
                         <tbody>
+
                             <tr>
                                 <th scope="row" class="text-center">Test</th>
                                 <td>Test1</td>
@@ -38,7 +40,7 @@
                                 <td>Test4</td>
                                 <td>Test5</td>
                                 <td>Test6</td>
-                            </tr>
+                            </tr> 
                         </tbody>
                     </table>                                  
                 </div>

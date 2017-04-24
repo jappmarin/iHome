@@ -4,7 +4,7 @@
             <div class="row justify-content-center mt-5">
                 <div class="col-sm-12 col-md-8" id="signup">
                     <div class="card">
-                        <h3 class="card-header">Sign Up</h3>
+                        <h3 class="card-header">Sign Up Host</h3>
                         <div class="card-block">
                             <form action="Signup" method="POST">
                                 <% session.setAttribute("cus_type", "HOST"); %>
