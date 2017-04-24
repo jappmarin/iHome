@@ -26,9 +26,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="${SITE_URL}/signup_host.jsp">Become a Host</a>
                     </li>
-                    <li class="nav-item">
+<!--                    <li class="nav-item">
                         <a class="nav-link" href="#">Help</a>
-                    </li>
+                    </li>-->
                     <li class="nav-item">
                         <a class="nav-link" href="${SITE_URL}/signup.jsp">Sign up</a>
                     </li>
