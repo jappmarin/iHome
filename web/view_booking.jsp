@@ -33,7 +33,7 @@
                             <tr>
                                 <th scope="row" class="text-center">Test</th>
                                 <td>Test1</td>
-                                <td>Test2/td>
+                                <td>Test2</td>
                                 <td>Test3</td>
                                 <td>Test4</td>
                                 <td>Test5</td>

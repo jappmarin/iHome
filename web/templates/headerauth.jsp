@@ -30,7 +30,7 @@
                            <% if (session.getAttribute("type").equals("GUEST")) { %>
                            ${SITE_URL}/Signup
                            <% } else if (session.getAttribute("type").equals("HOST")) {%>
-                           ${SITE_URL}/ViewBooking
+                           ${SITE_URL}/ViewBookServ
                            <% } %>
                            ">
                             <% if (session.getAttribute("type").equals("HOST")) { %>
