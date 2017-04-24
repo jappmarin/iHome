@@ -60,8 +60,10 @@ public class EditRoom extends HttpServlet {
         update_room.setString(4, room_id);
         update_room.executeUpdate();
 
-        RequestDispatcher obj = request.getRequestDispatcher("/MyHomestay");
-        obj.forward(request, response);
+        
+        response.sendRedirect("../iHome/MyHomestay");
+//        RequestDispatcher obj = request.getRequestDispatcher("/MyHomestay");
+//        obj.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
