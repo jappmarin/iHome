@@ -1,16 +1,16 @@
 <%@page import="model.Room"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <% if (session.getAttribute("customer") != null) {  %><jsp:include page="templates/headerauth.jsp" /><% } else { %><jsp:include page="templates/header.jsp" /><% }%>
-        
+
 <%String room = request.getParameter("room");%>
 <div class="container">
-            <div class="row justify-content-center mt-5">
-                <div class="col-sm-12 col-md-8" id="homestay">
-                    <div class="card">
-                        <h3 class="card-header">Edit My Room</h3>
-                        <div class="card-block">
-                            <!--<form action="EditHomestay" method="POST">-->
-                               <div class="form-group has-feedback form-inline" id="homestayIdDiv">
+    <div class="row justify-content-center mt-5">
+        <div class="col-sm-12 col-md-8" id="homestay">
+            <div class="card">
+                <h3 class="card-header">Edit My Room</h3>
+                <div class="card-block">
+                    <form action="${SITE_URL}/EditRoom" method="POST">
+                        <div class="form-group has-feedback form-inline" id="homestayIdDiv">
                             <label for="homestayId">ชื่อโฮมสเตย์</label>
                             <input type="text" class="form-control mx-2" name="homestay_name" id="homestayIdIn" value="<%=request.getParameter("homestay_name")%>" size="40" >
                             <label for="homestayId">รหัสโฮมสเตย์</label>
@@ -28,7 +28,7 @@
                             <label for="guest">จำนวนผู้เข้าพักสูงสุด</label>
                             <input type="text" class="form-control" name="room_limit" id="limitIn" placeholder="" required>
                         </div>
-                        <label for="facilities"> สิ่งอำนวยความสะดวก </label>
+<!--                        <label for="facilities"> สิ่งอำนวยความสะดวก </label>
                         <div class="row">
                             <div class="col">
                                 <div class="form-check">
@@ -172,16 +172,16 @@
                             <label class="form-check-label">
                                 <input class="form-check-input" type="checkbox" name="facilities" id="inlineCheckbox3" value=""> อื่นๆ
                             </label>
-                        </div>
-                                               
+                        </div>-->
+
                         <div class="text-center">
                             <button type="submit" class="btn btn-primary btn-block" id="addHomestayButton">Save Change</button>
                             <button class="btn btn-secondary btn-block" id="addHomestayButton">Cancel</button>
                         </div>
-                            <!--</form>-->
-                        </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
+    </div>
+</div>
 <jsp:include page="templates/footer.jsp" />

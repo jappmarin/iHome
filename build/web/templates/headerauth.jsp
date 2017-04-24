@@ -24,6 +24,23 @@
             </a>
             <div class="collapse navbar-collapse" id="navbars">
                 <ul class="navbar-nav ml-auto">
+                    <% if (session.getAttribute("type").equals("GUEST") || session.getAttribute("type").equals("HOST")) { %>
+                    <li class="nav-item">
+                        <a class="nav-link" href="
+                           <% if (session.getAttribute("type").equals("GUEST")) { %>
+                           ${SITE_URL}/Signup
+                           <% } else if (session.getAttribute("type").equals("HOST")) {%>
+                           ${SITE_URL}/ViewBooking
+                           <% } %>
+                           ">
+                            <% if (session.getAttribute("type").equals("HOST")) { %>
+                            View Booking
+                            <% } else { %>
+                            Become a Host 
+                            <% }%>
+                        </a>
+                    </li>
+                    <% } %>
                     <li class="nav-item">
                         <a class="nav-link" href="
                            <% if (session.getAttribute("type").equals("GUEST") || session.getAttribute("type").equals("HOST")) { %>

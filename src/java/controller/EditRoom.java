@@ -8,6 +8,11 @@ package controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,26 +28,40 @@ import javax.servlet.http.HttpSession;
 @WebServlet(name = "EditRoom", urlPatterns = {"/EditRoom"})
 public class EditRoom extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-       response.setContentType("text/html;charset=UTF-8");
+            throws ServletException, IOException, SQLException {
+        response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
 
         ServletContext context = getServletContext();
         Connection connection = (Connection) context.getAttribute("connection");
         HttpSession session = request.getSession();
-        
-       
+
+        String room_id = request.getParameter("room_id");
+        String room_name = request.getParameter("room_name");
+        String room_price = request.getParameter("room_price");
+        String room_limit = request.getParameter("room_limit");
+        String[] room_fac = request.getParameterValues("facilities");
+//        
+//        Room room = new Room(Integer.parseInt(room_id));
+//        room.setRoom_name(room_name);
+//        room.setRoom_limit(Integer.parseInt(room_limit));
+//        room.setRoom_price(Float.parseFloat(room_price));
+//
+//        room.changeRoom_name(connection);
+//        room.changeRoom_limit(connection);
+//        room.changeRoom_limit(connection);
+
+        PreparedStatement update_room = connection.prepareStatement("update test_base.room SET room_name = ?, room_limit = ?, room_price = ? where room_id = ?;");
+        update_room.setString(1, room_name);
+        update_room.setString(2, room_limit);
+        update_room.setString(3, room_price);
+        update_room.setString(4, room_id);
+        update_room.executeUpdate();
+
+        RequestDispatcher obj = request.getRequestDispatcher("/MyHomestay");
+        obj.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -57,7 +76,11 @@ public class EditRoom extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(EditRoom.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -71,7 +94,11 @@ public class EditRoom extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(EditRoom.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
