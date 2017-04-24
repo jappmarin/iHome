@@ -22,25 +22,20 @@
                             </tr>
                         </thead>
                         <tbody>
-
+                            <% ArrayList<ViewBookClass> showBook = (ArrayList<ViewBookClass>) request.getAttribute("showBook");
+                                    if (showBook != null) {
+                                        for (ViewBookClass show : showBook) { %>
                             <tr>
-                                <th scope="row" class="text-center">Test</th>
-                                <td>Test1</td>
-                                <td>Test2</td>
-                                <td>Test3</td>
-                                <td>Test4</td>
-                                <td>Test5</td>
-                                <td>Test6</td>
+                                <th scope="row" class="text-center"><%=show.getBooking_id()%></th>
+                                <td><%=show.getRoom_name()%></td>
+                                <td><%=show.getHomestay_name()%></td>
+                                <td><%=show.getCheck_in()%></td>
+                                <td><%=show.getCheck_out()%></td>                          
+                                <td><%=show.getNight()%></td>
+                                <td><%=show.getTotal()%></td>
                             </tr>
-                            <tr>
-                                <th scope="row" class="text-center">Test</th>
-                                <td>Test1</td>
-                                <td>Test2</td>
-                                <td>Test3</td>
-                                <td>Test4</td>
-                                <td>Test5</td>
-                                <td>Test6</td>
-                            </tr> 
+                        
+                            <% } }%>
                         </tbody>
                     </table>                                  
                 </div>

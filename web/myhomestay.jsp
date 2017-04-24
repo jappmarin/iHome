@@ -35,7 +35,7 @@
                     <%}%>                                       
                 </div>
                 <a href="${SITE_URL}/add_room.jsp?homestay_id=<%=home.getHs_id()%>&homestay_name=<%=home.getHs_name()%>" class="btn btn-success btn-block mt-1">Add Room</a>
-                <a href="${SITE_URL}/edit_homestay.jsp" class="btn btn-warning btn-block mt-1">Edit Homestay</a>
+                <a href="${SITE_URL}/edit_homestay.jsp?homestay_id=<%=home.getHs_id()%>&homestay_name=<%=home.getHs_name()%>" class="btn btn-warning btn-block mt-1">Edit Homestay</a>
             </div>        
         </div>      
     </div> 
