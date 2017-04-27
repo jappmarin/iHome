@@ -32,10 +32,5 @@
                     </div>
                 </div>
             </div>
-            <div class="row justify-content-center mt-5">
-                <div class="col-1">
-                    <button type="button" class="btn btn-primary btn-lg">Print</button>
-                </div>
-            </div>
         </div>
 <jsp:include page="templates/footer.jsp" />

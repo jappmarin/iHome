@@ -36,10 +36,7 @@
                                 <h3 class="card-header">ห้อง <%=room.getRoom_name()%> ของ <%=homestay.getHs_name()%></h3>
                                 <div class="card-block">
                                     <div class="row justify-content-center">
-                                        <div class="col-sm-6">
-                                            <img class="d-block" style="height: 100%; width: 100%;" src="${SITE_URL}/asset/img/homestay/<%=homestay.getHs_pic()%>" alt="">
-                                        </div>
-                                        <div class="col-sm-6">
+                                        <div class="col-sm-12">
                                             <div class="card">
                                                 <div class="card-block">
                                                     <h4 class="card-title">รายละเอียดห้องพัก</h4>

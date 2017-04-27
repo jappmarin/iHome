@@ -30,7 +30,7 @@ public class EditProfile extends HttpServlet {
         ServletContext context = getServletContext();
         Connection connection = (Connection) context.getAttribute("connection");
         HttpSession session = request.getSession();
-        
+
         String password = (String) session.getAttribute("password");
         String confirmPassword = request.getParameter("re_enPass");
 
@@ -40,7 +40,7 @@ public class EditProfile extends HttpServlet {
         String email = request.getParameter("email");
         String phone = request.getParameter("phone");
         String type = (String) session.getAttribute("type");
-        
+
         out.println(username);
         out.println(lastname);
         out.println(firstname);
@@ -73,12 +73,8 @@ public class EditProfile extends HttpServlet {
 //            session.setAttribute("phone", display_customer.getString("phone"));
             Customer customer = new Customer(connection, username);
             session.setAttribute("customer", customer);
-            
-            if (session.getAttribute("type").equals("GUEST")) {
-                response.sendRedirect("profile.jsp");
-            } else {
-                response.sendRedirect("profile_host.jsp");
-            }
+
+            response.sendRedirect("profile.jsp");
 
         } else {
             PrintWriter out = response.getWriter();

@@ -171,17 +171,6 @@
                                 <input class="form-check-input" type="checkbox" name="facilities" id="inlineCheckbox3" value=""> อื่นๆ
                             </label>
                         </div>
-                        
-                        <div class="col text-center">
-                            <label for="guest">อัพโหลดรูปภาพ</label>
-                            <div class="form-group has-feedback">
-                                <label class="custom-file">
-                                    <input type="file" id="file" class="custom-file-input">
-                                    <span class="custom-file-control"></span>
-                                </label>
-                                <small id="fileHelp" class="form-text text-muted">Upload .jpg, .png extensions only.</small>
-                            </div>
-                        </div>
                         <div class="text-center">
                             <button type="submit" class="btn btn-primary btn-block" id="addHomestayButton">Add Room</button>
                             <button class="btn btn-secondary btn-block" id="addHomestayButton">Cancel</button>
