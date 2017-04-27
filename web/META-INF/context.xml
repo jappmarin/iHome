@@ -4,4 +4,5 @@
   <Resource auth="Container" driverClassName="com.mysql.jdbc.Driver" maxActive="20" maxIdle="10" maxWait="-1" name="ihomee" password="japp" type="javax.sql.DataSource" url="jdbc:mysql://localhost:3306/mysql?zeroDateTimeBehavior=convertToNull" username="root"/>
   <Resource auth="Container" driverClassName="com.mysql.jdbc.Driver" maxActive="20" maxIdle="10" maxWait="-1" name="ihome2" password="root" type="javax.sql.DataSource" url="jdbc:mysql://localhost:3306/test_base?zeroDateTimeBehavior=convertToNull" username="root"/>
   <Resource auth="Container" driverClassName="com.mysql.jdbc.Driver" maxActive="20" maxIdle="10" maxWait="-1" name="aa" password="root" type="javax.sql.DataSource" url="jdbc:mysql://localhost:3306/test_base?zeroDateTimeBehavior=convertToNull" username="root"/>
+  <Resource auth="Container" driverClassName="com.mysql.jdbc.Driver" maxActive="20" maxIdle="10" maxWait="-1" name="test" password="root" type="javax.sql.DataSource" url="jdbc:mysql://localhost:3306/test_base?zeroDateTimeBehavior=convertToNull" username="root"/>
 </Context>

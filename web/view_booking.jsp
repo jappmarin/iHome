@@ -13,8 +13,8 @@
                         <thead>
                             <tr>
                                 <th class="text-center">Booking ID</th>
-                                <th class="text-center">Room ID</th>
                                 <th class="text-center">Room Name</th>
+                                <th class="text-center">Homestay Name</th>
                                 <th class="text-center">Check in</th>
                                 <th class="text-center">Check out</th>
                                 <th class="text-center">Night</th>

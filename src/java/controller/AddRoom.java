@@ -31,7 +31,7 @@ public class AddRoom extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
-        
+
         int room_id;
         String room_name = request.getParameter("room_name");
         int room_limit = Integer.parseInt(request.getParameter("room_limit"));
@@ -40,9 +40,9 @@ public class AddRoom extends HttpServlet {
 //                request.getParameter("room_picture");
         int homestay_id = Integer.parseInt(request.getParameter("homestay_id"));
         String[] room_fac = request.getParameterValues("facilities");
-        
+
         ServletContext context = getServletContext();
-        Connection connection = (Connection) context.getAttribute("connection");  
+        Connection connection = (Connection) context.getAttribute("connection");
         Room room = new Room();
         room.setRoom_name(room_name);
         room.setRoom_limit(room_limit);
@@ -50,20 +50,18 @@ public class AddRoom extends HttpServlet {
         room.setRoom_picture(room_picture);
         room.setHomestay_id(homestay_id);
         room.addNewRoom(connection);
-        
+
         Room room_f = new Room(connection, room_name);
         room_id = room_f.getRoom_id();
         for (String room_fac1 : room_fac) {
             int fac_id = Integer.parseInt(room_fac1);
             room_f.addRoom_facilities(connection, room_id, fac_id);
         }
-          
-        
+
         RequestDispatcher obj = request.getRequestDispatcher("/MyHomestay");
         obj.forward(request, response);
-        
+
     }
-    
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)

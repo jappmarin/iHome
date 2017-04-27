@@ -91,6 +91,7 @@ public class Search extends HttpServlet {
             homestay.setHs_province(display_homestay_province.getString("homestay_province"));
             homestay.setHs_district(display_homestay_province.getString("homestay_district"));
             homestay.setHs_pic(display_homestay_province.getString("homestay_picture"));
+           
             allHome.add(homestay);
         }
 
@@ -107,7 +108,7 @@ public class Search extends HttpServlet {
             homestay.setHs_region(display_homestay_district.getString("homestay_region"));
             homestay.setHs_province(display_homestay_district.getString("homestay_province"));
             homestay.setHs_district(display_homestay_district.getString("homestay_district"));
-            homestay.setHs_pic(display_homestay_district.getString("homestay_picture"));
+           homestay.setHs_pic(display_homestay_district.getString("homestay_picture"));
             allHome.add(homestay);
         }
         if (low_price != null || max_price != null) {
@@ -167,7 +168,7 @@ public class Search extends HttpServlet {
                 homestay.setHs_region(display_homestay_date.getString("homestay_region"));
                 homestay.setHs_province(display_homestay_date.getString("homestay_province"));
                 homestay.setHs_district(display_homestay_date.getString("homestay_district"));
-                homestay.setHs_pic(display_room_name.getString("homestay_picture"));    
+                homestay.setHs_pic(display_homestay_date.getString("homestay_picture"));
                 allHome.add(homestay);
             }
         }
