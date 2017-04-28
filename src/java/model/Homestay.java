@@ -21,6 +21,7 @@ public class Homestay {
     private String hs_long;
     private String host;
     private ArrayList<Room> myRoom;
+    private String contact;
     private Connection connection;
 
     public Homestay() {
@@ -217,13 +218,40 @@ public class Homestay {
     public void setMyRoom(Connection connection, String homestay_id) throws SQLException {
         PreparedStatement select_myRoom = connection.prepareStatement("select * from test_base.room where homestay_id =" + homestay_id);
         ResultSet display_myRoom = select_myRoom.executeQuery();
-        myRoom = new ArrayList<>();
-        while (display_myRoom.next()) {           
-            Room room = new Room(connection, display_myRoom.getString("room_name")); 
-            myRoom.add(room);
+        setMyRoom(new ArrayList<>());
+        while (display_myRoom.next()) {
+            Room room = new Room(connection, display_myRoom.getString("room_name"));
+            getMyRoom().add(room);
         }
 
+        this.setMyRoom(getMyRoom());
+    }
+
+    /**
+     * @param myRoom the myRoom to set
+     */
+    public void setMyRoom(ArrayList<Room> myRoom) {
         this.myRoom = myRoom;
+    }
+
+    /**
+     * @return the contact
+     */
+    public String getContact() {
+        return contact;
+    }
+
+    /**
+     * @param contact the contact to set
+     */
+    public void setContact(Connection connection, String homestay_id) throws SQLException {
+        PreparedStatement select_contact = connection.prepareStatement("select * from test_base.homestay join test_base.customer using(username) where homestay_id = ?");
+        select_contact.setString(1, homestay_id);
+        ResultSet display_contact = select_contact.executeQuery();
+        while (display_contact.next()) {
+            this.contact = display_contact.getString("phone");
+        }
+
     }
 
 }

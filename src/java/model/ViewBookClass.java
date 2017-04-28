@@ -10,6 +10,7 @@ package model;
  * @author Patta
  */
 public class ViewBookClass {
+
     private int booking_id;
     private String check_in;
     private String check_out;
@@ -17,6 +18,9 @@ public class ViewBookClass {
     private float total;
     private String room_name;
     private String homestay_name;
+    private String customer_name;
+    private String phone;
+    private String email;
 
     /**
      * @return the booking_id
@@ -115,7 +119,47 @@ public class ViewBookClass {
     public void setHomestay_name(String homestay_name) {
         this.homestay_name = homestay_name;
     }
-    
-    
-    
+
+    /**
+     * @return the customer_name
+     */
+    public String getCustomer_name() {
+        return customer_name;
+    }
+
+    /**
+     * @param customer_name the customer_name to set
+     */
+    public void setCustomer_name(String customer_name) {
+        this.customer_name = customer_name;
+    }
+
+    /**
+     * @return the phone
+     */
+    public String getPhone() {
+        return phone;
+    }
+
+    /**
+     * @param phone the phone to set
+     */
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    /**
+     * @return the email
+     */
+    public String getEmail() {
+        return email;
+    }
+
+    /**
+     * @param email the email to set
+     */
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
 }

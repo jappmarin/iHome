@@ -3,13 +3,13 @@
 <%@page import="model.Homestay"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <% if (session.getAttribute("customer") != null) {  %><jsp:include page="templates/headerauth.jsp" /><% } else { %><jsp:include page="templates/header.jsp" /><% }%>
-<div class="container">
+<div class="container-fluid" style="padding-left: 200px; padding-right: 200px;">
     <div class="row justify-content-center mt-5">
         <div class="col-md-12">
             <div class="card">
                 <h3 class="card-header">View Booking</h3>
                 <div class="card-block">
-                    <table class="table table-bordered text-center" style="background-color: #fff">
+                    <table class="table table-bordered text-center" style="background-color: #fff" width="800">
                         <thead>
                             <tr>
                                 <th class="text-center">Booking ID</th>
@@ -19,6 +19,9 @@
                                 <th class="text-center">Check out</th>
                                 <th class="text-center">Night</th>
                                 <th class="text-center">Total</th>
+                                <th class="text-center">Customer</th>
+                                <th class="text-center">Contact</th>
+                                <th class="text-center">E-mail</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -33,8 +36,11 @@
                                 <td><%=show.getCheck_out()%></td>                          
                                 <td><%=show.getNight()%></td>
                                 <td><%=show.getTotal()%></td>
+                                <td><%=show.getCustomer_name()%></td>
+                                <td><%=show.getPhone()%></td>
+                                <td><%=show.getEmail()%></td>
                             </tr>
-                        
+
                             <% } }%>
                         </tbody>
                     </table>                                  

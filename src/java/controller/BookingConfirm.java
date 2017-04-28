@@ -67,7 +67,7 @@ public class BookingConfirm extends HttpServlet {
 
         if (session.getAttribute("customer") != null) {
 
-            PreparedStatement insert_booking = connection.prepareStatement("insert into test_base.booking (check_in, check_out, night, booking_date, total , username, room_id) values (?,?,?,?,?,?,?)");
+            PreparedStatement insert_booking = connection.prepareStatement("insert into test_base.booking (check_in, check_out, night, booking_date, total , username, room_id, customar_name, customer_phone, customer_email) values (?,?,?,?,?,?,?)");
             insert_booking.setString(1, request.getParameter("checkin"));
             insert_booking.setString(2, request.getParameter("checkout"));
             insert_booking.setInt(3, night);

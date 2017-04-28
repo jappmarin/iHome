@@ -6,8 +6,6 @@
 package controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import static java.lang.System.out;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -47,14 +45,14 @@ public class ViewBookServ extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
-        
+
         HttpSession session = request.getSession();
         ServletContext context = getServletContext();
         Connection connection = (Connection) context.getAttribute("connection");
-        Customer customer = (Customer)session.getAttribute("customer");
-        
+        Customer customer = (Customer) session.getAttribute("customer");
+
         ArrayList<ViewBookClass> showBook = new ArrayList<>();
-        String sql = "SELECT b.booking_id, b.check_in, b.check_out, b.night, b.total, r.room_name, h.homestay_name FROM test_base.booking b JOIN test_base.room r USING (room_id) JOIN test_base.homestay h USING (homestay_id) WHERE h.username ='" + customer.getUsername() +"';";     
+        String sql = "SELECT b.booking_id, b.check_in, b.check_out, b.night, b.total, r.room_name, h.homestay_name, b.customer_name, b.customer_phone, b.customer_email  FROM test_base.booking b JOIN test_base.room r USING (room_id) JOIN test_base.homestay h USING (homestay_id) WHERE h.username ='" + customer.getUsername() + "';";
         Statement select_show_book = connection.createStatement();
         ResultSet display_show_book = select_show_book.executeQuery(sql);
         while (display_show_book.next()) {
@@ -66,17 +64,18 @@ public class ViewBookServ extends HttpServlet {
             viewbook.setTotal(display_show_book.getFloat("total"));
             viewbook.setRoom_name(display_show_book.getString("room_name"));
             viewbook.setHomestay_name(display_show_book.getString("h.homestay_name"));
-            
+            viewbook.setCustomer_name(display_show_book.getString("customer_name"));
+            viewbook.setPhone(display_show_book.getString("customer_phone"));
+            viewbook.setEmail(display_show_book.getString("customer_email"));
             showBook.add(viewbook);
         }
-            
-            
-            request.setAttribute("showBook", showBook);
-            
-            RequestDispatcher obj = request.getRequestDispatcher("/view_booking.jsp");
-            obj.forward(request, response);
-        }
-    
+
+        request.setAttribute("showBook", showBook);
+
+        RequestDispatcher obj = request.getRequestDispatcher("/view_booking.jsp");
+        obj.forward(request, response);
+    }
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

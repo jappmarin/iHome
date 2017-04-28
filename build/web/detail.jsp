@@ -22,6 +22,7 @@
                                 <div class="card-block">
                                     <h4 class="card-title">รายละเอียดบ้านพัก</h4>
                                     <p> คะแนนเฉลี่ย : <%=request.getAttribute("score")%> คะแนน</p>
+                                    <p> ติดต่อ : <%=homestay.getContact().substring(0, 3)%>-<%=homestay.getContact().substring(3, 6)%>-<%=homestay.getContact().substring(6, 10)%>
                                     <p class="card-text"><%=homestay.getHs_desc()%></p>
                                 </div>
                             </div>

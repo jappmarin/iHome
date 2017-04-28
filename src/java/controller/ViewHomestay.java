@@ -15,12 +15,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import model.Comment;
 import model.Homestay;
 import model.Room;
 
-@WebServlet(name = "View", urlPatterns = {"/ViewHomestay/"})
+@WebServlet(name = "ViewHomestay", urlPatterns = {"/ViewHomestay/"})
 public class ViewHomestay extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -47,6 +46,7 @@ public class ViewHomestay extends HttpServlet {
             homestay.setHs_province(display_homestay.getString("homestay_province"));
             homestay.setHs_district(display_homestay.getString("homestay_district"));
             homestay.setHs_pic(display_homestay.getString("homestay_picture"));
+            homestay.setContact(connection, (request.getParameter("id") + "';"));
 
         }
 

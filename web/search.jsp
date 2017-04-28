@@ -2,7 +2,7 @@
 <%@page import="model.Homestay"%>
 <%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <% if (session.getAttribute("customer") != null) {  %><jsp:include page="templates/headerauth.jsp" /><% } else { %><jsp:include page="templates/header.jsp" /><% }%>
-<div class="container mt-5">   
+<div class="container mt-5 mb-5">   
     <div class="row justify-content-center">
         <div class="col-sm-3">
             <div class="card mt-2">
