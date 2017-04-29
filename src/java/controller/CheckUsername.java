@@ -22,16 +22,19 @@ public class CheckUsername extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
-        
+
         ServletContext context = getServletContext();
         Connection connection = (Connection) context.getAttribute("connection");
         Statement check = connection.createStatement();
-        ResultSet check_output = check.executeQuery("select username from test_base.customer where username = '" + request.getHeader("username") + "'"); 
-        
-        if(check_output.next()) {
-            response.getWriter().write("error");
-        }
-        else {
+        String username = request.getHeader("username");
+        ResultSet check_output = check.executeQuery("select username from test_base.customer where username = '" + username + "'");
+
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+
+        if (check_output.next()) {
+            response.getWriter().write("duplicate");
+        } else {
             response.getWriter().write("passed");
         }
     }
