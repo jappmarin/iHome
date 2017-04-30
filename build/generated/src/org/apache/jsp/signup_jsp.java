@@ -50,7 +50,9 @@ public final class signup_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                    <div class=\"card\">\n");
       out.write("                        <h3 class=\"card-header\">Sign Up</h3>\n");
       out.write("                        <div class=\"card-block\">\n");
-      out.write("                            <form action=\"Signup\" method=\"POST\">\n");
+      out.write("                            <form action=\"");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${SITE_URL}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("/Signup\" method=\"POST\">\n");
       out.write("                                ");
  session.setAttribute("cus_type", "GUEST");
       out.write("\n");
