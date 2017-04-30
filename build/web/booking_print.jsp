@@ -12,7 +12,7 @@
                         <h3 class="card-header">Booking Number - #<%=request.getAttribute("booking_id")%></h3>
                         <div class="card-block">
                             <p class="card-text">Name : <small class="text-muted"><%=request.getAttribute("name")%></small></p>
-                            <p class="card-text">Phone Number : <small class="text-muted"><%=request.getAttribute("phone")%></small></p>
+                            <p class="card-text">Phone : <small class="text-muted"><%=request.getAttribute("phone")%></small></p>
                             <p class="card-text">Email : <small class="text-muted"><%=request.getAttribute("email")%></small></p>
                         </div>
                     </div>
