@@ -3,13 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< Updated upstream
-            <file>file:/D:/Project/iHome/web/search.jsp</file>
-            <file>file:/D:/Project/iHome/src/java/controller/Booking.java</file>
-            <file>file:/D:/Project/iHome/src/java/controller/BookingConfirm.java</file>
-=======
-            <file>file:/D:/project-homestay/iHome/web/signup.jsp</file>
->>>>>>> Stashed changes
+            <file>file:/D:/Project/iHome/src/java/controller/CheckUsername.java</file>
+            <file>file:/D:/Project/iHome/web/asset/js/authen.js</file>
+            <file>file:/D:/Project/iHome/web/signup.jsp</file>
         </group>
     </open-files>
 </project-private>

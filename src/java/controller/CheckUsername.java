@@ -33,9 +33,9 @@ public class CheckUsername extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
 
         if (check_output.next()) {
-            response.getWriter().write("duplicate");
+            response.getWriter().write("error");
         } else {
-            response.getWriter().write("passed");
+            response.getWriter().write("pass");
         }
     }
 
@@ -74,7 +74,7 @@ public class CheckUsername extends HttpServlet {
         } catch (SQLException ex) {
             Logger.getLogger(CheckUsername.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
+    }   
 
     /**
      * Returns a short description of the servlet.
