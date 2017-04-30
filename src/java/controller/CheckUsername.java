@@ -35,7 +35,7 @@ public class CheckUsername extends HttpServlet {
         if (check_output.next()) {
             response.getWriter().write("error");
         } else {
-            response.getWriter().write("pass");
+            response.getWriter().write("passed");
         }
     }
 

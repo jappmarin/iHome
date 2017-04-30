@@ -16,7 +16,7 @@ public class iHomeListender implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent sce) {
         try {
-            connection = getIhomee().getConnection();
+            connection = getTest().getConnection();
             sce.getServletContext().setAttribute("connection", connection);
         } catch (SQLException | NamingException e) {
         }
@@ -35,11 +35,15 @@ public class iHomeListender implements ServletContextListener {
 //        return (DataSource) c.lookup("java:comp/env/ihome");
 //    }
 
-    private DataSource getIhomee() throws NamingException {
+//    private DataSource getIhomee() throws NamingException {
+//        Context c = new InitialContext();
+//        return (DataSource) c.lookup("java:comp/env/ihomee");
+//    }
+
+    private DataSource getTest() throws NamingException {
         Context c = new InitialContext();
-        return (DataSource) c.lookup("java:comp/env/ihomee");
+        return (DataSource) c.lookup("java:comp/env/test");
     }
-    
     
     
 }

@@ -33,7 +33,7 @@ document.getElementById("firstNameIn").addEventListener("input", function() {
     }
 });
 
-document.getElementById("lastNameIn").addEventListener("input", function () {
+document.getElementById("lastNameIn").addEventListener("input", function() {
     var lastNameIn = document.getElementById("lastNameIn");
     var lastNameInDiv = document.getElementById("lastNameInDiv");
     var lastname = lastNameIn.value;
@@ -68,21 +68,21 @@ document.getElementById("usernameIn").addEventListener("input", function() {
     var username = usernameIn.value;
 
     if (username.length >= 5) {
-        var htpp = new XMLHttpRequest();
+        var http = new XMLHttpRequest();
         var url = "CheckUsername";
         http.open("POST", url, true);
 
         http.setRequestHeader("Content-type", "application/json; charset=utf-8");
-        htpp.setRequestHeader("username", username);
+        http.setRequestHeader("username", username);
 
         http.onreadystatechange = function() {
             if (http.readyState == 4 && http.status == 200) {
                 var result = http.responseText;
-                if (result == "error") {
+                if (result === "error") {
                     usernameInDiv.classList.remove("has-success");
-                    usernameInDiv.classL    ist.remove("has-danger");
+                    usernameInDiv.classList.add("has-danger");
                     usernameIn.classList.remove("form-control-success");
-                    usernameIn.classList.remove("form-control-danger");
+                    usernameIn.classList.add("form-control-danger");
                     usernameCheck = false;
                     check();
                 } else {
