@@ -19,6 +19,7 @@
                         <div class="form-group has-feedback" id="usernameInDiv">
                             <label for="username">Username</label>
                             <input type="text" class="form-control" name="username" id="usernameIn" placeholder="johnenglish">
+                            <div class="form-control-feedback" id="usernameDuplicate" hidden>Sorry, that username's taken. Try another?</div>
                         </div>
                         <div class="form-group has-feedback" id="emailInDiv">
                             <label for="email">Email</label>

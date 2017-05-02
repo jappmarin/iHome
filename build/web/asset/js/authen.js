@@ -4,8 +4,8 @@ var usernameCheck = false;
 var emailCheck = false;
 var phoneCheck = false;
 
-var password = "1";
-var confirmPassword = "2";
+var password = "password";
+var confirmPassword = "confirmpassword";
 
 var passIn = document.getElementById("passIn");
 var passInDiv = document.getElementById("passInDiv");
@@ -94,6 +94,7 @@ document.getElementById("usernameIn").addEventListener("input", function() {
                     usernameInDiv.classList.add("has-danger");
                     usernameIn.classList.remove("form-control-success");
                     usernameIn.classList.add("form-control-danger");
+                    document.getElementById("usernameDuplicate").removeAttribute("hidden");
                     usernameCheck = false;
                     check();
                 } else {
@@ -101,6 +102,7 @@ document.getElementById("usernameIn").addEventListener("input", function() {
                     usernameInDiv.classList.remove("has-danger");
                     usernameIn.classList.add("form-control-success");
                     usernameIn.classList.remove("form-control-danger");
+                    document.getElementById("usernameDuplicate").setAttribute("hidden", "hidden");
                     usernameCheck = true;
                     check();
                 }
@@ -112,6 +114,7 @@ document.getElementById("usernameIn").addEventListener("input", function() {
         usernameInDiv.classList.remove("has-danger");
         usernameIn.classList.remove("form-control-success");
         usernameIn.classList.remove("form-control-danger");
+        document.getElementById("usernameDuplicate").setAttribute("hidden", "hidden");
         usernameCheck = false;
         check();
     }
@@ -256,6 +259,6 @@ function check() {
     if (firstnameCheck && lastnameCheck && usernameCheck && emailCheck && phoneCheck && password === confirmpassword) {
         signupButton.removeAttribute("disabled");
     } else {
-        signupButton.setAttribute("disabled", "disabled")
+        signupButton.setAttribute("disabled", "disabled");
     }
 }
