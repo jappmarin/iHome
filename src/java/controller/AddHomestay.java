@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -39,12 +40,6 @@ public class AddHomestay extends HttpServlet {
         HttpSession session = request.getSession();
         String username = (String) session.getAttribute("username");
 
-        Calendar calendar = Calendar.getInstance();
-
-        String appPath = request.getServletContext().getRealPath("");
-        String savePath = appPath + "/asset/img/homestay";
-
-//        String username = customer.getUsername();
         String homestay_name = request.getParameter("homestay_name");
         String homestay_desc = request.getParameter("homestay_desc");
         String homestay_license = request.getParameter("homestay_license");
@@ -52,16 +47,12 @@ public class AddHomestay extends HttpServlet {
         String homestay_district = request.getParameter("homestay_district");
         String homestay_province = request.getParameter("homestay_province");
         String homestay_region = request.getParameter("homestay_region");
-//                (customer.getUsername() + new Timestamp(calendar.getTime().getTime()).toString()).hashCode() + "";
+        String near1 = request.getParameter("nearplace1");
+        String near2 = request.getParameter("nearplace2");
+        String near3 = request.getParameter("nearplace3");
+        String near4 = request.getParameter("nearplace4");
+        String near5 = request.getParameter("nearplace5");
 
-//        File fileSaveDir = new File(savePath);
-//        if (!fileSaveDir.exists()) {
-//            fileSaveDir.mkdir();
-//        }
-//
-//        Part part = request.getPart("file");
-//        part.write(savePath + File.separator + hs_pic + ".jpg");
-//        part.delete();
         Homestay homestay = new Homestay();
         homestay.setHs_name(homestay_name);
         homestay.setHs_desc(homestay_desc);
@@ -70,13 +61,9 @@ public class AddHomestay extends HttpServlet {
         homestay.setHs_region(homestay_region);
         homestay.setHs_province(homestay_province);
         homestay.setHs_district(homestay_district);
-//            homestay.setHs_pic(hs_pic + ".jpg");
         homestay.setHost(username);
         homestay.addHomestay(connection);
-        
-        
 
-        
         PreparedStatement select_homestay = connection.prepareStatement("select * from test_base.homestay where homestay_name = ?");
         select_homestay.setString(1, request.getParameter("homestay_name"));
         ResultSet display_homestay = select_homestay.executeQuery();
@@ -84,13 +71,63 @@ public class AddHomestay extends HttpServlet {
             session.setAttribute("hs_id", display_homestay.getString("homestay_id"));
             session.setAttribute("hs_name", display_homestay.getString("homestay_name"));
             session.setAttribute("hs_desc", display_homestay.getString("homestay_desc"));
-//            session.setAttribute("hs_pic", display_homestay.getString("homestay_pic"));
             session.setAttribute("hs_address", display_homestay.getString("homestay_address"));
             session.setAttribute("hs_province", display_homestay.getString("homestay_province"));
             session.setAttribute("hs_district", display_homestay.getString("homestay_district"));
-            System.out.println((String)session.getAttribute("hs_id"));
+            System.out.println((String) session.getAttribute("hs_id"));
         }
 
+        PreparedStatement add_near_place = connection.prepareStatement("insert into test_base.near_place (place_name) values (?)");
+        PreparedStatement select_near_place = connection.prepareStatement("select place_id from test_base.near_place where place_name like ?");
+        PreparedStatement insert_near_homestay = connection.prepareStatement("insert into test_base.near_homestay(homestay_id, place_id) values (?, ?)");
+        
+        if (!near1.equals("")) {
+            add_near_place.setString(1,  near1);
+            add_near_place.executeUpdate();
+            select_near_place.setString(1, near1);
+            ResultSet display_near_place = select_near_place.executeQuery();
+            display_near_place.next();
+            insert_near_homestay.setString(1, (String) session.getAttribute("hs_id"));
+            insert_near_homestay.setString(2, display_near_place.getString("place_id"));
+            insert_near_homestay.executeUpdate();
+        } if (!near2.equals("")) {
+            add_near_place.setString(1, near2);
+            add_near_place.executeUpdate();
+            select_near_place.setString(1, near2);
+            ResultSet display_near_place = select_near_place.executeQuery();
+            display_near_place.next();
+            insert_near_homestay.setString(1, (String) session.getAttribute("hs_id"));
+            insert_near_homestay.setString(2, display_near_place.getString("place_id"));
+            insert_near_homestay.executeUpdate();
+        } if (!near3.equals("")) {
+            add_near_place.setString(1, near3);
+            add_near_place.executeUpdate();
+            select_near_place.setString(1, near3);
+            ResultSet display_near_place = select_near_place.executeQuery();
+            display_near_place.next();
+            insert_near_homestay.setString(1, (String) session.getAttribute("hs_id"));
+            insert_near_homestay.setString(2, display_near_place.getString("place_id"));
+            insert_near_homestay.executeUpdate();
+        } if (!near4.equals("")) {
+            add_near_place.setString(1, near4);
+            add_near_place.executeUpdate();
+            select_near_place.setString(1, near4);
+            ResultSet display_near_place = select_near_place.executeQuery();
+            display_near_place.next();
+            insert_near_homestay.setString(1, (String) session.getAttribute("hs_id"));
+            insert_near_homestay.setString(2, display_near_place.getString("place_id"));
+            insert_near_homestay.executeUpdate();
+        } if (!near5.equals("")) {
+            add_near_place.setString(1, near5);
+            add_near_place.executeUpdate();
+            select_near_place.setString(1, near5);
+            ResultSet display_near_place = select_near_place.executeQuery();
+            display_near_place.next();
+            insert_near_homestay.setString(1, (String) session.getAttribute("hs_id"));
+            insert_near_homestay.setString(2, display_near_place.getString("place_id"));
+            insert_near_homestay.executeUpdate();
+        }
+        
         response.sendRedirect("upload.jsp");
     }
 

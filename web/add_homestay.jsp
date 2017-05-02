@@ -76,6 +76,14 @@
                                         </label>
                                     </div>
                                 </fieldset>
+                                <div class="form-group has-feedback" id="zipInDiv">
+                                    <label for="nearplace">สถานที่ท่องเที่ยวใกล้เคียง</label>
+                                    <input type="text" class="form-control" name="nearplace1" id="near" value="" placeholder="" >
+                                    <input type="text" class="form-control" name="nearplace2" id="near" value="" placeholder="" >
+                                    <input type="text" class="form-control" name="nearplace3" id="near" value="" placeholder="" >
+                                    <input type="text" class="form-control" name="nearplace4" id="near" value="" placeholder="" >
+                                    <input type="text" class="form-control" name="nearplace5" id="near" value="" placeholder="" >
+                                </div>
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-primary btn-block" id="addHomestayButton">Add Homestay</button>
                                     <button class="btn btn-secondary btn-block" id="addHomestayButton">Cancel</button>

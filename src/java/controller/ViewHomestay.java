@@ -45,6 +45,7 @@ public class ViewHomestay extends HttpServlet {
             homestay.setHs_region(display_homestay.getString("homestay_region"));
             homestay.setHs_province(display_homestay.getString("homestay_province"));
             homestay.setHs_district(display_homestay.getString("homestay_district"));
+            homestay.setNear_homestay(connection, (request.getParameter("id") + "';"));
             homestay.setHs_pic(display_homestay.getString("homestay_picture"));
             homestay.setContact(connection, (request.getParameter("id") + "';"));
 
@@ -64,7 +65,7 @@ public class ViewHomestay extends HttpServlet {
             room.setRoom_limit(display_room.getInt("room_limit"));
             room.setRoom_picture(display_room.getString("room_picture"));
             room.setFacilities(connection, room.getRoom_id());
-            System.out.println(room.getFacilities());
+            
             allRoom.add(room);
         }
 

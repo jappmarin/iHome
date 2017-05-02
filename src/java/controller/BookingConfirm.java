@@ -38,7 +38,7 @@ public class BookingConfirm extends HttpServlet {
         HttpSession session = request.getSession();
         Customer customer = (Customer) session.getAttribute("customer");
 
-        PreparedStatement select_info = connection.prepareStatement("select * from test_base.room join test_base.homestay using (homestay_id) where room_id = '" + request.getParameter("id") + "';");
+        PreparedStatement select_info = connection.prepareStatement("select * from test_base.room join test_base.homestay using (homestay_id) join test_base.customer using(username) where room_id = '" + request.getParameter("id") + "';");
         ResultSet display_info = select_info.executeQuery();
 
         Homestay homestay = new Homestay();
@@ -53,7 +53,7 @@ public class BookingConfirm extends HttpServlet {
             homestay.setHs_region(display_info.getString("homestay_region"));
             homestay.setHs_province(display_info.getString("homestay_province"));
             homestay.setHs_district(display_info.getString("homestay_district"));
-            homestay.setContact(connection, homestay.getHs_id());
+            homestay.setContact(display_info.getString("phone"));
             homestay.setHost(display_info.getString("username"));
 
             room.setRoom_id(display_info.getInt("room_id"));

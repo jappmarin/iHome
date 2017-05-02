@@ -20,6 +20,7 @@ public class Homestay {
     private String hs_lat;
     private String hs_long;
     private String host;
+    private ArrayList<String> near_homestay;
     private ArrayList<Room> myRoom;
     private String contact;
     private Connection connection;
@@ -244,6 +245,10 @@ public class Homestay {
     /**
      * @param contact the contact to set
      */
+    public void setContact(String contact) {
+        this.contact = contact;
+    }
+    
     public void setContact(Connection connection, String homestay_id) throws SQLException {
         PreparedStatement select_contact = connection.prepareStatement("select * from test_base.homestay join test_base.customer using(username) where homestay_id = ?");
         select_contact.setString(1, homestay_id);
@@ -252,6 +257,30 @@ public class Homestay {
             this.contact = display_contact.getString("phone");
         }
 
+    }
+
+    /**
+     * @return the near_homestay
+     */
+    public ArrayList<String> getNear_homestay() {
+        return near_homestay;
+    }
+
+    /**
+     * @param near_homestay the near_homestay to set
+     */
+    public void setNear_homestay(Connection connection, String homestay_id) throws SQLException {
+        PreparedStatement select_near_homestay = connection.prepareStatement("select * from test_base.near_homestay join near_place using (place_id) where homestay_id = ?");
+        select_near_homestay.setString(1, homestay_id);
+        ResultSet display_select_near_homestay = select_near_homestay.executeQuery();
+        
+        if (display_select_near_homestay.next()) {
+            near_homestay.add(display_select_near_homestay.getString("place_name"));
+        }
+        else {
+            this.near_homestay = null;
+        }
+        this.near_homestay = near_homestay;
     }
 
 }

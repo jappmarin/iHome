@@ -39,7 +39,7 @@ public class Signup extends HttpServlet {
         String email = request.getParameter("email");
         String birthdate = request.getParameter("birthdate");
         String phone = request.getParameter("phone");
-        String type = (String) request.getAttribute("cus_type");
+        String type =  (String) session.getAttribute("cus_type");
 
         PreparedStatement select_customer = connection.prepareStatement("select * from test_base.customer where username = ? ");
         select_customer.setString(1, username);

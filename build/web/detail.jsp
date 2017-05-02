@@ -24,6 +24,10 @@
                                     <p> คะแนนเฉลี่ย : <%=request.getAttribute("score")%> คะแนน</p>
                                     <p> ติดต่อ : <%=homestay.getContact().substring(0, 3)%>-<%=homestay.getContact().substring(3, 6)%>-<%=homestay.getContact().substring(6, 10)%>
                                     <p class="card-text"><%=homestay.getHs_desc()%></p>
+                                    <p class="card-text">สถานที่ใกล้เคียง</p>
+                                    <%for (String near : homestay.getNear_homestay()) {%>
+                                    <p class="card-text">- <%=near%> <br> </p> 
+                                    <%}%>
                                 </div>
                             </div>
                         </div>
@@ -84,6 +88,7 @@
                             }%>
                         <li class="media">
                             <div class="media-body">
+                                <% if (session.getAttribute("customer") != null) {%>
                                 <form action="${SITE_URL}/Review/?id=<%=homestay.getHs_id()%>" method="POST">
                                     <fieldset class="form-group">
                                         <legend>ให้คะแนนโฮมสเตย์</legend>
@@ -121,6 +126,7 @@
                                     <textarea name="comment" rows="3" style="width: 100%; margin-top: 10px; margin-bottom: 10px;"></textarea>
                                     <button type="submit" class="btn btn-success btn-lg">Comment</button>
                                 </form>
+                                <% }%>
                             </div>
                         </li>
                     </ul>

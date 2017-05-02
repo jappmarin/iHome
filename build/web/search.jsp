@@ -2,9 +2,9 @@
 <%@page import="model.Homestay"%>
 <%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <% if (session.getAttribute("customer") != null) {  %><jsp:include page="templates/headerauth.jsp" /><% } else { %><jsp:include page="templates/header.jsp" /><% }%>
-<div class="container mt-5 mb-5">   
+<div class="container-fluid mt-5 mb-5">   
     <div class="row justify-content-center">
-        <div class="col-sm-3">
+        <div class="col-sm-2">
             <div class="card mt-2">
                 <div class="card-block">
                     <form action="Search" method="GET">
@@ -99,14 +99,14 @@
                 </div>
             </div>
         </div>
-        <div class="col-sm-9">
+        <div class="col-sm-10">
             <div class="row">               
                 <% ArrayList<Homestay> allHome = (ArrayList<Homestay>) request.getAttribute("allHome");
                     if (allHome != null) {
                         for (Homestay home : allHome) {
                             request.setAttribute("homestay_id", home.getHs_id());%>
-                <div class="col-sm-6">
-                    <div class="card text-center mt-2">
+                <div class="col-sm-4">
+                    <div class="card text-center mt-3">
                         <img class="card-img-top" style="height : 300px" src="${SITE_URL}/asset/img/homestay/<%=home.getHs_pic()%>">
                         <br>
                         <style>
