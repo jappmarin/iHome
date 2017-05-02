@@ -179,8 +179,6 @@ document.getElementById("phoneIn").addEventListener("input", function() {
 });
 
 document.getElementById("passIn").addEventListener("input", function() {
-    var passIn = document.getElementById("passIn");
-    var passInDiv = document.getElementById("passInDiv");
     password = passIn.value;
     confirmpassword = confirmPassIn.value;
 
@@ -188,37 +186,35 @@ document.getElementById("passIn").addEventListener("input", function() {
     	if (password === confirmpassword) {
     		passInDiv.classList.add("has-success");
         	passInDiv.classList.remove("has-danger");
+            confirmPassInDiv.classList.add("has-success");
+            confirmPassInDiv.classList.remove("has-danger");
         	passIn.classList.add("form-control-success");
         	passIn.classList.remove("form-control-danger");
-        	confirmPassInDiv.classList.add("has-success");
-        	confirmPassInDiv.classList.remove("has-danger");
         	confirmPassIn.classList.add("form-control-success");
         	confirmPassIn.classList.remove("form-control-danger");
     	} else {
     		passInDiv.classList.remove("has-success");
         	passInDiv.classList.add("has-danger");
+            confirmPassInDiv.classList.remove("has-success");
+            confirmPassInDiv.classList.add("has-danger");
         	passIn.classList.remove("form-control-success");
         	passIn.classList.add("form-control-danger");
-        	confirmPassInDiv.classList.remove("has-success");
-        	confirmPassInDiv.classList.add("has-danger");
         	confirmPassIn.classList.remove("form-control-success");
         	confirmPassIn.classList.add("form-control-danger");
     	}
     } else {
     		passInDiv.classList.remove("has-success");
         	passInDiv.classList.remove("has-danger");
+            confirmPassInDiv.classList.remove("has-success");
+            confirmPassInDiv.classList.remove("has-danger");
         	passIn.classList.remove("form-control-success");
         	passIn.classList.remove("form-control-danger");
-        	confirmPassInDiv.classList.remove("has-success");
-        	confirmPassInDiv.classList.remove("has-danger");
         	confirmPassIn.classList.remove("form-control-success");
         	confirmPassIn.classList.remove("form-control-danger");
-    	}
+    }
 });
 
 document.getElementById("confirmPassIn").addEventListener("input", function() {
-    var confirmPassIn = document.getElementById("confirmPassIn");
-    var confirmPassInDiv = document.getElementById("confirmPassInDiv");
     password = passIn.value;
     confirmpassword = confirmPassIn.value;
 
@@ -226,29 +222,29 @@ document.getElementById("confirmPassIn").addEventListener("input", function() {
     	if (password === confirmpassword) {
     		passInDiv.classList.add("has-success");
         	passInDiv.classList.remove("has-danger");
+            confirmPassInDiv.classList.add("has-success");
+            confirmPassInDiv.classList.remove("has-danger");
         	passIn.classList.add("form-control-success");
         	passIn.classList.remove("form-control-danger");
-        	confirmPassInDiv.classList.add("has-success");
-        	confirmPassInDiv.classList.remove("has-danger");
         	confirmPassIn.classList.add("form-control-success");
         	confirmPassIn.classList.remove("form-control-danger");
     	} else {
     		passInDiv.classList.remove("has-success");
         	passInDiv.classList.add("has-danger");
+            confirmPassInDiv.classList.remove("has-success");
+            confirmPassInDiv.classList.add("has-danger");
         	passIn.classList.remove("form-control-success");
         	passIn.classList.add("form-control-danger");
-        	confirmPassInDiv.classList.remove("has-success");
-        	confirmPassInDiv.classList.add("has-danger");
         	confirmPassIn.classList.remove("form-control-success");
         	confirmPassIn.classList.add("form-control-danger");
     	}
     } else {
     		passInDiv.classList.remove("has-success");
         	passInDiv.classList.remove("has-danger");
+            confirmPassInDiv.classList.remove("has-success");
+            confirmPassInDiv.classList.remove("has-danger");
         	passIn.classList.remove("form-control-success");
         	passIn.classList.remove("form-control-danger");
-        	confirmPassInDiv.classList.remove("has-success");
-        	confirmPassInDiv.classList.remove("has-danger");
         	confirmPassIn.classList.remove("form-control-success");
         	confirmPassIn.classList.remove("form-control-danger");
     }
