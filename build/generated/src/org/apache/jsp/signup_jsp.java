@@ -54,7 +54,7 @@ public final class signup_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${SITE_URL}", java.lang.String.class, (PageContext)_jspx_page_context, null));
       out.write("/Signup\" method=\"POST\">\n");
       out.write("                        ");
- session.setAttribute("cus_type", "GUEST");
+ request.setAttribute("cus_type", "GUEST");
       out.write("\n");
       out.write("                        <div class=\"form-group has-feedback\" id=\"firstNameInDiv\">\n");
       out.write("                            <label for=\"firstname\">First Name</label>\n");
@@ -67,6 +67,7 @@ public final class signup_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                        <div class=\"form-group has-feedback\" id=\"usernameInDiv\">\n");
       out.write("                            <label for=\"username\">Username</label>\n");
       out.write("                            <input type=\"text\" class=\"form-control\" name=\"username\" id=\"usernameIn\" placeholder=\"johnenglish\">\n");
+      out.write("                            <div class=\"form-control-feedback\" id=\"usernameDuplicate\" hidden>Sorry, that username's taken. Try another?</div>\n");
       out.write("                        </div>\n");
       out.write("                        <div class=\"form-group has-feedback\" id=\"emailInDiv\">\n");
       out.write("                            <label for=\"email\">Email</label>\n");
