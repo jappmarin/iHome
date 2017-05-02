@@ -8,6 +8,7 @@
                         <div class="card-block">
                             <form action="Signup" method="POST">
                                 <% request.setAttribute("cus_type", "HOST"); %>
+                                <input type="hidden" name="cus_type" value="HOST" />
                                 <div class="form-group has-feedback" id="firstNameInDiv">
                                     <label for="firstname">First Name</label>
                                     <input type="text" class="form-control" name="firstname" id="firstNameIn" placeholder="John" required="">
