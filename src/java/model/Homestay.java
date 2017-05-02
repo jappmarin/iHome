@@ -270,17 +270,13 @@ public class Homestay {
      * @param near_homestay the near_homestay to set
      */
     public void setNear_homestay(Connection connection, String homestay_id) throws SQLException {
-        PreparedStatement select_near_homestay = connection.prepareStatement("select * from test_base.near_homestay join near_place using (place_id) where homestay_id = ?");
+        PreparedStatement select_near_homestay = connection.prepareStatement("select * from test_base.near_homestay join test_base.near_place using(place_id) where homestay_id = ?");
         select_near_homestay.setString(1, homestay_id);
         ResultSet display_select_near_homestay = select_near_homestay.executeQuery();
-        
-        if (display_select_near_homestay.next()) {
-            near_homestay.add(display_select_near_homestay.getString("place_name"));
+        near_homestay = new ArrayList<>();
+        while(display_select_near_homestay.next()) {
+            this.near_homestay.add(display_select_near_homestay.getString("place_name"));     
         }
-        else {
-            this.near_homestay = null;
-        }
-        this.near_homestay = near_homestay;
     }
 
 }
