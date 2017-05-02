@@ -4,13 +4,8 @@ var usernameCheck = false;
 var emailCheck = false;
 var phoneCheck = false;
 
-<<<<<<< refs/remotes/origin/master
 var password = "password";
 var confirmPassword = "confirmpassword";
-=======
-var password = "1";
-var confirmpassword = "2";
->>>>>>> Update a little bit
 
 var passIn = document.getElementById("passIn");
 var passInDiv = document.getElementById("passInDiv");
