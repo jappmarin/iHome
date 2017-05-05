@@ -24,7 +24,7 @@
             <div class="collapse navbar-collapse" id="navbars">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="${SITE_URL}/signup_host.jsp">Become a Host</a>
+                        <a class="nav-link" href="${SITE_URL}/signup.jsp">Become a Host</a>
                     </li>
 <!--                    <li class="nav-item">
                         <a class="nav-link" href="#">Help</a>
