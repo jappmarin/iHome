@@ -57,7 +57,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div id="form-B">
+                            <div id="form-B" style="display: none;">
                                 <h3 class="card-header">Sign Up for Guest</h3>
                                 <div class="card-block">
                                     <form action="${SITE_URL}/Signup" method="POST">

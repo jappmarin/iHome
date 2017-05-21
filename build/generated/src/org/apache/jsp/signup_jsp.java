@@ -62,7 +62,7 @@ public final class signup_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${SITE_URL}", java.lang.String.class, (PageContext)_jspx_page_context, null));
       out.write("/Signup\" method=\"POST\">\n");
       out.write("                                        ");
- session.setAttribute("cus_type", "GUEST");
+ session.setAttribute("cus_type", "HOST"); 
       out.write("\n");
       out.write("                                        <div class=\"form-group has-feedback\" id=\"firstNameInDiv\">\n");
       out.write("                                            <label for=\"firstname\">First Name</label>\n");
@@ -107,8 +107,8 @@ public final class signup_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                                    </div>\n");
       out.write("                                </div>\n");
       out.write("                            </div>\n");
-      out.write("                            <div id=\"form-A\">\n");
-      out.write("                                <h3 class=\"card-header\">Sign Up for Host</h3>\n");
+      out.write("                            <div id=\"form-B\">\n");
+      out.write("                                <h3 class=\"card-header\">Sign Up for Guest</h3>\n");
       out.write("                                <div class=\"card-block\">\n");
       out.write("                                    <form action=\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${SITE_URL}", java.lang.String.class, (PageContext)_jspx_page_context, null));
