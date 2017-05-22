@@ -1,187 +1,138 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<jsp:include page="templates/header.jsp" />
-        <div class="container mt-5">
+<%@page import="model.Room"%>
+<%@page import="controller.Review"%>
+<%@page import="model.Comment"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="model.Homestay"%>
+<%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<% if (session.getAttribute("customer") != null) {  %><jsp:include page="templates/headerauth.jsp" /><% } else { %><jsp:include page="templates/header.jsp" /><% }%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<% Homestay homestay = (Homestay) request.getAttribute("homestay");%>
+<div class="container my-2">
+    <div class="row justify-content-center">
+        <div class="col-sm-12">
             <div class="card">
-                <h3 class="card-header">Shuswap: Blind Bay</h3>
+                <h3 class="card-header"><%=homestay.getHs_name()%></h3>
                 <div class="card-block">
                     <div class="row justify-content-center">
                         <div class="col-sm-6">
-                            <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-                                <div class="carousel-inner" role="listbox">
-                                    <div class="carousel-item active">
-                                        <img class="d-block w-100 h-100 rounded" src="https://www.ownerdirect.com/images/blind-bay-home-rental-kw-1112293-full.jpg" alt="First slide">
-                                    </div>
-                                    <div class="carousel-item">
-                                        <img class="d-block w-100 h-100 rounded" src="https://www.ownerdirect.com/images/blind-bay-home-rental-kw-983992-full.jpg" alt="Second slide">
-                                    </div>
-                                    <div class="carousel-item">
-                                        <img class="d-block w-100 h-100 rounded" src="https://www.ownerdirect.com/images/blind-bay-home-rental-kw-983990-full.jpg" alt="Third slide">
-                                    </div>
-                                </div>
-                                <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                    <span class="sr-only">Previous</span>
-                                </a>
-                                <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                    <span class="sr-only">Next</span>
-                                </a>
-                            </div>
+                            <img class="d-block" style="height: 100%; width: 100%;" src="${SITE_URL}/asset/img/homestay/<%=homestay.getHs_pic()%>" alt="">
                         </div>
                         <div class="col-sm-6">
                             <div class="card">
                                 <div class="card-block">
-                                    <h4 class="card-title">Homestay Detail</h4>
-                                    <p class="card-text">There are 7 beds (3 queen beds, 1 double lower bunk, 1 double upper bunk, 1 single foamie (child size) and 1 double bed). The base rate (before extra person rates are added) is for 8 occupants.</p>
-                                    <a class="btn btn-primary btn-lg" href="#">Booking</a>
+                                    <h4 class="card-title">รายละเอียดบ้านพัก</h4>
+                                    <p> คะแนนเฉลี่ย : <%=request.getAttribute("score")%> คะแนน</p>
+                                    <p> ติดต่อ : <%=homestay.getContact().substring(0, 3)%>-<%=homestay.getContact().substring(3, 6)%>-<%=homestay.getContact().substring(6, 10)%>
+                                    <p class="card-text"><%=homestay.getHs_desc()%></p>
+                                    <p class="card-text">สถานที่ใกล้เคียง</p>
+                                    <%for (String near : homestay.getNear_homestay()) {%>
+                                    <p class="card-text">- <%=near%> <br> </p> 
+                                    <%}%>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="row mt-4 mb-4">
+                    <% if (request.getAttribute("allRoom") != null) { %>
+                    <% ArrayList<Room> allRoom = (ArrayList<Room>) request.getAttribute("allRoom");
+                        for (model.Room room : allRoom) {%>
+                    <div class="row justify-content-center my-2">
                         <div class="col-sm-12">
-                            <div id="accordion" role="tablist" aria-multiselectable="true">
-                                <div class="card">
-                                    <div class="card-header" role="tab" id="heading1">
-                                        <h5 class="mb-0">
-                                            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse1" aria-expanded="false" aria-controls="collapse1">
-                                                Parking
-                                            </a>
-                                        </h5>
-                                    </div>
-                                    <div id="collapse1" class="collapse" role="tabpanel" aria-labelledby="heading1">
-                                        <div class="card-block">
-                                            <ul>
-                                                <li>4 Outdoor/Open parking stalls with unlimited clearance</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card">
-                                    <div class="card-header" role="tab" id="heading2">
-                                        <h5 class="mb-0">
-                                            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse2" aria-expanded="false" aria-controls="collapse2">
-                                                Heating & Air Conditioning
-                                            </a>
-                                        </h5>
-                                    </div>
-                                    <div id="collapse2" class="collapse" role="tabpanel" aria-labelledby="heading2">
-                                        <div class="card-block">
-                                            <ul>
-                                                <li>Central Air Heating</li>
-                                                <li>Air Conditioning: 1 Portable Unit</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card">
-                                    <div class="card-header" role="tab" id="heading3">
-                                        <h5 class="mb-0">
-                                            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse3" aria-expanded="false" aria-controls="collapse3">
-                                                Bedroom
-                                            </a>
-                                        </h5>
-                                    </div>
-                                    <div id="collapse3" class="collapse" role="tabpanel" aria-labelledby="heading3">
-                                        <div class="card-block">
-                                            <ul>
-                                                <li>Queen Bed</li>
-                                                <li>Closet</li>
-                                                <li>Alarm Clock</li>
-                                                <li>Vanity</li>
-                                                <li>Ceiling Fan</li>
-                                                <li>Table Lamp</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card">
-                                    <div class="card-header" role="tab" id="heading4">
-                                        <h5 class="mb-0">
-                                            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse4" aria-expanded="false" aria-controls="collapse4">
-                                                Bathroom
-                                            </a>
-                                        </h5>
-                                    </div>
-                                    <div id="collapse4" class="collapse" role="tabpanel" aria-labelledby="heading4">
-                                        <div class="card-block">
-                                            <ul>
-                                                <li>Bathtub</li>
-                                                <li>Regular Stall Shower</li>
-                                                <li>Sink</li>
-                                                <li>Toilet</li>
-                                                <li>owels (matching)</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card">
-                                    <div class="card-header" role="tab" id="heading5">
-                                        <h5 class="mb-0">
-                                            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse5" aria-expanded="false" aria-controls="collapse5">
-                                                Kitchen
-                                            </a>
-                                        </h5>
-                                    </div>
-                                    <div id="collapse5" class="collapse" role="tabpanel" aria-labelledby="heading5">
-                                        <div class="card-block">
-                                            <ul>
-                                                <li>Large Fridge with Freezer (including ice maker)</li>
-                                                <li>Coffee Maker</li>
-                                                <li>Dishwasher</li>
-                                                <li>Kettle</li>
-                                                <li>Microwave</li>
-                                                <li>Range Oven</li>
-                                                <li>Toaster</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card">
-                                    <div class="card-header" role="tab" id="heading6">
-                                        <h5 class="mb-0">
-                                            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse6" aria-expanded="false" aria-controls="collapse6">
-                                                Outdoor
-                                            </a>
-                                        </h5>
-                                    </div>
-                                    <div id="collapse6" class="collapse" role="tabpanel" aria-labelledby="heading6">
-                                        <div class="card-block">
-                                            <ul>
-                                                <li>Propane BBQ private to this property.</li>
-                                                <li>Patio Table</li>
-                                                <li>2 Chaise Lounges</li>
-                                                <li>Wrap Around Deck</li>
-                                                <li>Dock</li>
-                                                <li>Grass/Lawn</li>
-                                                <li>Picnic Table</li>
-                                                <li>Sun Umbrella</li>
-                                                <li>Swing Set</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card">
-                                    <div class="card-header" role="tab" id="heading7">
-                                        <h5 class="mb-0">
-                                            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse7" aria-expanded="false" aria-controls="collapse7">
-                                                Other
-                                            </a>
-                                        </h5>
-                                    </div>
-                                    <div id="collapse7" class="collapse" role="tabpanel" aria-labelledby="heading7">
-                                        <div class="card-block">
-                                            <ul>
-                                                <li>The internet connection is provided.</li>
-                                            </ul>
+                            <div class="card">
+                                <h3 class="card-header">ห้อง <%=room.getRoom_name()%> ของ <%=homestay.getHs_name()%></h3>
+                                <div class="card-block">
+                                    <div class="row justify-content-center">
+                                        <div class="col-sm-12">
+                                            <div class="card">
+                                                <div class="card-block">
+                                                    <h4 class="card-title">รายละเอียดห้องพัก</h4>
+                                                    <%for (String fac : room.getFacilities()) {%>
+                                                    <p class="card-text">- <%=fac%> <br> </p> 
+                                                        <%}%>
+                                                    <h4 class="card-title">ราคาต่อคืน</h4>
+                                                    <p class="card-text"><%=room.getRoom_price()%></p>
+                                                    <h4 class="card-title">จำนวนผู้เข้าพักสูงสุด</h4>
+                                                    <p class="card-text"><%=room.getRoom_limit()%> คน</p>
+                                                    <a href="${SITE_URL}/Booking/?id=<%=room.getRoom_id()%>" class="btn btn-primary btn-lg">Booking</a>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <% }
+                        }%>
                 </div>
             </div>
         </div>
+    </div>
 
+    <div class="row justify-content-center my-2">
+        <div class="col-sm-12">
+            <div class="card">
+                <h3 class="card-header">Comment</h3>
+                <div class="card-block">
+                    <ul class="list-unstyled">
+                        <% if (request.getAttribute("allComment") != null) { %>
+                        <% ArrayList<Comment> allComment = (ArrayList<Comment>) request.getAttribute("allComment");
+                            for (model.Comment comment : allComment) {%>
+                        <li class="media">
+                            <div class="media-body">
+                                <h5 class="mt-0 mb-1"><%=comment.getFirstname()%> <%=comment.getLastname()%></h5>
+                                <p><%=comment.getText()%></p>
+                            </div>
+                        </li>
+                        <hr>
+                        <% }
+                            }%>
+                        <li class="media">
+                            <div class="media-body">
+                                <% if (session.getAttribute("customer") != null) {%>
+                                <form action="${SITE_URL}/Review/?id=<%=homestay.getHs_id()%>" method="POST">
+                                    <fieldset class="form-group">
+                                        <legend>ให้คะแนนโฮมสเตย์</legend>
+                                        <div class="form-check form-check-inline">
+                                            <label class="form-check-label">
+                                                <input type="radio" class="form-check-input" name="score" id="score1" value="1">
+                                                1 คะแนน
+                                            </label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <label class="form-check-label">
+                                                <input type="radio" class="form-check-input" name="score" id="score2" value="2">
+                                                2 คะแนน
+                                            </label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <label class="form-check-label">
+                                                <input type="radio" class="form-check-input" name="score" id="score3" value="3">
+                                                3 คะแนน
+                                            </label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <label class="form-check-label">
+                                                <input type="radio" class="form-check-input" name="score" id="score4" value="4">
+                                                4 คะแนน
+                                            </label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <label class="form-check-label">
+                                                <input type="radio" class="form-check-input" name="score" id="score5" value="5">
+                                                5 คะแนน
+                                            </label>
+                                        </div>
+                                    </fieldset>
+                                    <textarea name="comment" rows="3" style="width: 100%; margin-top: 10px; margin-bottom: 10px;"></textarea>
+                                    <button type="submit" class="btn btn-success btn-lg">Comment</button>
+                                </form>
+                                <% }%>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <jsp:include page="templates/footer.jsp" />

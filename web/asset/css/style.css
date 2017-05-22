@@ -1,3 +1,7 @@
+html *
+{
+    font-family: 'Kanit', sans-serif !important; 
+}
 body {
     color: #292b2c;
     background-color: #eee;
@@ -39,4 +43,8 @@ body {
 .search {
     position: relative;
     margin-bottom: 1.5rem;
+}
+.detail-img {
+    height: 350px;
+    width: 600px;
 }

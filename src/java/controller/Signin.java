@@ -1,11 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -19,36 +15,41 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import model.Profile;
+import model.Customer;
 
-/**
- *
- * @author tkitb
- */
 @WebServlet(name = "Signin", urlPatterns = {"/Signin"})
 public class Signin extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
-        
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
+
         ServletContext context = getServletContext();
         Connection connection = (Connection) context.getAttribute("connection");
-        PreparedStatement select_customer = connection.prepareStatement("select "
-                + "username, email from customer where username = ? and password = ?");
+
+        PreparedStatement select_customer = connection.prepareStatement("select * from test_base.customer where username = ? and password = ?");
         select_customer.setString(1, request.getParameter("username"));
         select_customer.setString(2, request.getParameter("password"));
-        
         ResultSet display_customer = select_customer.executeQuery();
         
         HttpSession session = request.getSession();
-        
+
         if (!display_customer.next()) {
-            response.sendRedirect("/iHome");
-        }
-        else {
-            Profile profile = new Profile(connection, request.getParameter("username"));
-            session.setAttribute("profile", profile);
+            PrintWriter out = response.getWriter();
+            response.setContentType("text/html");
+            out.println("<script type=\"text/javascript\">");
+            out.println("alert('Username or Password Wrong!');");
+            out.println("location='signin.jsp';");
+            out.println("</script>");
+        } else {
+            
+            Customer customer = new Customer(connection, request.getParameter("username"));
+            session.setAttribute("customer", customer);
+            session.setAttribute("username", customer.getUsername());
+            session.setAttribute("password", customer.getPassword());
+            session.setAttribute("type" , customer.getType());
             response.sendRedirect("index.jsp");
         }
     }

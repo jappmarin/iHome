@@ -1,111 +1,102 @@
+<%@page import="model.Room"%>
+<%@page import="model.Homestay"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<jsp:include page="templates/header.jsp" />
-        <div class="container mt-5">
-            <div class="row justify-content-center mt-3 mb-3">
-                <div class="col-sm-6">
-                    <div class="card">
-                        <h3 class="card-header">Customer Information</h3>
-                        <div class="card-block">
-                            <div class="row">
-                                <div class="col">
-                                    <table class="table">
-                                        <tbody>
-                                            <tr>
-                                                <td class="align-middle">First Name:</td>
-                                                <td>
-                                                    <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput" placeholder="First name">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="align-middle">Last Name:</td>
-                                                <td>
-                                                    <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput" placeholder="Last name">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="align-middle">Identity Number or Passport Number:</td>
-                                                <td>
-                                                    <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput" placeholder="Identity Number or Passport Number">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="align-middle">Date of Birth</td>
-                                                <td>
-                                                    <input type="date" class="form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput" placeholder="">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="align-middle">Email</td>
-                                                <td>
-                                                    <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput" placeholder="Email address">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="align-middle">Phone Number</td>
-                                                <td>
-                                                    <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput" placeholder="Phone number">
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>                
+<% if (session.getAttribute("customer") != null) {  %><jsp:include page="templates/headerauth.jsp" /><% } else { %><jsp:include page="templates/header.jsp" /><% }%>
+<% Homestay homestay = (Homestay) request.getAttribute("homestay");%>
+<% Room room = (Room) request.getAttribute("room");%>
+<div class="container mt-5">
+    <form action="${SITE_URL}/BookingConfirm/?id=<%=room.getRoom_id()%>" method="POST">
+        <div class="row justify-content-center mt-3 mb-3">
+            <div class="col-sm-12 col-md-6">
+                <div class="card">
+                    <h3 class="card-header">Customer Information</h3>
+                    <div class="card-block">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group has-feedback" id="firstNameInDiv">
+                                    <label for="firstname">First Name</label>
+                                    <input type="text" class="form-control" name="firstname" id="firstNameIn" placeholder="John" value="${sessionScope.customer.firstname}" required>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6">
-                    <div class="card">
-                        <h3 class="card-header">Homestay Book</h3>
-                        <div class="card-block">
-                            <div class="row">
-                                <div class="col">
-                                    <table class="table">
-                                        <tbody>
-                                            <tr>
-                                                <td class="align-middle">ชื่อโฮมสเตย์</td>
-                                                <td>
-                                                    <p>Example 1</p>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="align-middle">Check-in</td>
-                                                <td>
-                                                    <input type="date" class="form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput" placeholder="Last name">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="align-middle">Check-out</td>
-                                                <td>
-                                                    <input type="date" class="form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput" placeholder="Identity Number or Passport Number">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="align-middle">จำนวนผู้เข้าพัก</td>
-                                                <td>
-                                                    <input type="date" class="form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput" placeholder="Last name">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="align-middle">Total Price</td>
-                                                <td>
-                                                    <p class="align-middle">500 Bath</p>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                    <div class="row">
-                                        <div class="col">
-                                            <a class="btn btn-primary" href="booking_confirm.html">Confirm</a>
-                                            <a class="btn btn-secondary"  href="detail.html">Cancel</a>
-                                        </div>
-                                    </div>
+                                <div class="form-group has-feedback" id="lastNameInDiv">
+                                    <label for="firstname">Last Name</label>
+                                    <input type="text" class="form-control" name="lastname" id="lastNameIn" placeholder="English" value="${sessionScope.customer.lastname}" required>
                                 </div>
+                                <div class="form-group has-feedback" id="emailInDiv">
+                                    <label for="username">Email</label>
+                                    <input type="email" class="form-control" name="email" id="emailIn" placeholder="john@english.com" value="${sessionScope.customer.email}" required>
+                                </div>
+                                <div class="form-group has-feedback" id="phneInDiv">
+                                    <label for="phone">Phone Number</label>
+                                    <input type="text" class="form-control" name="phone" id="phoneIn" placeholder="094-546-467" value="${sessionScope.customer.phone}" required>
+                                </div>  
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <div class="col-sm-12 col-md-6">
+                <div class="card">
+                    <h3 class="card-header">Booking Information</h3>
+                    <div class="card-block">
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group has-feedback" id="homestayNameInDivInDiv">
+                                    <label for="homestayName">Homestay Name</label>
+                                    <input type="text" class="form-control" name="homestay_name" id="homestayNameIn" placeholder="" value="<%=homestay.getHs_name()%>" disabled>
+                                </div>
+                                <div class="form-group has-feedback" id="roomNameInDivInDiv">
+                                    <label for="roomName">Room Name</label>
+                                    <input type="text" class="form-control" name="room_name" id="roomNameIn" placeholder="" value="<%=room.getRoom_name()%>" disabled>
+                                </div>
+                                <div class="form-group has-feedback" id="checkinInDiv">
+                                    <label for="checkin">Check-in</label>
+                                    <input type="date" class="form-control" name="checkin" id="checkinIn" placeholder="" required>
+                                </div>
+                                <div class="form-group has-feedback" id="checkoutInDiv">
+                                    <label for="checkout">Check-out</label>
+                                    <input type="date" class="form-control" name="checkout" id="checkoutIn" placeholder="" onchange="totalDate();" required>
+                                </div>
+                                <label>จำนวนผู้เข้าพัก</label>
+                                <div class="form-inline">
+                                    <input class="btn btn-primary btn-sm mr-2 ml-2 mb-3" type="button" onclick="removeGuest<%=room.getRoom_id()%>(); totalDate();" value="-">
+                                    <input class="form-control mr-2 ml-2 mb-3" style="width: 45px;" type="text" id="guest<%=room.getRoom_id()%>" name="guest" value="1">
+                                    <input class="btn btn-primary btn-sm mr-2 ml-2 mb-3" type="button" onclick="addGuest<%=room.getRoom_id()%>(); totalDate();" value="+">
+                                </div>
+                                <script>
+                                        var i<%=room.getRoom_id()%> = 1;
+                                        function addGuest<%=room.getRoom_id()%>() {
+                                            if (i<%=room.getRoom_id()%> >= 1 & i<%=room.getRoom_id()%> < 10) {
+                                                i<%=room.getRoom_id()%>++;
+                                                document.getElementById("guest<%=room.getRoom_id()%>").value = i<%=room.getRoom_id()%>;
+                                            }
+                                        }
+                                        function removeGuest<%=room.getRoom_id()%>() {
+                                            if (i<%=room.getRoom_id()%> > 1 & i<%=room.getRoom_id()%> <= 10) {
+                                                i<%=room.getRoom_id()%>--;
+                                                document.getElementById("guest<%=room.getRoom_id()%>").value = i<%=room.getRoom_id()%>;
+                                            }
+                                        }
+                                </script>
+                                <div class="form-group has-feedback" id="priceInDiv">
+                                    <label for="total">Total</label>
+                                    <input type="text" class="form-control" name="total" id="priceIn" placeholder="" value="" >
+                                </div>
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-primary btn-block" id="confirmButton">Confirm Booking</button>
+                                    <a class="btn btn-secondary btn-block" href="${SITE_URL}/BookingConfirm/?id=<%=room.getRoom_id()%>" id="cancelButton">Cancel</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> 
         </div>
-
-<jsp:include page="templates/modal.jsp" />
+    </form>
+</div>
+<script>
+    function totalDate() {
+        var diff = (Math.ceil((new Date(document.getElementById("checkoutIn").value) - new Date(document.getElementById("checkinIn").value)) / (1000 * 3600 * 24)));
+        document.getElementById("priceIn").value = (diff * <%=room.getRoom_price()%>);
+    }
+</script>
 <jsp:include page="templates/footer.jsp" />
